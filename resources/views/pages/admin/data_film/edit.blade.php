@@ -96,7 +96,7 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Submit
                                 </button>
-                                <a href="" class="btn btn-secondary waves-effect m-l-5">Cancel</a>
+                                <a href="{{route('data_film.index')}}" class="btn btn-secondary waves-effect m-l-5">Cancel</a>
                             </div>
                         </form>
                     </div>

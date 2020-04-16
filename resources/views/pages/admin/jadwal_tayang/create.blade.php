@@ -68,9 +68,11 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Submit
                                 </button>
-                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                                <a href="{{route('studio.index')}}">
+                                <button type="button" class="btn btn-secondary waves-effect m-l-5">
                                     Cancel
                                 </button>
+                                </a>
                             </div>
                         </div>
 

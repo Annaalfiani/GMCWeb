@@ -41,7 +41,7 @@
 
                                 <td>{{$data->harga}}</td>
                                 <td>
-                                    <a href="#">
+                                    <a href="{{route('jadwal_tayang.edit', $data->id)}}">
                                         <button class="btn btn-warning">
                                             <i class="fa fa-pencil">
                                             </i>
@@ -55,6 +55,13 @@
 
                                         </button>
                                     </a>
+                                    <a href="{{route('jadwal_tayang.show', $data->id)}}">
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-eye">
+                                            </i>
+
+                                        </button>
+                                     </a>
                                 </td>
 
                             </tr>

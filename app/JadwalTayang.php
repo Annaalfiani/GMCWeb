@@ -20,4 +20,6 @@ class JadwalTayang extends Model
         return $this->hasMany(JamTayang::class, 'id_jadwal_tayang', 'id');
     }
 
+
+
 }

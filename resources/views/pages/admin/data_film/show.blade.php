@@ -7,7 +7,7 @@
                 <div class="card-body">
 
                         <h4 class="mt-0 header-title">{{$data->judul}}</h4>
-                        <p class="text-muted m-b-30 font-14">{{$data->created_at}}</p>
+                        <p class="text-muted m-b-30 font-14">{{$data->durasi}}</p>
 
                         <div class="media m-b-30">
                             <img class="d-flex align-self-start mr-3" src="{{asset('uploads/admin/'.$data->foto)}}"

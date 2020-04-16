@@ -7,7 +7,7 @@
 
 <!-- Begin page -->
 <div id="wrapper">
-    <div class="overflow-auto">
+    <div class="slimscrollLeft">
 
 
         <!-- ========== Left Sidebar Start ========== -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\DataFilm;
 use App\JadwalTayang;
+use App\JamTayang;
 use App\Studio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +89,8 @@ class JadwalTayangController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = JadwalTayang::find($id);
+        return view('pages.admin.jadwal_tayang.show', compact('data'));
     }
 
     /**
@@ -99,7 +101,11 @@ class JadwalTayangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = JadwalTayang::find($id);
+        $datafilms = DataFilm::where('status', '1')->get();
+        $studios = Studio::all();
+        return view('pages.admin.jadwal_tayang.edit', compact('data', 'datafilms', 'studios'));
+
     }
 
     /**
@@ -111,7 +117,23 @@ class JadwalTayangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'studio' => 'required',
+            'jam_tayang' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'harga' => 'required',
+
+        ]);
+        $data = JadwalTayang::find($id);
+        $data->judul = $request->judul;
+        $data->studio = $request->studio;
+        $data->jam_tayang = $request->jam_tayang;
+        $data->tanggal_mulai = $request->tanggal_mulai;
+        $data->tanggal_selesai = $request->tanggal_selesai;
+        $data->harga = $request->harga;
+
     }
 
     /**
