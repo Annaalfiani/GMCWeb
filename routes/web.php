@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('templates.admin');
-});
+})->name('welcome');
 
 Route::get('/manager', function () {
     return view('templates.manager');
