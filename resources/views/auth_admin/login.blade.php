@@ -85,9 +85,6 @@
         </div>
     </div>
 
-    <div class="m-t-40 text-center">
-        <p>Don't have an account ? <a href="{{route('admin.register')}}" class="font-500 font-14 text-primary font-secondary"> Signup Now </a> </p>
-    </div>
 
 </div>
 

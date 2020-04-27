@@ -129,10 +129,21 @@ class JadwalTayangController extends Controller
         $data = JadwalTayang::find($id);
         $data->judul = $request->judul;
         $data->studio = $request->studio;
-        $data->jam_tayang = $request->jam_tayang;
         $data->tanggal_mulai = $request->tanggal_mulai;
         $data->tanggal_selesai = $request->tanggal_selesai;
         $data->harga = $request->harga;
+        $data->update;
+
+        $jam_tayangs = $request->jam_tayang;
+        foreach ($jam_tayangs as $jam_tayang){
+            $itemjams[] = [
+                'id_jadwal_tayang' => $data->id,
+                'jam_tayang' => $jam_tayang,
+
+            ];
+        }
+        DB::table('jam_tayangs')->insert($itemjams);
+
 
     }
 
