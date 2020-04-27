@@ -9,11 +9,6 @@ use Symfony\Component\VarDumper\Cloner\Data;
 
 class DataFilmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
@@ -22,16 +17,9 @@ class DataFilmController extends Controller
 
     public function index()
     {
-        $datas = DataFilm::where('status', '1')->get();
+        $datas = DataFilm::orderBy('id','DESC')->get();
         return view('pages.admin.data_film.index', compact('datas'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function create()
     {
@@ -39,12 +27,7 @@ class DataFilmController extends Controller
         return view('pages.admin.data_film.create', compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -122,6 +105,7 @@ class DataFilmController extends Controller
         $data->sinopsis = $request->sinopsis;
         $data->genre = $request->genre;
         $data->durasi = $request->durasi;
+        $data->status = $request->status;
 
         if ($image==''){
             $data->foto=$request->old_foto;
@@ -146,7 +130,7 @@ class DataFilmController extends Controller
     public function destroy($id)
     {
         $data = DataFilm::find($id);
-        $data->update(['status'=>'0']);
+        $data->update(['status'=> 0 ]);
         return redirect()->route('data_film.index')->with('dalete', 'Berhasil Menghapus Data');
     }
 }

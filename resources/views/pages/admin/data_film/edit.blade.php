@@ -90,6 +90,19 @@
 
                                 </div>
 
+                                <div class="form-group row">
+                                    <label for="example-time-input" class="col-sm-2 control-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="status">
+                                            <option value="2" {{$data->status == 2 ? 'selected' : '' }}> Tayang </option>
+                                            <option value="1" {{$data->status == 1 ? 'selected' : '' }}> Coming Soon </option>
+                                            <option value="0" {{$data->status == 0 ? 'selected' : '' }}> Tidak Tayang </option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+
                             </div>
 
                             <div class="form-actions">
