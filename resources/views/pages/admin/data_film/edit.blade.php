@@ -71,6 +71,12 @@
                                             <option value="Comedy" @if($data->genre=='Comedy'){{ "selected" }} @endif>
                                                 Comedy
                                             </option>
+                                            <option value="Drama" @if($data->genre=='Drama'){{ "selected" }} @endif>
+                                                Drama
+                                            </option>
+                                            <option value="Animasi" @if($data->genre=='Animasi){{ "selected" }} @endif>
+                                                Animasi
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
