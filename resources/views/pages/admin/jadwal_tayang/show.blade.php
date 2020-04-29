@@ -26,17 +26,6 @@
                             <td>{{$data->tanggal_selesai}}</td>
                             <td>{{$data->studio->nama_studio}}</td>
                             <td>
-                                {{--<div class="btn-group m-b-10">--}}
-                                    {{--<button type="button" class="btn btn-primary">Jam Tayang</button>--}}
-                                    {{--<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                                        {{--<span class="sr-only">Toggle Dropdown</span>--}}
-                                    {{--</button>--}}
-                                    {{--<div class="dropdown-menu">--}}
-                                        {{--@foreach($data->jam_tayangs as $jam_tayang)--}}
-                                            {{--<p>{{ $jam_tayang->jam_tayang }}</p>--}}
-                                        {{--@endforeach--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
                                 @foreach($data->jam_tayangs as $jam_tayang)
                                     <p>{{ $jam_tayang->jam_tayang }}</p>
                                 @endforeach

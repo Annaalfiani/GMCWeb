@@ -66,8 +66,36 @@
         multidate: true,
         multidateSeparator: ","
          });
-       jQuery('#date-range').datepicker({
-        toggleActive: true
+
+       // jQuery('#date-range').datepicker({
+       //     format: "mm/dd/yyyy",
+       //     clearBtn: true,
+       //     multidate: true,
+       //     multidateSeparator: ","
+       //  });
+
+        const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        $('#startDate').datepicker({
+            format: "dd/mm/yyyy",
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            startDate: "dateToday",
+            maxDate: function () {
+                let date = new Date($('#endDate').val());
+                date = date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear();
+                return date
+            }
+
+        });
+        $('#endDate').datepicker({
+            format: "dd/mm/yyyy",
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            minDate: function () {
+                let date = new Date($('#startDate').val());
+                date = date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear();
+                return date
+            }
         });
 
         //Bootstrap-MaxLength

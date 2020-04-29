@@ -1,11 +1,6 @@
 <script src="{{ asset ('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset ('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset ('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset ('assets/js/modernizr.mscroll.js') }}"></script>
-<script src="{{ asset ('assets/js/waves.js') }}"></script>
-<script src="{{ asset ('assets/js/jquery.nicescroll.js') }}"></script>
-<script src="{{ asset ('assets/js/jquery.scrollTo.min.js') }}"></script>
-<script src="{{ asset ('assets/js/jquery.slimscroll.js') }}"></script>
 
 <script src="{{ asset ('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 <script src="{{ asset ('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
@@ -16,14 +11,15 @@
 <script src="{{ asset ('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}" type="text/javascript"></script>
 
 
-
-<script src="{{ asset ('assets/pages/dashborad.js') }}"></script>
-
 <!-- App js -->
 <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+
+<script src="{{ asset ('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset ('assets/js/jquery.scrollTo.min.js') }}"></script>
+<script src="{{ asset ('assets/js/jquery.slimscroll.js') }}"></script>
 
 
 <!-- Plugins Init js -->
@@ -31,6 +27,7 @@
 <script src="{{asset('assets/js/app.js')}}"></script>
 
 <script src="{{asset('js/jquery-3.4.1.slim.min.js')}}"></script>
+<script src="{{ asset ('assets/js/waves.js') }}"></script>
 
 <script>
     $(function()

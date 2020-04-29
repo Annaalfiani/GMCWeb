@@ -59,6 +59,8 @@
                                         <option>Romantic</option>
                                         <option>Horor</option>
                                         <option>Comedy</option>
+                                        <option>Drama</option>
+                                        <option>Animasi</option>
                                     </select>
                                 </div>
                             </div>
@@ -77,15 +79,6 @@
                                 </div>
 
                             </div>
-
-                            {{--<div class="form-group row">--}}
-                            {{--<label class="col-sm-2 col-form-label">Status</label>--}}
-                            {{--<div class="col-sm-10">--}}
-                            {{--<input type="checkbox" id="switch1" checked switch="none" checked/>--}}
-                            {{--<label for="switch1" data-on-label="On"--}}
-                            {{--data-off-label="Off"></label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
 
 
                             <div class="form-group m-b-0">

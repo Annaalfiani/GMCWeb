@@ -48,7 +48,7 @@
 
                                         </button>
                                     </a>
-                                    <a href="#">
+                                    <a href="{{route('jadwal_tayang.destroy', $data->id)}}" class="card-link">
                                         <button class="btn btn-danger"
                                                 onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')">
                                             <i class="fa fa-trash"></i>

@@ -48,8 +48,8 @@
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
                                 <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" class="form-control" name="mulai" />
-                                    <input type="text" class="form-control" name="selesai" />
+                                    <input type="text" class="form-control" id="startDate" name="tanggal_mulai" />
+                                    <input type="text" class="form-control" id="endDate" name="tanggal_selesai" />
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,6 @@
                             <label for="example-time-input" class="col-sm-2 col-form-label">Harga</label>
                             <div class="col-sm-10">
                                 <input type="text" placeholder="Harga" class="form-control" name="harga">
-                                <span class="font-13 text-muted">$ 999,999,999.99</span>
                             </div>
                         </div>
 
@@ -68,7 +67,7 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Submit
                                 </button>
-                                <a href="{{route('studio.index')}}">
+                                <a href="{{route('jadwal_tayang.index')}}">
                                 <button type="button" class="btn btn-secondary waves-effect m-l-5">
                                     Cancel
                                 </button>

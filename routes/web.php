@@ -24,11 +24,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('data_film', 'admin\DataFilmController')->except(['destroy']);
     Route::get('data_film/{id}/destroy', 'admin\DataFilmController@destroy')->name('data_film.destroy');
 
-    Route::resource('jadwal_tayang', 'admin\JadwalTayangController');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('jadwal_tayang', 'admin\JadwalTayangController')->except(['destroy']);
+    Route::get('jadwal_tayang/{id}/destroy', 'admin\JadwalTayangController@destroy')->name('jadwal_tayang.destroy');
     Route::resource('customer', 'admin\CustomerController');
+});
+
+Route::group(['prefix' => 'admin'], function () {
     Route::resource('studio', 'admin\StudioController')->except(['show', 'destroy']);
     Route::get('studio/{id}', 'admin\StudioController@destroy')->name('studio.destroy');
-
 });
 
 Route::group(['prefix' => 'manager'], function () {

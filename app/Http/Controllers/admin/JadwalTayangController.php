@@ -39,7 +39,8 @@ class JadwalTayangController extends Controller
     public function create()
     {
         $data = JadwalTayang::all();
-        $datafilms = DataFilm::where('status', '1')->get();
+        $datafilms = DataFilm::where('status','1')->orWhere('status','2')->get();
+
         $studios = Studio::all();
         return view('pages.admin.jadwal_tayang.create', compact('data', 'datafilms', 'studios'));
     }
@@ -102,7 +103,7 @@ class JadwalTayangController extends Controller
     public function edit($id)
     {
         $data = JadwalTayang::find($id);
-        $datafilms = DataFilm::where('status', '1')->get();
+        $datafilms = DataFilm::whereIn('status', ['1', '2'])->get();
         $studios = Studio::all();
         return view('pages.admin.jadwal_tayang.edit', compact('data', 'datafilms', 'studios'));
 
@@ -117,32 +118,42 @@ class JadwalTayangController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
-            'judul' => 'required',
-            'studio' => 'required',
             'jam_tayang' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
             'harga' => 'required',
 
         ]);
+
+        $mulai =  strtotime(str_replace('/','-',$request->tanggal_mulai));
+        $selesai =  strtotime(str_replace('/','-',$request->tanggal_selesai));
+//        dd($mulai);
+
+        $mulai = date('Y-m-d', $mulai);
+        $selesai = date('Y-m-d', $selesai);
+
+
         $data = JadwalTayang::find($id);
-        $data->judul = $request->judul;
-        $data->studio = $request->studio;
-        $data->tanggal_mulai = $request->tanggal_mulai;
-        $data->tanggal_selesai = $request->tanggal_selesai;
+        $data->id_film = $request->id_film;
+        $data->id_studio = $request->id_studio;
+        $data->tanggal_mulai = $mulai;
+        $data->tanggal_selesai = $selesai;
         $data->harga = $request->harga;
-        $data->update;
+        $data->update();
 
         $jam_tayangs = $request->jam_tayang;
         foreach ($jam_tayangs as $jam_tayang){
-            $itemjams[] = [
+            $itemjams = [
                 'id_jadwal_tayang' => $data->id,
                 'jam_tayang' => $jam_tayang,
 
             ];
         }
-        DB::table('jam_tayangs')->insert($itemjams);
+        DB::table('jam_tayangs')->where('id_jadwal_tayang', $data->id)->update($itemjams);
+
+        return redirect()->route('jadwal_tayang.index');
 
 
     }
@@ -155,6 +166,8 @@ class JadwalTayangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = JadwalTayang::find($id);
+        $data->update(['status'=> 0 ]);
+        return redirect()->route('jadwal_tayang.index')->with('dalete', 'Berhasil Menghapus Data');
     }
 }

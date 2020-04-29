@@ -22,6 +22,7 @@
                                     <a href="{{route('data_film.show', $data->id)}}">{{$data->judul}}</a>
                                 </h4>
                                 <p class="card-text">{{$data->genre}}</p>
+                                <p class="card-text">{{$data->status}}</p>
                             </div>
                             <div class="card-body d-flex justify-content-center">
                                 <a href="{{route('data_film.edit', $data->id)}}" class="card-link">

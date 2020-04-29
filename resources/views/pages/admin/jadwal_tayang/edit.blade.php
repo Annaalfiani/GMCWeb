@@ -52,16 +52,16 @@
                         <div class="form-group row">
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
-                                <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" value="{{$data->tanggal_mulai}}" class="form-control"
-                                           name="mulai"/>
+                                <div class="input-daterange input-group">
+                                    <input type="text" value="{{$data->tanggal_mulai->format('d/m/Y')}}"  id="startDate" class="form-control"
+                                           name="tanggal_mulai"/>
                                     @if ($errors->has('tanggal_mulai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_mulai') }}</b></p>
                                         </span>
                                     @endif
-                                    <input type="text" value="{{$data->tanggal_selesai}}" class="form-control"
-                                           name="selesai"/>
+                                    <input type="text" value="{{$data->tanggal_selesai->format('d/m/Y')}}" id="endDate" class="form-control"
+                                           name="tanggal_selesai"/>
                                     @if ($errors->has('tanggal_selesai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_selesai') }}</b></p>
@@ -90,7 +90,7 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     Submit
                                 </button>
-                                <a href="{{route('studio.index')}}">
+                                <a href="{{route('jadwal_tayang.index')}}">
                                     <button type="button" class="btn btn-secondary waves-effect m-l-5">
                                         Cancel
                                     </button>
