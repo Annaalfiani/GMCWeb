@@ -91,14 +91,14 @@ class DataFilmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        /*$this->validate($request, [
             'foto' => 'file|image|mimes:jpg,png,jpeg|max:2048',
             'judul' => 'required',
             'sinopsis' => 'required',
             'genre' => 'required',
             'durasi' => 'required',
 
-        ]);
+        ]);*/
         $data = DataFilm::find($id);
         $image=$request->file('foto');
         $data->judul = $request->judul;

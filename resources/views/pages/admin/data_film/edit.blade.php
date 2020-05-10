@@ -74,7 +74,7 @@
                                             <option value="Drama" @if($data->genre=='Drama'){{ "selected" }} @endif>
                                                 Drama
                                             </option>
-                                            <option value="Animasi" @if($data->genre=='Animasi){{ "selected" }} @endif>
+                                            <option value="Animasi" @if($data->genre=='Animasi'){{ "selected" }} @endif>
                                                 Animasi
                                             </option>
                                         </select>
@@ -84,16 +84,15 @@
                                 <div class="form-group row">
                                     <label for="example-time-input" class="col-sm-2 control-label">Durasi</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="time" value="{{$data->durasi}}" name="durasi"
+                                        <input class="form-control{{$errors->has('durasi')?'is-invalid':''}}"
+                                               type="time" value="{{$data->durasi}}" name="durasi"
                                                id="example-time-input">
-
                                         @if ($errors->has('durasi'))
                                             <span class="invalid-feedback" role="alert">
-                                            <p><b>{{ $errors->first('durasi') }}</b></p>
+                                            <p><b>{{$errors->first('durasi')}}</b></p>
                                         </span>
                                         @endif
                                     </div>
-
                                 </div>
 
                                 <div class="form-group row">
