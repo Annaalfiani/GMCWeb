@@ -48,8 +48,8 @@
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
                                 <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" class="form-control" id="startDate" name="tanggal_mulai" />
-                                    <input type="text" class="form-control" id="endDate" name="tanggal_selesai" />
+                                    <input type="text" class="form-control" id="startDate" name="start" />
+                                    <input type="text" class="form-control" id="endDate" name="end" />
                                 </div>
                             </div>
                         </div>

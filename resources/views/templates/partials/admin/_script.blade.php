@@ -1,6 +1,8 @@
 <script src="{{ asset ('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset ('assets/js/popper.min.js') }}"></script>
+
 <script src="{{ asset ('assets/js/bootstrap.min.js') }}"></script>
+
 
 <script src="{{ asset ('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 <script src="{{ asset ('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
@@ -26,13 +28,19 @@
 <script src="{{ asset ('assets/js/jquery.scrollTo.min.js') }}"></script>
 <script src="{{ asset ('assets/js/jquery.slimscroll.js') }}"></script>
 
+<!--Morris Chart-->
+<script src="{{ asset ('assets/plugins/morris/morris.min.js')}}"></script>
+<script src="{{ asset ('assets/plugins/raphael/raphael-min.js') }}"></script>
+
 
 <!-- Plugins Init js -->
-<script src="{{asset('assets/pages/form-advanced.js')}}"></script>
-<script src="{{asset('assets/js/app.js')}}"></script>
+<script src="{{ asset ('assets/pages/form-advanced.js') }}"></script>
+<script src="{{ asset ('assets/js/app.js')}}"></script>
 
-<script src="{{asset('js/jquery-3.4.1.slim.min.js')}}"></script>
+<script src="{{ asset ('js/jquery-3.4.1.slim.min.js') }}"></script>
 <script src="{{ asset ('assets/js/waves.js') }}"></script>
+
+<script src="{{ asset ('assets/pages/dashborad.js') }}"></script>
 
 <script>
     $(function()
