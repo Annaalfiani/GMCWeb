@@ -16,7 +16,9 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="id_film">
                                     @foreach($datafilms as $datafilm)
-                                        <option value="{{$datafilm->id}}">{{$datafilm->judul}}</option>
+                                        <option value="{{$datafilm->id}}" {{$data->id_film === $datafilm->id ? 'selected' : ''}}>
+                                            {{$datafilm->judul}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -26,7 +28,9 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="id_studio">
                                     @foreach($studios as $studio)
-                                        <option value="{{$studio->id}}">{{$studio->nama_studio}}</option>
+                                        <option value="{{$studio->id}}" {{$data->id_studio === $studio->id ? 'selected' : ''}}>
+                                            {{$studio->nama_studio}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -35,9 +39,9 @@
                         <div class="form-group mt-1 row">
                             <label for="example-time-input" class="col-sm-2 col-form-label">Jam Tayang</label>
                             <div id="myRepeatingFields" class="col-sm-10">
-                                @foreach($data->jam_tayangs as $jam_tayang)
+                                @foreach(explode(',',$data->jam_tayang) as $jam_tayang)
                                     <div class="entry input-group col-xs-3" style="margin-top: 10px;">
-                                        <input class="form-control" value="{{$jam_tayang->jam_tayang}}"
+                                        <input class="form-control" value="{{$jam_tayang}}"
                                                name="jam_tayang[]" type="time"/>
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-success btn-add">
@@ -53,14 +57,14 @@
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
                                 <div class="input-daterange input-group">
-                                    <input type="text" value="{{$data->tanggal_mulai->format('d/m/Y')}}"  id="startDate" class="form-control"
+                                    <input type="text" value="{{$data->tanggal_mulai->format('d-m-Y')}}"  id="startDate" class="form-control"
                                            name="tanggal_mulai"/>
                                     @if ($errors->has('tanggal_mulai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_mulai') }}</b></p>
                                         </span>
                                     @endif
-                                    <input type="text" value="{{$data->tanggal_selesai->format('d/m/Y')}}" id="endDate" class="form-control"
+                                    <input type="text" value="{{$data->tanggal_selesai->format('d-m-Y')}}" id="endDate" class="form-control"
                                            name="tanggal_selesai"/>
                                     @if ($errors->has('tanggal_selesai'))
                                         <span class="invalid-feedback" role="alert">

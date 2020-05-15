@@ -4,9 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\DataFilm;
 use App\JadwalTayang;
-use App\JamTayang;
 use App\Studio;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -53,31 +51,20 @@ class JadwalTayangController extends Controller
      */
     public function store(Request $request)
     {
+
+        $startDate = strtotime($request->start);
+        $start = date('Y-m-d', $startDate);
+        $endDate = strtotime($request->end);
+        $end = date('Y-m-d', $endDate);
+
         $data = new JadwalTayang();
         $data->id_film= $request->id_film;
         $data->id_studio = $request->id_studio;
         $data->harga = $request->harga;
-        $data->tanggal_mulai = Carbon::parse($request->mulai)->format('Y-m-d');
-        $data->tanggal_selesai = Carbon::parse($request->selesai)->format('Y-m-d');
+        $data->jam_tayang =  implode(',',$request->jam_tayang);
+        $data->tanggal_mulai = $start;
+        $data->tanggal_selesai = $end;
         $data->save();
-
-
-        $jam_tayangs = $request->jam_tayang;
-        foreach ($jam_tayangs as $jam_tayang){
-            $itemjams[] = [
-                'id_jadwal_tayang' => $data->id,
-                'jam_tayang' => $jam_tayang,
-
-            ];
-        }
-        DB::table('jam_tayangs')->insert($itemjams);
-
-        /*return response()->json([
-            'data' => $data,
-           'jam' => [
-               'jam' => $itemjams,
-           ],
-        ]);*/
 
         return redirect()->route('jadwal_tayang.index')->with('create', 'Berhasil Menambahkan Data');
 }
@@ -105,6 +92,7 @@ class JadwalTayangController extends Controller
         $data = JadwalTayang::find($id);
         $datafilms = DataFilm::whereIn('status', ['1', '2'])->get();
         $studios = Studio::all();
+
         return view('pages.admin.jadwal_tayang.edit', compact('data', 'datafilms', 'studios'));
 
     }
@@ -127,31 +115,19 @@ class JadwalTayangController extends Controller
 
         ]);
 
-        $mulai =  strtotime(str_replace('/','-',$request->tanggal_mulai));
-        $selesai =  strtotime(str_replace('/','-',$request->tanggal_selesai));
-//        dd($mulai);
-
-        $mulai = date('Y-m-d', $mulai);
-        $selesai = date('Y-m-d', $selesai);
-
+        $startDate = strtotime($request->start);
+        $start = date('Y-m-d', $startDate);
+        $endDate = strtotime($request->end);
+        $end = date('Y-m-d', $endDate);
 
         $data = JadwalTayang::find($id);
-        $data->id_film = $request->id_film;
+        $data->id_film= $request->id_film;
         $data->id_studio = $request->id_studio;
-        $data->tanggal_mulai = $mulai;
-        $data->tanggal_selesai = $selesai;
         $data->harga = $request->harga;
+        $data->jam_tayang =  implode(',',$request->jam_tayang);
+        $data->tanggal_mulai = $start;
+        $data->tanggal_selesai = $end;
         $data->update();
-
-        $jam_tayangs = $request->jam_tayang;
-        foreach ($jam_tayangs as $jam_tayang){
-            $itemjams = [
-                'id_jadwal_tayang' => $data->id,
-                'jam_tayang' => $jam_tayang,
-
-            ];
-        }
-        DB::table('jam_tayangs')->where('id_jadwal_tayang', $data->id)->update($itemjams);
 
         return redirect()->route('jadwal_tayang.index');
 

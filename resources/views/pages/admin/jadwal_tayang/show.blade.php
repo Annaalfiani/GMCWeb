@@ -22,15 +22,15 @@
 
                         <tbody>
                         <tr>
-                            <td>{{$data->tanggal_mulai}}</td>
-                            <td>{{$data->tanggal_selesai}}</td>
+                            <td>{{$data->tanggal_mulai->format('d-m-Y')}}</td>
+                            <td>{{$data->tanggal_selesai->format('d-m-Y')}}</td>
                             <td>{{$data->studio->nama_studio}}</td>
                             <td>
-                                @foreach($data->jam_tayangs as $jam_tayang)
-                                    <p>{{ $jam_tayang->jam_tayang }}</p>
+                                @foreach(explode(',',$data->jam_tayang) as $jam_tayang)
+                                    <p> {{  $jam_tayang }}</p>
                                 @endforeach
                             </td>
-                            <td>{{$data->harga}}</td>
+                            <td>Rp. {{number_format($data->harga,0,',','.')}}</td>
                         </tr>
                         </tbody>
                         <p>

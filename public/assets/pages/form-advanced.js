@@ -67,16 +67,17 @@
         multidateSeparator: ","
          });
 
-       // jQuery('#date-range').datepicker({
-       //     format: "mm/dd/yyyy",
-       //     clearBtn: true,
-       //     multidate: true,
-       //     multidateSeparator: ","
-       //  });
+
+        /*jQuery('#date-range').datepicker({
+           format: "mm-dd-yyyy",
+           clearBtn: true,
+           multidate: true,
+           multidateSeparator: ","
+        });*/
 
         const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#startDate').datepicker({
-            format: "dd/mm/yyyy",
+            format: "dd-mm-yyyy",
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             startDate: "dateToday",
@@ -88,9 +89,10 @@
 
         });
         $('#endDate').datepicker({
-            format: "dd/mm/yyyy",
+            format: "dd-mm-yyyy",
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
+            startDate: "dateToday",
             minDate: function () {
                 let date = new Date($('#startDate').val());
                 date = date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear();

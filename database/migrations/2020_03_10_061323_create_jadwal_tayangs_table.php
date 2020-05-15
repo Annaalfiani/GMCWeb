@@ -18,6 +18,7 @@ class CreateJadwalTayangsTable extends Migration
             $table->unsignedInteger('id_film');
             $table->unsignedInteger('id_studio');
             $table->integer('harga');
+            $table->string('jam_tayang');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->timestamps();

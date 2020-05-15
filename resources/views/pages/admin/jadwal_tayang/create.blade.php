@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group mt-1 row">
-                            <label for="example-time-input" class="col-sm-2 col-form-label">Jam Tayang</label>
+                            <label class="col-sm-2 col-form-label">Jam Tayang</label>
                             <div id="myRepeatingFields" class="col-sm-10">
                                 <div class="entry input-group col-xs-3" style="margin-top: 10px;">
                                     <input class="form-control" name="jam_tayang[]" type="time"/>
@@ -48,8 +48,8 @@
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
                                 <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" class="form-control" id="startDate" name="start" />
-                                    <input type="text" class="form-control" id="endDate" name="end" />
+                                    <input type="text" class="form-control" id="startDate" name="start"/>
+                                    <input type="text" class="form-control" id="endDate" name="end"/>
                                 </div>
                             </div>
                         </div>
@@ -68,9 +68,9 @@
                                     Submit
                                 </button>
                                 <a href="{{route('jadwal_tayang.index')}}">
-                                <button type="button" class="btn btn-secondary waves-effect m-l-5">
-                                    Cancel
-                                </button>
+                                    <button type="button" class="btn btn-secondary waves-effect m-l-5">
+                                        Cancel
+                                    </button>
                                 </a>
                             </div>
                         </div>
@@ -81,4 +81,18 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
+@endsection
+
+@section('script')
+
+    <script>
+        $('#date-range').datepicker({
+            defaultDate: "+1w",
+            format: "d-m-y",
+            changeMonth: true,
+            numberOfMonths: 1,
+            startDate: new Date(),
+        });
+
+    </script>
 @endsection

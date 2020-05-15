@@ -17,7 +17,8 @@
                    aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset ('assets/images/gama.png') }}" alt="user" class="rounded-circle">
                 </a>
-                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+
+                <div class="dropdown-menu dropdown-menu-right profile-dropdown">
                     <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                     <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="dripicons-exit text-muted"></i> Logout</a>
                 </div>
