@@ -13,7 +13,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">
+                        <a href="{{route('admin.logout')}}" class="dropdown-item">
                             <i class="icon-logout text-primary mr-2"></i>
                             Logout
                         </a>
