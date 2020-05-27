@@ -1,20 +1,18 @@
 @extends('templates.admin')
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card m-b-30">
-                <div class="card-body">
-
-                    <h4 class="mt-0 header-title">Jadwal Tayang</h4>
-                    <div class="button-items">
-                        <a href="{{route('jadwal_tayang.create')}}">
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Create
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </a>
-                    </div>
-                    <p></p>
-                    <table id="datatable" class="table table-bordered">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data Jadwal Tayang</h4>
+            <div class="button-items">
+                <a href="{{route('jadwal_tayang.create')}}">
+                    <button type="button" class="btn btn-primary waves-effect waves-light">Create
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table id="order-listing" class="table">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -24,8 +22,6 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-
-
                         <tbody>
                         @foreach($datas as $data)
                             <tr>
@@ -61,16 +57,15 @@
                                             </i>
 
                                         </button>
-                                     </a>
+                                    </a>
                                 </td>
 
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
-        </div> <!-- end col -->
+        </div>
     </div>
 @endsection

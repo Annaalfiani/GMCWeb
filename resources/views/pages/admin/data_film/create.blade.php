@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Gendre</label>
+                                <label class="col-sm-2 col-form-label">Genre</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="genre">
                                         <option>Romantic</option>

@@ -1,50 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
+
+<!-- Mirrored from www.bootstrapdash.com/demo/cloudui/template/demo/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 May 2020 07:26:04 GMT -->
 @include('templates.partials.admin._head')
 
-<body class="fixed-left">
-
-<!-- Begin page -->
-<div id="wrapper">
-    <div class="slimscrollLeft">
-
-
-        <!-- ========== Left Sidebar Start ========== -->
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_horizontal-navbar.html -->
+    <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+        @include('templates.partials.admin._navbar')
         @include('templates.partials.admin._sidebar')
-        <div class="content-page">
-            <!-- Start content -->
-            <div class="content">
+    </nav>
 
-                <!-- Top Bar Start -->
-            @include('templates.partials.admin._navbar')
-            <!-- Top Bar End -->
-
-                <!-- ==================
-                     PAGE CONTENT START
-                     ================== -->
-                <div class="page-content-wrapper">
-
-                    <div class="container-fluid">
-
-                        @yield('content')
-
-                    </div><!-- container -->
-
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+            <div class="content-wrapper">
+                @yield('content')
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="w-100 clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 . Gajah Mada Cinema.</span>
                 </div>
-
-            </div> <!-- content -->
-
-            {{--<footer class="footer">
-                © 2018 Fonik - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand.
-            </footer>--}}
+            </footer>
+            <!-- partial -->
         </div>
-        <!-- End Right content here -->
+        <!-- main-panel ends -->
     </div>
-    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
 
+<!-- plugins:js -->
 @include('templates.partials.admin._script')
-
+<!-- End custom js for this page-->
 </body>
 
+
+<!-- Mirrored from www.bootstrapdash.com/demo/cloudui/template/demo/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 May 2020 07:26:36 GMT -->
 </html>

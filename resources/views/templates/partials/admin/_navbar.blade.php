@@ -1,43 +1,28 @@
-<div class="topbar">
+<div class="nav-top flex-grow-1">
+    <div class="container d-flex flex-row h-100 align-items-center">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center">
+            <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset ('assets/images/gama.png') }}" alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between flex-grow-1">
 
-    <nav class="navbar-custom">
-        <!-- Search input -->
-        {{--<div class="search-wrap" id="search-wrap">--}}
-            {{--<div class="search-bar">--}}
-                {{--<input class="search-input" type="search" placeholder="Search" />--}}
-                {{--<a href="#" class="close-search toggle-search" data-target="#search-wrap">--}}
-                    {{--<i class="mdi mdi-close-circle"></i>--}}
-                {{--</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+            <ul class="navbar-nav navbar-nav-right mr-0 ml-auto">
 
-        <ul class="list-inline float-right mb-0">
-            <li class="list-inline-item dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ asset ('assets/images/gama.png') }}" alt="user" class="rounded-circle">
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right profile-dropdown">
-                    <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                    <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="dripicons-exit text-muted"></i> Logout</a>
-                </div>
-            </li>
-        </ul>
-
-        <!-- Page title -->
-        <ul class="list-inline menu-left mb-0">
-            <li class="list-inline-item">
-                <button type="button" class="button-menu-mobile open-left waves-effect">
-                    <i class="ion-navicon"></i>
-                </button>
-            </li>
-            <li class="hide-phone list-inline-item app-search">
-                <h3 class="page-title">Dashboard</h3>
-            </li>
-        </ul>
-
-        <div class="clearfix"></div>
-    </nav>
-
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <span class="nav-profile-name">{{Auth::guard('admin')->user()->name}}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            <i class="icon-logout text-primary mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="icon-menu"></span>
+            </button>
+        </div>
+    </div>
 </div>

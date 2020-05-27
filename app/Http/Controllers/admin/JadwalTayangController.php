@@ -143,7 +143,7 @@ class JadwalTayangController extends Controller
     public function destroy($id)
     {
         $data = JadwalTayang::find($id);
-        $data->update(['status'=> 0 ]);
+        $data->delete();
         return redirect()->route('jadwal_tayang.index')->with('dalete', 'Berhasil Menghapus Data');
     }
 }

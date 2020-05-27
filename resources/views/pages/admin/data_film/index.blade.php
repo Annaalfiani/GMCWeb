@@ -12,17 +12,23 @@
 
             <div class="row">
                 @foreach($datas as $data)
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-lg-6 col-xl-2">
                         <!-- Simple card -->
                         <div class="card m-b-30">
 
-                            <img class="card-img-top" src="{{asset('uploads/admin/'.$data->foto)}}" height="300">
+                            <img class="card-img-top" src="{{asset('uploads/admin/'.$data->foto)}}" height="250">
                             <div class="card-body">
                                 <h4 class="card-title font-20 mt-0">
                                     <a href="{{route('data_film.show', $data->id)}}">{{$data->judul}}</a>
                                 </h4>
                                 <p class="card-text">{{$data->genre}}</p>
-                                <p class="card-text">{{$data->status}}</p>
+                                @if($data->status=='2')
+                                    <p><span class="badge badge-success">Tayang</span></p>
+                                @elseif($data->status=='1')
+                                    <p><span class="badge badge-primary">Coming Soon</span></p>
+                                @elseif($data->status=='0')
+                                    <p><span class="badge badge-danger">Tidak Tayang</span></p>
+                                @endif
                             </div>
                             <div class="card-body d-flex justify-content-center">
                                 <a href="{{route('data_film.edit', $data->id)}}" class="card-link">
