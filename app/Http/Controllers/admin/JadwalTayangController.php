@@ -110,26 +110,26 @@ class JadwalTayangController extends Controller
 
         $this->validate($request, [
             'jam_tayang' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required',
             'harga' => 'required',
 
         ]);
 
         //dd(['sebelum '=> $request->tanggal_mulai, 'sesudah' => Carbon::parse($request->tanggal_mulai)->format('Y-m-d')]);
 
-        /*$startDate = strtotime($request->start);
-        $start = date('Y-m-d', $startDate);
-        $endDate = strtotime($request->end);
-        $end = date('Y-m-d', $endDate);*/
+
+        /*$start = date('Y-m-d', strtotime($request->tanggal_mulai));
+        $end = date('Y-m-d', strtotime($request->tanggal_selesai));*/
+
 
         $data = JadwalTayang::find($id);
         $data->id_film= $request->id_film;
         $data->id_studio = $request->id_studio;
         $data->harga = $request->harga;
         $data->jam_tayang =  implode(',',$request->jam_tayang);
-        $data->tanggal_mulai = Carbon::parse($request->tanggal_mulai)->format('Y-m-d');
-        $data->tanggal_selesai = Carbon::parse($request->tanggal_selesai)->format('Y-m-d');
+        $data->tanggal_mulai = $request->tgl_awal;
+        $data->tanggal_selesai = $request->tgl_akhir;
         $data->update();
 
         return redirect()->route('jadwal_tayang.index');

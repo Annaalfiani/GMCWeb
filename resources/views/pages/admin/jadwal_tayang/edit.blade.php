@@ -56,22 +56,54 @@
 
                         <div class="form-group row">
                             <label class="col-md-2">Tanggal Tayang</label>
-                            <div class="col-sm-10">
+                            {{--<div class="col-sm-10">
+                                <div id="datepicker-popup" class="input-group date datepicker">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon input-group-append border-left">
+                                        <span class="icon-calendar input-group-text"></span>
+                                    </span>
+                                </div>
+
                                 <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" value="{{\Carbon\Carbon::parse($data->tanggal_mulai)->format('d/m/Y')}}" id="startDate"
+                                    <input type="text"
+                                           value="{{\Carbon\Carbon::parse($data->tanggal_mulai)->format('d/m/Y')}}"
+                                           id="startDate"
                                            class="form-control" name="tanggal_mulai"/>
                                     @if ($errors->has('tanggal_mulai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_mulai') }}</b></p>
                                         </span>
                                     @endif
-                                    <input type="text" value="{{\Carbon\Carbon::parse($data->tanggal_selesai)->format('d/m/Y')}}" id="endDate"
+                                    <input type="text"
+                                           value="{{\Carbon\Carbon::parse($data->tanggal_selesai)->format('d/m/Y')}}"
+                                           id="endDate"
                                            class="form-control" name="tanggal_selesai"/>
                                     @if ($errors->has('tanggal_selesai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_selesai') }}</b></p>
                                         </span>
                                     @endif
+                                </div>--}}
+                            <div class="form-group col-sm-5">
+                                <label>Tgl Awal</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                    <input id="tgl_mulai" placeholder="masukkan tanggal Awal" type="text"
+                                           class="form-control datepicker" name="tgl_awal"
+                                           value="{{$data->tanggal_mulai->format('Y-m-d')}}">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Tgl Akhir</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                    <input id="tgl_akhir" placeholder="masukkan tanggal Akhir" type="text"
+                                           class="form-control datepicker" name="tgl_akhir"
+                                           value="{{$data->tanggal_selesai->format('Y-m-d')}}">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +143,7 @@
 @endsection
 
 @section('script')
-@section('script')
+
 
     <script>
         var loadfile = function (event) {
@@ -124,15 +156,31 @@
         };
     </script>
 
-    <script>
+    {{--<script>
         $('#date-range').datepicker({
             defaultDate: "+1w",
-            format: 'dd/mm/yyyy',
+            format: 'dd-mm-yyyy',
             changeMonth: true,
             numberOfMonths: 1,
             startDate: new Date(),
         });
 
+    </script>--}}
+
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+            });
+            $("#tgl_mulai").on('changeDate', function (selected) {
+                var startDate = new Date(selected.date.valueOf());
+                $("#tgl_akhir").datepicker('setStartDate', startDate);
+                if ($("#tgl_mulai").val() > $("#tgl_akhir").val()) {
+                    $("#tgl_akhir").val($("#tgl_mulai").val());
+                }
+            });
+        });
     </script>
-@endsection
 @endsection

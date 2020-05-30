@@ -11,6 +11,8 @@
 <script src="{{ asset ('assets/js/todolist.js') }}"></script>
 <!-- Custom js for this page-->
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
+<script src="{{asset('assets/daterange/daterangepicker.js')}}"></script>
+<script src="{{asset('assets/daterange/moment.min.js')}}"></script>
 <script>
     $(function()
     {
