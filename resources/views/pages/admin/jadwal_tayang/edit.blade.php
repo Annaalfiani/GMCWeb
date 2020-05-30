@@ -127,7 +127,7 @@
     <script>
         $('#date-range').datepicker({
             defaultDate: "+1w",
-            format: 'dd-mm-yyyy',
+            format: 'dd/mm/yyyy',
             changeMonth: true,
             numberOfMonths: 1,
             startDate: new Date(),

@@ -19,7 +19,7 @@ class FilmResource extends JsonResource
             "foto" => $this->foto,
             "judul" => $this->judul,
             "sinopsis" => $this->sinopsis,
-            "gendre" => $this->gendre,
+            "genre" => $this->genre,
             "status" => $this->status,
             "jadwaltayang" => new JadwalTayangResource($this->jadwaltayang)
         ];

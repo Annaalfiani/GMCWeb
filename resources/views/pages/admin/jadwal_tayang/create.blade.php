@@ -35,13 +35,6 @@
                             <div id="myRepeatingFields" class="col-sm-10">
                                 <div class="entry input-group col-xs-6" style="margin-top: 10px;">
                                     <input class="form-control" name="jam_tayang[]" type="time"/>
-                                    {{--<div class="col-sm-6">
-                                        <select class="form-control" name="id_studio[]">
-                                            @foreach($studios as $studio)
-                                                <option value="{{$studio->id}}">{{$studio->nama_studio}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>--}}
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-success btn-add">
                                             <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
