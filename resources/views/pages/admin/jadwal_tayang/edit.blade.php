@@ -45,7 +45,8 @@
                                                name="jam_tayang[]" type="time"/>
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-success btn-add">
-                                                <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
+                                                <span class="fa fa-plus" aria-hidden="true"
+                                                      style="font-size: 12px;"></span>
                                             </button>
                                         </span>
                                     </div>
@@ -56,16 +57,16 @@
                         <div class="form-group row">
                             <label class="col-md-2">Tanggal Tayang</label>
                             <div class="col-sm-10">
-                                <div class="input-daterange input-group">
-                                    <input type="text" value="{{$data->tanggal_mulai->format('d-m-Y')}}"  id="startDate" class="form-control"
-                                           name="tanggal_mulai"/>
+                                <div class="input-daterange input-group" id="date-range">
+                                    <input type="text" value="{{\Carbon\Carbon::parse($data->tanggal_mulai)->format('d/m/Y')}}" id="startDate"
+                                           class="form-control" name="tanggal_mulai"/>
                                     @if ($errors->has('tanggal_mulai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_mulai') }}</b></p>
                                         </span>
                                     @endif
-                                    <input type="text" value="{{$data->tanggal_selesai->format('d-m-Y')}}" id="endDate" class="form-control"
-                                           name="tanggal_selesai"/>
+                                    <input type="text" value="{{\Carbon\Carbon::parse($data->tanggal_selesai)->format('d/m/Y')}}" id="endDate"
+                                           class="form-control" name="tanggal_selesai"/>
                                     @if ($errors->has('tanggal_selesai'))
                                         <span class="invalid-feedback" role="alert">
                                             <p><b>{{ $errors->first('tanggal_selesai') }}</b></p>
@@ -109,13 +110,29 @@
     </div>
 @endsection
 
-<script>
-    var loadfile = function (event) {
-        var foto = document.getElementById('foto');
-        var output = document.getElementById('output');
-        if (foto && foto.value) {
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.style.display = '';
-        }
-    };
-</script>
+@section('script')
+@section('script')
+
+    <script>
+        var loadfile = function (event) {
+            var foto = document.getElementById('foto');
+            var output = document.getElementById('output');
+            if (foto && foto.value) {
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.style.display = '';
+            }
+        };
+    </script>
+
+    <script>
+        $('#date-range').datepicker({
+            defaultDate: "+1w",
+            format: 'dd-mm-yyyy',
+            changeMonth: true,
+            numberOfMonths: 1,
+            startDate: new Date(),
+        });
+
+    </script>
+@endsection
+@endsection

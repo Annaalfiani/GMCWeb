@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\DataFilm;
 use App\JadwalTayang;
 use App\Studio;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -115,18 +116,20 @@ class JadwalTayangController extends Controller
 
         ]);
 
-        $startDate = strtotime($request->start);
+        //dd(['sebelum '=> $request->tanggal_mulai, 'sesudah' => Carbon::parse($request->tanggal_mulai)->format('Y-m-d')]);
+
+        /*$startDate = strtotime($request->start);
         $start = date('Y-m-d', $startDate);
         $endDate = strtotime($request->end);
-        $end = date('Y-m-d', $endDate);
+        $end = date('Y-m-d', $endDate);*/
 
         $data = JadwalTayang::find($id);
         $data->id_film= $request->id_film;
         $data->id_studio = $request->id_studio;
         $data->harga = $request->harga;
         $data->jam_tayang =  implode(',',$request->jam_tayang);
-        $data->tanggal_mulai = $start;
-        $data->tanggal_selesai = $end;
+        $data->tanggal_mulai = Carbon::parse($request->tanggal_mulai)->format('Y-m-d');
+        $data->tanggal_selesai = Carbon::parse($request->tanggal_selesai)->format('Y-m-d');
         $data->update();
 
         return redirect()->route('jadwal_tayang.index');

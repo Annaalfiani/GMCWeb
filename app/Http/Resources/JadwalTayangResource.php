@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class JadwalTayangResource extends JsonResource
@@ -17,10 +18,11 @@ class JadwalTayangResource extends JsonResource
         return [
             "id" => $this->id,
             "harga" => $this->harga,
-            "tanggal_mulai" => $this->tanggal_mulai,
-            "tanggal_selesai" => $this->tanggal_selesai,
+            "tanggal_mulai" => Carbon::parse($this->tanggal_mulai)->format('d-M-Y'),
+            "tanggal_selesai" => Carbon::parse($this->tanggal_selesai)->format('d-M-Y'),
             "studio" => new StudioResource($this->studio),
-            "jam" => JamTayangResource::collection($this->jamtayangs)
+            "jam" => $this->jam_tayang
+            //"jam" => JamTayangResource::collection($this->jamtayangs)
 
         ];
     }

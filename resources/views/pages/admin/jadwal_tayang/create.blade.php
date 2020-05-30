@@ -33,8 +33,15 @@
                         <div class="form-group mt-1 row">
                             <label class="col-sm-2 col-form-label">Jam Tayang</label>
                             <div id="myRepeatingFields" class="col-sm-10">
-                                <div class="entry input-group col-xs-3" style="margin-top: 10px;">
+                                <div class="entry input-group col-xs-6" style="margin-top: 10px;">
                                     <input class="form-control" name="jam_tayang[]" type="time"/>
+                                    {{--<div class="col-sm-6">
+                                        <select class="form-control" name="id_studio[]">
+                                            @foreach($studios as $studio)
+                                                <option value="{{$studio->id}}">{{$studio->nama_studio}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>--}}
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-success btn-add">
                                             <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
@@ -89,7 +96,7 @@
     <script>
         $('#date-range').datepicker({
             defaultDate: "+1w",
-            format: "d-m-y",
+            //format: "d-m-y",
             changeMonth: true,
             numberOfMonths: 1,
             startDate: new Date(),

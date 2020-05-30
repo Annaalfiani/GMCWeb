@@ -75,12 +75,7 @@
                             </div>
                         </form>
                     </div>
-                    <ul class="auth-footer">
-                        <li><a href="#">Conditions</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Terms</a></li>
-                    </ul>
-                    <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+                    <p class="footer-text text-center">copyright © 2020 Gajah Mada Cinema</p>
                 </div>
             </div>
         </div>
