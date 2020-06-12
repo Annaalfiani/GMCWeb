@@ -26,3 +26,5 @@ Route::post('order', 'v1\OrderController@order');
 
 Route::post('login', 'v1\Auth\LoginController@login');
 Route::post('register', 'v1\Auth\RegisterController@register');
+
+Route::get('profil', 'v1\CustomerController@profil');
