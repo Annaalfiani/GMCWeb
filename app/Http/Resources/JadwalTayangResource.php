@@ -18,10 +18,10 @@ class JadwalTayangResource extends JsonResource
         return [
             "id" => $this->id,
             "harga" => $this->harga,
+            "jam" => $this->jam_tayang,
             "tanggal_mulai" => Carbon::parse($this->tanggal_mulai)->format('d-M-Y'),
             "tanggal_selesai" => Carbon::parse($this->tanggal_selesai)->format('d-M-Y'),
             "studio" => new StudioResource($this->studio),
-            "jam" => $this->jam_tayang
             //"jam" => JamTayangResource::collection($this->jamtayangs)
 
         ];

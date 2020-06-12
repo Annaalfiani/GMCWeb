@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Kursi;
 use App\Studio;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class StudioController extends Controller
 {
@@ -52,8 +54,22 @@ class StudioController extends Controller
 
         $data = new Studio();
         $data->nama_studio = $request->nama_studio;
-        $data->jumlah_kursi = $request->jumlah_kursi;
         $data->save();
+
+        $jumlah_kursis = $request->jumlah_kursi;
+        $nama_kursis = $request->nama_kursi;
+
+        $item = [];
+        foreach ($jumlah_kursis as $key => $value){
+            for ($i = 1; $i <= $value; $i++){
+                $item[] = [
+                    'id_studio' => $data->id,
+                    'nama_kursi' => $i.$nama_kursis[$key]
+                ];
+            }
+        }
+
+        DB::table('kursis')->insert($item);
 
         return redirect()->route('studio.index')->with('create', 'Berhasil Menambahkan Data');
     }

@@ -39,6 +39,7 @@ class RegisterController extends Controller
             $data->name = $request->name;
             $data->email = $request->email;
             $data->password = Hash::make($request->password);
+            $data->telp = $request->telp;
             $data->api_token = Str::random(80);
             $data->save();
             //$message = "Cek Email Anda, Verifikasi Dahulu";

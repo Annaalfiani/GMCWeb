@@ -24,16 +24,19 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="example-search-input" class="col-sm-2 col-form-label">Jumlah Kursi</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control {{$errors->has('jumlah_kursi')?'is-invalid':''}}"
-                                           type="text" name="jumlah_kursi" value="{{old('jumlah_kursi')}}">
-                                    @if ($errors->has(''))
-                                        <span class="invalid-feedback" role="alert">
-                                                        <p><b>{{ $errors->first('jumlah_kursi') }}</b></p>
-                                                    </span>
-                                    @endif
+
+                            <div class="form-group mt-1 row">
+                                <label class="col-sm-2 col-form-label">Kursi</label>
+                                <div id="myRepeatingFields" class="col-sm-10">
+                                    <div class="entry input-group col-xs-6" style="margin-top: 10px;">
+                                        <input class="form-control" name="jumlah_kursi[]" type="text" placeholder="Jumlah Kursi/Baris"/>
+                                        <input class="form-control" name="nama_kursi[]" type="text" placeholder="Nama Kursi"/>
+                                        <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success btn-add">
+                                            <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
+                                        </button>
+                                    </span>
+                                    </div>
                                 </div>
                             </div>
 

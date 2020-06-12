@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('templates.admin');
-})->name('welcome');
+    return redirect()->route('admindashboard.index');
+});
 
 Route::get('/manager', function () {
     return view('templates.manager');
