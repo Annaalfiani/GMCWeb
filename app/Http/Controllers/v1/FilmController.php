@@ -43,7 +43,7 @@ class FilmController extends Controller
             return response()->json([
                 'message' => 'successfully get film now playing',
                 'status' => true,
-                'data' => TestResource::collection($films)
+                'data' => FilmResource::collection($films)
             ]);
 
 
