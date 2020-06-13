@@ -21,11 +21,11 @@
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <footer class="footer">
+            {{--<footer class="footer">
                 <div class="w-100 clearfix">
                     <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2020 . Gajah Mada Cinema.</span>
                 </div>
-            </footer>
+            </footer>--}}
             <!-- partial -->
         </div>
         <!-- main-panel ends -->

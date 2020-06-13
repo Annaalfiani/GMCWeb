@@ -64,7 +64,7 @@ class StudioController extends Controller
             for ($i = 1; $i <= $value; $i++){
                 $item[] = [
                     'id_studio' => $data->id,
-                    'nama_kursi' => $i.$nama_kursis[$key]
+                    'nama_kursi' => $i.'-'.$nama_kursis[$key]
                 ];
             }
         }

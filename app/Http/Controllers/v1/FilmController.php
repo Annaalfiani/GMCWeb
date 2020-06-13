@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\DataFilm;
 use App\Http\Resources\FilmResource;
 use App\Http\Resources\JadwalTayangResource;
+use App\Http\Resources\TestResource;
 use App\JadwalTayang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,23 +35,15 @@ class FilmController extends Controller
     public function filmnowplaying()
     {
         try{
-
             $films  = DataFilm::with(['jadwaltayang' => function($query){
                 $query->where('tanggal_mulai' ,'<=', Carbon::now())
                     ->where('tanggal_selesai', '>=', Carbon::now());
             }])->get();
 
-            $results = [];
-            foreach ($films as $film){
-                if ($film->jadwaltayang){
-                    array_push($results, $film);
-                }
-            }
-
             return response()->json([
                 'message' => 'successfully get film now playing',
                 'status' => true,
-                'data' => FilmResource::collection(collect($results))
+                'data' => TestResource::collection($films)
             ]);
 
 
