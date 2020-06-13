@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Order;
+use App\OrderKursi;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class KursiResource extends JsonResource
@@ -17,7 +19,7 @@ class KursiResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'nama_kursi' => $this->nama_kursi
+            'nama_kursi' => $this->nama_kursi,
         ];
     }
 }

@@ -22,6 +22,8 @@ Route::get('film/nowplaying', 'v1\FilmController@filmnowplaying');
 Route::get('film/comingsoon', 'v1\FilmController@filmcomingsoon');
 Route::get('film/{id}/jadwaltayang', 'v1\JadwalTayangController@jadwal');
 
+Route::post('seat/available', 'v1\KursiController@available');
+
 Route::post('order', 'v1\OrderController@order');
 
 Route::post('login', 'v1\Auth\LoginController@login');
