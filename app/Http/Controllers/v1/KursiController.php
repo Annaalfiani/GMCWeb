@@ -13,9 +13,7 @@ class KursiController extends Controller
 {
     public function available(Request $request)
     {
-
-        $results = [];
-        $kursis = Kursi::where('id_studio', $request->id_studio)->get();
+        $kursis = Kursi::where('id_studio', $request->id_studio)->where('id_film', $request->id_film)->get();
 
         return response()->json([
             'message' => 'berhasil ambil kursi yg kosong',

@@ -70,6 +70,7 @@ class FilmController extends Controller
                     array_push($results, $film);
                 }
             }
+
             return response()->json([
                 'message' => 'successfully get film coming soon',
                 'status' => true,
