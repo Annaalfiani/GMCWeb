@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Http\Resources\OrderResource;
 use App\Order;
 use App\OrderKursi;
 use Illuminate\Http\Request;
@@ -22,20 +23,16 @@ class OrderController extends Controller
         $order->id_studio = $request->id_studio;
         $order->id_film = $request->id_film;
         $order->id_jadwal_tayang = $request->id_jadwal_tayang;
+        $order->id_kursi = $request->id_kursi;
+        $order->tanggal = $request->tanggal;
+        $order->jam = $request->jam;
         $order->save();
 
-        $orderkursi = new OrderKursi();
-        $orderkursi->id_order = $order->id;
-        $orderkursi->id_kursi = $request->id_kursi;
-        $orderkursi->save();
 
         return response()->json([
             'message' => 'berhasail order bioskop',
             'status' => true,
-            'data' => [
-                'order' => $order,
-                'order_kursi' => $orderkursi
-            ]
+            'data' => new OrderResource($order)
         ]);
     }
 }

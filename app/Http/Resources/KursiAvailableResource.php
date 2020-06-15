@@ -16,22 +16,24 @@ class KursiAvailableResource extends JsonResource
      */
     public function toArray($request)
     {
-        $orderkursi = OrderKursi::where('id_kursi', $this->id)->first();
+        $order = Order::whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)
+            ->where('id_film', $request->id_film)->where('id_studio', $request->id_studio)
+            ->where('id_kursi', $this->id)
+            ->first();
 
-        $order = Order::with(['orderkursi' => function($query) {
-            $query->where('id_kursi', $this->id);
-        }])->whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)->first();
+        if ($order) {
+            return [
+                'id' => $this->id,
+                'nama_kursi' => $this->nama_kursi,
+                'status' => $order ? "booked" : "available",
+            ];
+        }else{
+            return [
+                'id' => $this->id,
+                'nama_kursi' => $this->nama_kursi,
+                'status' => "available",
+            ];
+        }
 
-        /*$order = Order::with(['orderkursis' => function($q) {
-            $q->where('id_kursi', $this->id);
-        }])->whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)->first();*/
-
-        //$order = Order::whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)->first();
-
-        return [
-            'id' => $this->id,
-            'nama_kursi' => $this->nama_kursi,
-            'is_selected' => $order->orderkursi ? true : false
-        ];
     }
 }

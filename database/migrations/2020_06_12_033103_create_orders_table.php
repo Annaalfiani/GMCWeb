@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('id_studio')->unsigned();
             $table->integer('id_film')->unsigned();
             $table->integer('id_jadwal_tayang')->unsigned();
+            $table->integer('id_kursi')->unsigned();
             $table->string('tanggal');
             $table->string('jam');
             $table->string('snap')->nullable();
@@ -29,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('id_customer')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('id_film')->references('id')->on('data_films')->onDelete('cascade');
             $table->foreign('id_jadwal_tayang')->references('id')->on('jadwal_tayangs')->onDelete('cascade');
+            $table->foreign('id_kursi')->references('id')->on('kursis')->onDelete('cascade');
         });
     }
 

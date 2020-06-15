@@ -10,6 +10,7 @@ use App\JadwalTayang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class FilmController extends Controller
 {
@@ -34,16 +35,27 @@ class FilmController extends Controller
 
     public function filmnowplaying()
     {
+
         try{
-            $films  = DataFilm::with(['jadwaltayang' => function($query){
+
+            $jadwaltayang = JadwalTayang::whereDate('tanggal_mulai' ,'<=', Carbon::now())
+            ->whereDate('tanggal_selesai', '>=', Carbon::now())->get();
+
+            $results = [];
+            foreach ($jadwaltayang as $value){
+                $film = DataFilm::where('id', $value->id_film)->first();
+                array_push($results, $film);
+            }
+
+            /*$films2  = DataFilm::with(['jadwaltayang' => function($query){
                 $query->where('tanggal_mulai' ,'<=', Carbon::now())
                     ->where('tanggal_selesai', '>=', Carbon::now());
-            }])->get();
+            }])->get();*/
 
             return response()->json([
                 'message' => 'successfully get film now playing',
                 'status' => true,
-                'data' => FilmResource::collection($films)
+                'data' => $results
             ]);
 
 
@@ -59,7 +71,17 @@ class FilmController extends Controller
     {
         try{
 
-            $films  = DataFilm::with(['jadwaltayang' => function($query){
+            $jadwaltayang = JadwalTayang::whereDate('tanggal_mulai' ,'<=', Carbon::now())
+                ->whereDate('tanggal_selesai', '<', Carbon::now())->get();
+
+            $results = [];
+            foreach ($jadwaltayang as $value){
+                $film = DataFilm::where('id', $value->id_film)->first();
+                array_push($results, $film);
+            }
+
+
+            /*$films  = DataFilm::with(['jadwaltayang' => function($query){
                 $query->where('tanggal_mulai' ,'>=', Carbon::now())
                 ->OrWhere('tanggal_selesai', '<=', Carbon::now());
             }])->where('status', '1')->get();
@@ -69,12 +91,38 @@ class FilmController extends Controller
                 if ($film->jadwaltayang){
                     array_push($results, $film);
                 }
-            }
+            }*/
 
             return response()->json([
                 'message' => 'successfully get film coming soon',
                 'status' => true,
-                'data' => FilmResource::collection(collect($results))
+                'data' => $results
+            ]);
+
+        }catch (\Exception $exception){
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => false,
+                'data' => (object)[]
+            ]);
+        }
+    }
+
+    public function show($id)
+    {
+        try{
+            $film = DataFilm::findOrFail($id);
+
+            $result = [];
+            if ($film->jadwaltayang->studio){
+                $result = $film;
+            }
+
+
+            return response()->json([
+                'message' => 'successfully get film by id',
+                'status' => true,
+                'data' => $result
             ]);
 
         }catch (\Exception $exception){
