@@ -16,7 +16,7 @@ class Customer extends Authenticatable
      * @var array
      */
 
-    protected $guard = 'web';
+    //protected $guard = 'web';
     protected $table = 'customers';
     protected $guarded = [];
 
