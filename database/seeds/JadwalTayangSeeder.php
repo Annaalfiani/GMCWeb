@@ -17,7 +17,7 @@ class JadwalTayangSeeder extends Seeder
             'harga' => 30000,
             'jam_tayang' => "13.00,15.00,17.00",
             'tanggal_mulai' => "2020-06-10",
-            'tanggal_selesai' => "2020-06-17",
+            'tanggal_selesai' => "2020-06-30",
         ]);
         \App\JadwalTayang::create([
             'id_film' => '2',
@@ -25,7 +25,7 @@ class JadwalTayangSeeder extends Seeder
             'harga' => 30000,
             'jam_tayang' => "13.00,15.00,17.00",
             'tanggal_mulai' => "2020-06-09",
-            'tanggal_selesai' => "2020-06-16",
+            'tanggal_selesai' => "2020-06-29",
         ]);
     }
 }
