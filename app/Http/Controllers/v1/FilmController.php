@@ -118,11 +118,10 @@ class FilmController extends Controller
                 $result = $film;
             }
 
-
             return response()->json([
                 'message' => 'successfully get film by id',
                 'status' => true,
-                'data' => $result
+                'data' => new FilmResource($film)
             ]);
 
         }catch (\Exception $exception){

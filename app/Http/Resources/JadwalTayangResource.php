@@ -22,7 +22,6 @@ class JadwalTayangResource extends JsonResource
             "tanggal_mulai" => Carbon::parse($this->tanggal_mulai)->format('d-M-Y'),
             "tanggal_selesai" => Carbon::parse($this->tanggal_selesai)->format('d-M-Y'),
             "studio" => new StudioResource($this->studio),
-            //"jam" => JamTayangResource::collection($this->jamtayangs)
 
         ];
     }

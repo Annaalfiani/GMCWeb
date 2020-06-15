@@ -25,7 +25,7 @@ class StudioResource extends JsonResource
 
         //column
         $arr_column = array_column($seat, '0');
-        $total_column = max($arr_column);
+        $total_column = (integer)max($arr_column);
 
         //row
         $alphabet = range('A', 'Z');
@@ -34,13 +34,13 @@ class StudioResource extends JsonResource
         $arr_search = array_search($max_row, $alphabet);
         $total_row = $arr_search + 1;
 
+
         return [
             "id" => $this->id,
             "nama_studio" => $this->nama_studio,
             'kursi' => [
+                "total_columns" => $total_column,
                 "total_rows" => $total_row,
-                "total_column" => $total_column,
-                "seat" => KursiResource::collection($this->kursi)
             ],
         ];
 
