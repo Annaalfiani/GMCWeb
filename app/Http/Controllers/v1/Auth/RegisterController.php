@@ -20,13 +20,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        try{
-
-            $validator = Validator::make($request->all(),[
-                'name' => 'required|min:5|regex:/^[\pL\s\-]+$/u',
-                'email' => 'email|required|unique:users',
-                'password' => 'required',
-            ]);
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:5|regex:/^[\pL\s\-]+$/u',
+            'email' => 'email|required|unique:users',
+            'password' => 'required',
+        ]);
 
             if ($validator->fails()){
                 return response()->json([
@@ -46,13 +44,7 @@ class RegisterController extends Controller
             return response()->json([
                 'message' => 'berhasil register',
                 'status' => true,
+                'data' => $data
             ], 200);
-
-        }catch (\Exception $e){
-            return response()->json([
-                'message' => $e->getMessage(),
-                'status' => false,
-            ], 500);
-        }
     }
 }
