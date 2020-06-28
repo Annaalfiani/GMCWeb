@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
             $validator = Validator::make($request->all(),[
                 'name' => 'required|min:5|regex:/^[\pL\s\-]+$/u',
-                'email' => 'email|required|unique:users|min:8',
+                'email' => 'email|required|unique:users',
                 'password' => 'required',
             ]);
 
@@ -32,7 +32,6 @@ class RegisterController extends Controller
                 return response()->json([
                     'message' => $validator->errors(),
                     'status' => false,
-                    'data' => (object)[]
                 ], 401);
             }
             $data = new Customer();
@@ -47,14 +46,12 @@ class RegisterController extends Controller
             return response()->json([
                 'message' => 'berhasil register',
                 'status' => true,
-                'data' => $data
             ], 200);
 
         }catch (\Exception $e){
             return response()->json([
                 'message' => $e->getMessage(),
                 'status' => false,
-                'data' => (object)[]
             ], 500);
         }
     }
