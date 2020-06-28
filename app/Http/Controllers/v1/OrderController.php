@@ -19,10 +19,10 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
-        $this->validate($request,[
-           'tanggal' => 'required',
-           'jam' => 'required'
-        ]);
+//        $this->validate($request,[
+//           'tanggal' => 'required',
+//           'jam' => 'required'
+//        ]);
 
         $checkOrder = Order::where('id_kursi', $request->id_kursi)
             ->where('id_studio', $request->id_studio)
@@ -36,20 +36,22 @@ class OrderController extends Controller
             return response()->json(['message' => 'kursi pada tanggal dan jam tersebut sudah di pesan orang', 'status' => false]);
         }
 
-        $order = new Order();
-        $order->id_customer = Auth::guard('api')->user()->id;
-        $order->id_studio = $request->id_studio;
-        $order->id_film = $request->id_film;
-        $order->id_jadwal_tayang = $request->id_jadwal_tayang;
-        $order->id_kursi = $request->id_kursi;
-        $order->tanggal = $request->tanggal;
-        $order->jam = $request->jam;
-        $order->save();
-
+        $seats = $request->kursi;
+        foreach ($seats as $seat){
+            $order = new Order();
+            $order->id_customer = Auth::guard('api')->user()->id;
+            $order->id_studio = $request->id_studio;
+            $order->id_film = $request->id_film;
+            $order->id_jadwal_tayang = $request->id_jadwal_tayang;
+            $order->tanggal = $request->tanggal;
+            $order->jam = $request->jam;
+            $order->id_kursi = $seat['id_kursi'];
+            $order->save();
+        }
         return response()->json([
             'message' => 'berhasail order bioskop',
             'status' => true,
-            'data' => new OrderResource($order)
+            //'data' => new OrderResource($order)
         ]);
     }
 }

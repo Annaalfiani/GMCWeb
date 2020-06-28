@@ -38,7 +38,6 @@ class LoginController extends Controller
         return response()->json([
             'message' => 'Masukan Email dan Password yang benar',
             'status' => false,
-            'data' => (object)[]
         ], 401);
     }
 }
