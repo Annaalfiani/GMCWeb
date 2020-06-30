@@ -20,7 +20,7 @@ class CreateDataFilmsTable extends Migration
             $table->text('sinopsis');
             $table->string('genre','20');
             $table->time('durasi');
-            $table->enum('status',[0,1,2])->default(1);
+            $table->enum('status',['0', '1', '2'])->default('1');
             $table->timestamps();
         });
     }

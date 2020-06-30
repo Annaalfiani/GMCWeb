@@ -7,6 +7,7 @@ use App\Http\Resources\FilmResource;
 use App\Http\Resources\JadwalTayangResource;
 use App\Http\Resources\TestResource;
 use App\JadwalTayang;
+use App\TanggalTayang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,29 +36,19 @@ class FilmController extends Controller
 
     public function filmnowplaying()
     {
-
         try{
-
-            $jadwaltayang = JadwalTayang::whereDate('tanggal_mulai' ,'<=', Carbon::now())
-            ->whereDate('tanggal_selesai', '>=', Carbon::now())->get();
-
+            $now = Carbon::now()->format('Y-m-d');
+            $dates = TanggalTayang::with('film')->whereDate('tanggal', $now)->get();
             $results = [];
-            foreach ($jadwaltayang as $value){
-                $film = DataFilm::where('id', $value->id_film)->first();
-                array_push($results, $film);
+            foreach ($dates as $date){
+                array_push($results, $date->film);
             }
-
-            /*$films2  = DataFilm::with(['jadwaltayang' => function($query){
-                $query->where('tanggal_mulai' ,'<=', Carbon::now())
-                    ->where('tanggal_selesai', '>=', Carbon::now());
-            }])->get();*/
 
             return response()->json([
                 'message' => 'successfully get film now playing',
                 'status' => true,
                 'data' => $results
             ]);
-
 
         }catch (\Exception $exception){
             return response()->json([
@@ -70,35 +61,22 @@ class FilmController extends Controller
     public function filmcomingsoon()
     {
         try{
-
-            $jadwaltayang = JadwalTayang::whereDate('tanggal_mulai' ,'<=', Carbon::now())
-                ->whereDate('tanggal_selesai', '<', Carbon::now())->get();
-
-            $results = [];
-            foreach ($jadwaltayang as $value){
-                $film = DataFilm::where('id', $value->id_film)->first();
-                array_push($results, $film);
-            }
-
-
-            /*$films  = DataFilm::with(['jadwaltayang' => function($query){
-                $query->where('tanggal_mulai' ,'>=', Carbon::now())
-                ->OrWhere('tanggal_selesai', '<=', Carbon::now());
-            }])->where('status', '1')->get();
-
+            $films = DataFilm::where('status', '1')->get();
             $results = [];
             foreach ($films as $film){
-                if ($film->jadwaltayang){
+                $date = TanggalTayang::where('id_film', $film->id)->first();
+                $tanggal = Carbon::parse($date->tanggal)->subDays(5)->format('Y-m-d');
+                $now = Carbon::now()->format('Y-m-d');
+                if ($now == $tanggal){
                     array_push($results, $film);
                 }
-            }*/
+            }
 
             return response()->json([
                 'message' => 'successfully get film coming soon',
                 'status' => true,
                 'data' => $results
             ]);
-
         }catch (\Exception $exception){
             return response()->json([
                 'message' => $exception->getMessage(),

@@ -24,4 +24,12 @@ class CustomerController extends Controller
             'data' => $profil
         ]);
     }
+
+    public function update(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+        $user->name = $request->name;
+        $user->password = $request->password;
+        $user->save();
+    }
 }

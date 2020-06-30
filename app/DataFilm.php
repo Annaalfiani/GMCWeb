@@ -11,6 +11,11 @@ class DataFilm extends Model
     public function jadwaltayang()
     {
         return $this->hasOne(JadwalTayang::class,'id_film','id');
-
     }
+
+    public function jadwaltayangs()
+    {
+        return $this->hasOne(JadwalTayang::class,'id_film','id');
+    }
+
 }

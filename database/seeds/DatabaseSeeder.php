@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
          $this->call(StudioSeeder::class);
          $this->call(DataFilmSeeder::class);
          $this->call(KursiSeeder::class);
-         $this->call(JadwalTayangSeeder::class);
+         //$this->call(JadwalTayangSeeder::class);
     }
 }
