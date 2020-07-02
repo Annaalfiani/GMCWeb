@@ -19,15 +19,14 @@
                         </tr>
                         </thead>
 
-
                         <tbody>
                         <tr>
-                            <td>{{$data->tanggal_mulai->format('d-m-Y')}}</td>
-                            <td>{{$data->tanggal_selesai->format('d-m-Y')}}</td>
+                            <td>{{\Carbon\Carbon::parse($tanggal_mulai)->format('d M Y')}}</td>
+                            <td>{{\Carbon\Carbon::parse($tanggal_selesai)->format('d M Y')}}</td>
                             <td>{{$data->studio->nama_studio}}</td>
                             <td>
-                                @foreach(explode(',',$data->jam_tayang) as $jam_tayang)
-                                    <p> {{  $jam_tayang }}</p>
+                                @foreach($jams as $jam)
+                                    {{ \Carbon\Carbon::parse($jam)->format('H:i').' WIB'}}<br/>
                                 @endforeach
                             </td>
                             <td>Rp. {{number_format($data->harga,0,',','.')}}</td>

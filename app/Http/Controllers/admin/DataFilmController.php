@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\DataFilm;
+use App\JadwalTayang;
+use App\Studio;
+use App\TanggalTayang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -18,7 +22,30 @@ class DataFilmController extends Controller
     public function index()
     {
         $datas = DataFilm::orderBy('id','DESC')->get();
-        return view('pages.admin.data_film.index', compact('datas'));
+
+        $result = [];
+        foreach ($datas as $data){
+            $date = TanggalTayang::where('id_film', $data->id)->first();
+            if ($date){
+                $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
+                //$now = Carbon::now()->format('Y-m-d');
+                if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
+                    $status = 'Coming Soon';
+                    $result[$data->id] =  $status;
+                }elseif (Carbon::now() == $date->tanggal){
+                    $status = 'Sedang Tayang';
+                    $result[$data->id] =  $status;
+                }else{
+                    $status = 'Kadaluarsa';
+                    $result[$data->id] =  $status;
+                }
+            }else{
+                $status = "Belum Ada Jadwal Tayang";
+                $result[$data->id] =  $status;
+            }
+        }
+
+        return view('pages.admin.data_film.index', compact('datas', 'result'));
     }
 
     public function create()
@@ -132,5 +159,20 @@ class DataFilmController extends Controller
         $data = DataFilm::find($id);
         $data->update(['status'=> 1 ]);
         return redirect()->route('data_film.index')->with('dalete', 'Berhasil Menghapus Data');
+    }
+
+    public function getStudio($id)
+    {
+        $studios = Studio::all();
+        $results = [];
+        foreach ($studios as $key => $studio){
+            $jadwals = JadwalTayang::where('id_film', $id)->get();
+            if ($studio->id != isset($jadwals[$key]->id_studio)){
+                array_push($results, $studio);
+            }
+        }
+
+        return $results;
+
     }
 }

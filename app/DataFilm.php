@@ -18,4 +18,9 @@ class DataFilm extends Model
         return $this->hasOne(JadwalTayang::class,'id_film','id');
     }
 
+    public function date()
+    {
+        return $this->hasMany(TanggalTayang::class, 'id_film', 'id');
+    }
+
 }

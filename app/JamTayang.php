@@ -18,4 +18,6 @@ class JamTayang extends Model
     public function studio(){
         return $this->belongsTo(Studio::class, 'id_studio', 'id');
     }
+
+
 }

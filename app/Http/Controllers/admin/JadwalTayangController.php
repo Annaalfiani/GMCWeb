@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\DataFilm;
 use App\JadwalTayang;
+use App\JamTayang;
 use App\Studio;
 use App\TanggalTayang;
 use Carbon\Carbon;
@@ -54,15 +55,13 @@ class JadwalTayangController extends Controller
     public function store(Request $request)
     {
 
+        $delete_full_stop = preg_replace('/[^\w\s]/', '', $request->harga);
         $startDate = strtotime($request->start);
         $endDate = strtotime($request->end);
         //$start = date('Y-m-d', $startDate);
         //$end = date('Y-m-d', $endDate);
 
         $startDay = date('d', $startDate);
-
-
-
         $startMonth = date('m', $startDate);
         $startYear = date('Y', $startDate);
 
@@ -73,7 +72,7 @@ class JadwalTayangController extends Controller
         $jadwalTayang = new JadwalTayang();
         $jadwalTayang->id_film= $request->id_film;
         $jadwalTayang->id_studio = $request->id_studio;
-        $jadwalTayang->harga = $request->harga;
+        $jadwalTayang->harga = $delete_full_stop;
         $jadwalTayang->save();
 
         if ($startMonth == $endMonth){
@@ -171,7 +170,19 @@ class JadwalTayangController extends Controller
     public function show($id)
     {
         $data = JadwalTayang::find($id);
-        return view('pages.admin.jadwal_tayang.show', compact('data'));
+        $tanggal_mulai = TanggalTayang::where('id_jadwal_tayang', $data->id)->pluck('tanggal')->first();
+        $tanggal_selesai = TanggalTayang::where('id_jadwal_tayang', $data->id)->latest('tanggal')->pluck('tanggal')->first();
+
+        $jams = JamTayang::where('id_jadwal_tayang', $id)->where('id_film', $data->datafilm->id)->get('jam');
+        $results = [];
+        foreach ($jams as $val){
+            array_push($results, $val->jam);
+        }
+
+        $jams = array_unique($results);
+
+
+        return view('pages.admin.jadwal_tayang.show', compact(['data', 'tanggal_mulai', 'tanggal_selesai', 'jams']));
     }
 
     /**
@@ -241,4 +252,6 @@ class JadwalTayangController extends Controller
         $data->delete();
         return redirect()->route('jadwal_tayang.index')->with('dalete', 'Berhasil Menghapus Data');
     }
+
+
 }

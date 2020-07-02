@@ -22,13 +22,11 @@
                                     <a href="{{route('data_film.show', $data->id)}}">{{$data->judul}}</a>
                                 </h4>
                                 <p class="card-text">{{$data->genre}}</p>
-                                @if($data->status=='2')
-                                    <p><span class="badge badge-success">Tayang</span></p>
-                                @elseif($data->status=='1')
-                                    <p><span class="badge badge-primary">Coming Soon</span></p>
-                                @elseif($data->status=='0')
-                                    <p><span class="badge badge-danger">Tidak Tayang</span></p>
-                                @endif
+                                <div class="d-flex justify-content-center">
+                                    <span class="badge badge-success">
+                                        {{ $result[$data->id] ? $result[$data->id] : '' }}
+                                    </span>
+                                </div>
                             </div>
                             <div class="card-body d-flex justify-content-center">
                                 <a href="{{route('data_film.edit', $data->id)}}" class="card-link">

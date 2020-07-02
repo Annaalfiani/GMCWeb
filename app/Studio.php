@@ -12,4 +12,9 @@ class Studio extends Model
     {
         return $this->hasMany(Kursi::class, 'id_studio', 'id');
     }
+
+    public function jadwaltayangs()
+    {
+        return $this->hasMany(JadwalTayang::class, 'id_studio', 'id');
+    }
 }

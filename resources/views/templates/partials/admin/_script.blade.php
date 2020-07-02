@@ -23,6 +23,10 @@
                 currentEntry = $(this).parents('.entry:first'),
                 newEntry = $(currentEntry.clone()).appendTo(controlForm);
             newEntry.find('input').val('');
+            controlForm.find('.clockpicker').clockpicker({
+                donetext: 'Done',
+                'default' : 'now'
+            });
             controlForm.find('.entry:not(:last) .btn-add')
                 .removeClass('btn-add').addClass('btn-remove')
                 .removeClass('btn-success').addClass('btn-danger')

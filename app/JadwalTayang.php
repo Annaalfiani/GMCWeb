@@ -21,12 +21,10 @@ class JadwalTayang extends Model
         return $this->hasMany(TanggalTayang::class, 'id_jadwal_tayang', 'id');
     }
 
-//    public function jamTayangs(){
-//        return $this->hasMany(JamTayang::class, 'id_jadwal_tayang', 'id');
-//    }
-
-    //protected $dates = ['tanggal_mulai', 'tanggal_selesai'];
-
+    public function hours()
+    {
+        return $this->hasMany(JamTayang::class, 'id_jadwal_tayang', 'id');
+    }
 
 
 }

@@ -37,13 +37,6 @@
 
                                 <td>{{$data->harga}}</td>
                                 <td>
-                                    <a href="{{route('jadwal_tayang.edit', $data->id)}}">
-                                        <button class="btn btn-warning">
-                                            <i class="fa fa-pencil">
-                                            </i>
-
-                                        </button>
-                                    </a>
                                     <a href="{{route('jadwal_tayang.destroy', $data->id)}}" class="card-link">
                                         <button class="btn btn-danger"
                                                 onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')">
