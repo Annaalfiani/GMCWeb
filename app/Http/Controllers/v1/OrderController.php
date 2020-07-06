@@ -57,13 +57,11 @@ class OrderController extends Controller
             $orderDetails->id_order = $order->id;
             $orderDetails->id_kursi = $seat['id'];
             $orderDetails->save();
-
-
         }
+
         return response()->json([
             'message' => 'berhasail order bioskop',
             'status' => true,
-            'data' => (object)[]
         ]);
 
 
