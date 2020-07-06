@@ -32,7 +32,7 @@ class OrderController extends Controller
                     ->where('id_film', $request->id_film)
                     ->where('id_jadwal_tayang', $request->id_jadwal_tayang)
                     ->where('tanggal', $request->tanggal)
-                    ->where('jam', $request->jam)
+                    ->where('jam', $request->jam);
             })->where('id_kursi', $seat['id'])->first();
 
             if ($checkOrder){
