@@ -16,6 +16,7 @@ class HourResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "harga" => $this->jadwaltayang->harga,
             "date" => $this->date->tanggal,
             "hour" => $this->jam,
             "studio" => new HourStudioResource($this->studio)

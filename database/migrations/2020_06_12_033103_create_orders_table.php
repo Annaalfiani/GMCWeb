@@ -21,7 +21,8 @@ class CreateOrdersTable extends Migration
             $table->integer('id_jadwal_tayang')->unsigned();
             $table->string('tanggal');
             $table->string('jam');
-            $table->integer('total_harga');
+            $table->integer('harga');
+            $table->integer('total_harga')->default(0);
             $table->string('snap')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();

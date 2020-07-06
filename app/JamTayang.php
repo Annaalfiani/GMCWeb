@@ -19,5 +19,8 @@ class JamTayang extends Model
         return $this->belongsTo(Studio::class, 'id_studio', 'id');
     }
 
-
+    public function jadwaltayang()
+    {
+        return $this->belongsTo(JadwalTayang::class, 'id_jadwal_tayang', 'id');
+    }
 }
