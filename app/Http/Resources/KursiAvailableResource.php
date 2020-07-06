@@ -18,8 +18,6 @@ class KursiAvailableResource extends JsonResource
     public function toArray($request)
     {
 
-
-
         $seats = Kursi::where('id_studio', $this->id)->get();
         $seat = [];
         $result_seat = [];
@@ -64,7 +62,6 @@ class KursiAvailableResource extends JsonResource
 //            ->where('id_film', $request->id_film)->where('id_studio', $request->id_studio)
 //            ->where('id_kursi', $request->id_kursi)
 //            ->first();
-
 
 
         return [

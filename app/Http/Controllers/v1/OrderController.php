@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Resources\OrderResource;
 use App\Order;
+use App\OrderDetails;
 use App\OrderKursi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,17 +37,22 @@ class OrderController extends Controller
             return response()->json(['message' => 'kursi pada tanggal dan jam tersebut sudah di pesan orang', 'status' => false]);
         }
 
+
+        $order = new Order();
+        $order->id_customer = Auth::guard('api')->user()->id;
+        $order->id_studio = $request->id_studio;
+        $order->id_film = $request->id_film;
+        $order->id_jadwal_tayang = $request->id_jadwal_tayang;
+        $order->tanggal = $request->tanggal;
+        $order->jam = $request->jam;
+        $order->save();
+
         $seats = $request->kursi;
         foreach ($seats as $seat){
-            $order = new Order();
-            $order->id_customer = Auth::guard('api')->user()->id;
-            $order->id_studio = $request->id_studio;
-            $order->id_film = $request->id_film;
-            $order->id_jadwal_tayang = $request->id_jadwal_tayang;
-            $order->tanggal = $request->tanggal;
-            $order->jam = $request->jam;
-            $order->id_kursi = $seat['id_kursi'];
-            $order->save();
+            $orderDetails = new OrderDetails();
+            $orderDetails->id_order = $order->id;
+            $orderDetails->id_kursi = $seat['id_kursi'];
+            $orderDetails->save();
         }
         return response()->json([
             'message' => 'berhasail order bioskop',

@@ -15,10 +15,18 @@ class JadwalTayangController extends Controller
 {
     public function jadwal($id)
     {
+//        $hours = JamTayang::whereHas('date', function ($queryDate)use ($id){
+//            $queryDate->whereHas('schedulle', function ($querySchedulle)use ($id){
+//                $querySchedulle->whereHas('dataFilm', function ($queryMovie)use ($id){
+//                     $queryMovie->where('id', $id);
+//                });
+//            });
+//        })->get();
+
         $hours = JamTayang::whereHas('date', function ($queryDate)use ($id){
             $queryDate->whereHas('schedulle', function ($querySchedulle)use ($id){
                 $querySchedulle->whereHas('dataFilm', function ($queryMovie)use ($id){
-                     $queryMovie->where('id', $id);
+                    $queryMovie->where('id', $id);
                 });
             });
         })->get();
