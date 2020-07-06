@@ -48,7 +48,6 @@ class OrderController extends Controller
         $order->id_jadwal_tayang = $request->id_jadwal_tayang;
         $order->tanggal = $request->tanggal;
         $order->jam = $request->jam;
-        $order->harga = $request->harga;
         $order->total_harga = $request->harga * count($request->kursi);
         $order->save();
 
@@ -58,6 +57,8 @@ class OrderController extends Controller
             $orderDetails->id_order = $order->id;
             $orderDetails->id_kursi = $seat['id'];
             $orderDetails->save();
+
+
         }
         return response()->json([
             'message' => 'berhasail order bioskop',
