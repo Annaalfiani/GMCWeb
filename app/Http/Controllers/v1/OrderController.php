@@ -26,7 +26,7 @@ class OrderController extends Controller
 //        ]);
 
 
-        foreach ($request->seat as $seat){
+        foreach ($request->kursi as $seat){
             $checkOrder = OrderDetails::whereHas('order', function ($query) use($request){
                 $query->where('id_studio', $request->id_studio)
                     ->where('id_film', $request->id_film)
