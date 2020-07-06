@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ec9d96-df36-4a73-97bb-9e407abf66ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/v1/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/v1/OrderController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php" afterPath="$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php" />
+      <change beforePath="$PROJECT_DIR$/app/OrderDetails.php" afterPath="$PROJECT_DIR$/app/OrderDetails.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,14 +60,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KursiAvailableResource.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KursiAvailableResource.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+            <state relative-caret-position="503">
+              <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
               <folding>
                 <element signature="e#38#52#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Order.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Order.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderDetails.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/OrderDetails.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -207,13 +228,13 @@
         <option value="$PROJECT_DIR$/resources/views/pages/admin/data_film/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/TotalSeatResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/KursiController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_06_12_033103_create_orders_table.php" />
-        <option value="$PROJECT_DIR$/app/OrderDetails.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_07_06_100422_create_order_details_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php" />
         <option value="$PROJECT_DIR$/database/seeds/KursiSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/OrderController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php" />
+        <option value="$PROJECT_DIR$/app/OrderDetails.php" />
       </list>
     </option>
   </component>
@@ -503,12 +524,12 @@
       <workItem from="1593499944851" duration="15703000" />
       <workItem from="1593588293661" duration="7343000" />
       <workItem from="1593672778954" duration="7074000" />
-      <workItem from="1594028980450" duration="5138000" />
+      <workItem from="1594028980450" duration="6301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405716000" />
+    <option name="totallyTimeSpent" value="406879000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -557,13 +578,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_03_10_061419_create_customers_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_06_12_032834_create_kursis_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -859,14 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/OrderDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_07_06_100422_create_order_details_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -935,11 +941,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+        <state relative-caret-position="503">
+          <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
           <folding>
             <element signature="e#38#52#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/OrderDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
