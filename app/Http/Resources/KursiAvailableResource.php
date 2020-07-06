@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Kursi;
 use App\Order;
+use App\OrderDetails;
 use App\OrderKursi;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,10 +26,15 @@ class KursiAvailableResource extends JsonResource
             $explode = explode("-", $value->nama_kursi);
             array_push($seat, $explode);
 
-            $order = Order::whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)
-                ->where('id_film', $request->id_film)->where('id_studio', $request->id_studio)
-                ->where('id_kursi', $value->id)
-                ->first();
+//            $order = Order::whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)
+//                ->where('id_film', $request->id_film)->where('id_studio', $request->id_studio)
+//                ->where('id_kursi', $value->id)
+//                ->first();
+
+            $order = OrderDetails::whereHas('order', function ($query) use($request){
+               $query->whereDate('tanggal', $request->tanggal)->where('jam', $request->jam)
+                ->where('id_film', $request->id_film)->where('id_studio', $request->id_studio);
+            })->where('id_kursi', $value->id)->first();
 
             if ($order){
                 $item = [
