@@ -52,5 +52,26 @@ class KursiSeeder extends Seeder
                 'nama_kursi' => "$i-C"
             ]);
         }
+
+        for ($i = 1; $i <= 14; $i++) {
+            \App\Kursi::create([
+                'id_studio' => '3',
+                'nama_kursi' => "$i-A"
+            ]);
+        }
+
+        for ($i = 1; $i <= 14; $i++) {
+            \App\Kursi::create([
+                'id_studio' => '3',
+                'nama_kursi' => "$i-B"
+            ]);
+        }
+
+        for ($i = 1; $i <= 14; $i++) {
+            \App\Kursi::create([
+                'id_studio' => '3',
+                'nama_kursi' => "$i-C"
+            ]);
+        }
     }
 }
