@@ -51,7 +51,7 @@ class OrderController extends Controller
         foreach ($seats as $seat){
             $orderDetails = new OrderDetails();
             $orderDetails->id_order = $order->id;
-            $orderDetails->id_kursi = $seat['id_kursi'];
+            $orderDetails->id_kursi = $seat['id'];
             $orderDetails->save();
         }
         return response()->json([
