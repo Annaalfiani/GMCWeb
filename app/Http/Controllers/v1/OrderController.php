@@ -62,6 +62,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'berhasail order bioskop',
             'status' => true,
+            'data' => (object)[]
         ]);
 
 
