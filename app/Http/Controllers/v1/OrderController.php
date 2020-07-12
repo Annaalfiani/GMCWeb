@@ -20,7 +20,7 @@ class OrderController extends Controller
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
-        $this->middleware('api')->except('snapToken');
+        $this->middleware('auth:api')->except('snapToken');
     }
 
     public function order(Request $request)
@@ -107,5 +107,16 @@ class OrderController extends Controller
         } catch (\Exception $exception) {
             return response()->json($exception->getMessage());
         }
+    }
+
+    public function myOrders()
+    {
+        $orders = Order::where('id_customer', Auth::guard('api')->user()->id)->get();
+
+        return response()->json([
+            'message' => 'successfully get my orders',
+            'status' => true,
+            'data' => OrderResource::collection($orders)
+        ]);
     }
 }
