@@ -8,31 +8,35 @@
                     <table id="order-listing" class="table">
                         <thead>
                         <tr>
-                            <th>Order #</th>
-                            <th>Purchased On</th>
-                            <th>Customer</th>
-                            <th>Ship to</th>
-                            <th>Base Price</th>
-                            <th>Purchased Price</th>
-                            <th>Status</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Film</th>
+                            <th>Studio</th>
+                            <th>Nomor Kursi</th>
+                            <th>Tanggal</th>
+                            <th>Jam</th>
+                            <th>Total Harga</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($datas as $data)
                         <tr>
-                            <td>1</td>
-                            <td>2012/08/03</td>
-                            <td>Edinburgh</td>
-                            <td>New York</td>
-                            <td>$1500</td>
-                            <td>$3200</td>
-                            <td>
-                                <label class="badge badge-info">On hold</label>
-                            </td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$data->customers->name}}</td>
+                            <td>{{$data->films->judul}}</td>
+                            <td>{{$data->studios->nama_studio}}</td>
+                            @foreach($data->orderdetails as $orderdetail)
+                            <td>{{$orderdetail->kursi->nama_kursi}}</td>
+                            @endforeach
+                            <td>{{$data->tanggal}}</td>
+                            <td>{{$data->jam}}</td>
+                            <td>{{$data->total_harga}}</td>
                             <td>
                                 <button class="btn btn-outline-primary">View</button>
                             </td>
                         </tr>
+                             @endforeach
                         </tbody>
                     </table>
                 </div>

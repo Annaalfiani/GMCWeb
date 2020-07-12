@@ -16,7 +16,7 @@
                         <!-- Simple card -->
                         <div class="card m-b-30">
 
-                            <img class="card-img-top" src="{{asset('uploads/admin/'.$data->foto)}}" height="250">
+                            <img class="card-img-top" src="{{$data->foto}}" height="250">
                             <div class="card-body">
                                 <h4 class="card-title font-20 mt-0">
                                     <a href="{{route('data_film.show', $data->id)}}">{{$data->judul}}</a>

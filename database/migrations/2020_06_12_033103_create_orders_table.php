@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('id_studio')->unsigned();
             $table->integer('id_film')->unsigned();
             $table->integer('id_jadwal_tayang')->unsigned();
-            $table->string('tanggal');
-            $table->string('jam');
+            $table->date('tanggal');
+            $table->time('jam');
             $table->integer('total_harga')->default(0);
             $table->string('snap')->nullable();
             $table->string('status')->default('pending');

@@ -12,4 +12,9 @@ class OrderDetails extends Model
     {
         return $this->belongsTo(Order::class, 'id_order', 'id');
     }
+
+    public function kursi()
+    {
+        return $this->belongsTo(Kursi::class, 'id_kursi', 'id');
+    }
 }

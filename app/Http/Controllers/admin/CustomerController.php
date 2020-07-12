@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,8 +21,9 @@ class CustomerController extends Controller
 
     public function index()
     {
-        return view('pages.admin.customer.index');
-}
+        $datas = Order::all();
+        return view('pages.admin.customer.index', compact('datas'));
+    }
 
     /**
      * Show the form for creating a new resource.

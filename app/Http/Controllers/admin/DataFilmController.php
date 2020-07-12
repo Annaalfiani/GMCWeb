@@ -9,6 +9,7 @@ use App\TanggalTayang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class DataFilmController extends Controller
@@ -66,18 +67,24 @@ class DataFilmController extends Controller
 
         ]);
 
-        $image=$request->file('foto');
+        /*$image=$request->file('foto');
         $filename=rand().'.'.$image->getClientOriginalExtension();
         $path=public_path('uploads/admin');
-        $image->move($path,$filename);
+        $image->move($path,$filename);*/
 
 
         $data = new DataFilm();
-        $data->foto = $filename;
         $data->judul = $request->judul;
         $data->sinopsis = $request->sinopsis;
         $data->genre = $request->genre;
         $data->durasi = $request->durasi;
+
+        $file = $request->file('foto');
+        $file_name = date('ymdHis') . "-" . $file->getClientOriginalName();
+        $file_path = 'data-films/' . $file_name;
+        Storage::disk('s3')->put($file_path, file_get_contents($file));
+        $data->foto = Storage::disk('s3')->url($file_path, $file_name);
+
         $data->save();
 
         return redirect()->route('data_film.index')->with('create', 'Berhasil Menambahkan Data');
