@@ -33,7 +33,7 @@ class DataFilmController extends Controller
                 if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
                     $status = 'Coming Soon';
                     $result[$data->id] =  $status;
-                }elseif (Carbon::now() == $date->tanggal){
+                }elseif (Carbon::now()->format('Y-m-d') == $date->tanggal){
                     $status = 'Sedang Tayang';
                     $result[$data->id] =  $status;
                 }else{

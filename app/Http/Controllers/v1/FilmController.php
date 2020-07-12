@@ -65,11 +65,14 @@ class FilmController extends Controller
             $results = [];
             foreach ($films as $film){
                 $date = TanggalTayang::where('id_film', $film->id)->first();
-                $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
-                //$now = Carbon::now()->format('Y-m-d');
-                if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
-                    array_push($results, $film);
+                if ($date){
+                    $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
+                    //$now = Carbon::now()->format('Y-m-d');
+                    if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
+                        array_push($results, $film);
+                    }
                 }
+
             }
 
             return response()->json([
