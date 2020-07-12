@@ -28,6 +28,10 @@ Route::post('seat/available', 'v1\KursiController@available');
 
 Route::post('order', 'v1\OrderController@order');
 
+Route::post('snap', 'v1\OrderController@snapToken');
+Route::post('snap/charge', 'v1\OrderController@snapToken');
+
+
 Route::post('login', 'v1\Auth\LoginController@login');
 Route::post('register', 'v1\Auth\RegisterController@register');
 Route::get('profil', 'v1\CustomerController@profil');

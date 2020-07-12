@@ -11,6 +11,11 @@
 |
 */
 
+
+Route::post('/finish', function(){
+    return redirect()->route('welcome');
+})->name('donation.finish');
+
 Route::get('/', function () {
     return redirect()->route('admindashboard.index');
 });

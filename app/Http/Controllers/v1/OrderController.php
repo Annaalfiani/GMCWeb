@@ -5,17 +5,22 @@ namespace App\Http\Controllers\v1;
 use App\Http\Resources\OrderResource;
 use App\Order;
 use App\OrderDetails;
-use App\OrderKursi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Midtrans\Snap;
+use App\Http\Controllers\Midtrans\Config;
 
 class OrderController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('api');
+        Config::$serverKey = 'SB-Mid-server-erBHKuqnurGKdUqCjdi-rZRu';
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        $this->middleware('api')->except('snapToken');
     }
 
     public function order(Request $request)
@@ -64,7 +69,43 @@ class OrderController extends Controller
             'status' => true,
             'data' => (object)[]
         ]);
+    }
 
+    public function snapToken(Request $request)
+    {
+        $orders = $request->item_details;
 
+        $item_details = [];
+        foreach ($orders as $val) {
+
+            $item_details[] = [
+                'id' => $val['id'],
+                'price' => $val['price'],
+                'quantity' => $val['quantity'],
+                'name' => $val['name']
+            ];
+        }
+
+        $payload = [
+            'transaction_details' => [
+                'order_id' => rand()
+            ],
+            'item_details' => $item_details,
+            'customer_details' => [
+                'first_name' => 'aaa',
+                'email' => 'a@gmail.com',
+                'telephone' => '098378728',
+            ],
+        ];
+
+        try {
+            $snapToken = Snap::getSnapToken($payload);
+            //$snapOrder = Order::where('id', $request->item_details[0]['id'])->first();
+            //$snapOrder->snap_token = $snapToken->token;
+            //$snapOrder->update();
+            return response()->json($snapToken);
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage());
+        }
     }
 }
