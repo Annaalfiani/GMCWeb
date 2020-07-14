@@ -14,6 +14,9 @@ class StudioResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id"            => $this->id,
+            "nama_studio"   => $this->nama_studio
+        ];
     }
 }

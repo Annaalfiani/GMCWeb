@@ -111,12 +111,15 @@ class OrderController extends Controller
 
     public function myOrders()
     {
-        $orders = Order::where('id_customer', Auth::guard('api')->user()->id)->get();
+        //$orders = Order::where('id_customer', Auth::guard('api')->user()->id)->get();
+        $tickets = OrderDetails::whereHas('order', function ($order){
+            $order->where('id_customer', Auth::guard('api')->user()->id);
+        })->get();
 
         return response()->json([
             'message' => 'successfully get my orders',
             'status' => true,
-            'data' => OrderResource::collection($orders)
+            'data' => OrderResource::collection($tickets)
         ]);
     }
 }

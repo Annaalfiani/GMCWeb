@@ -15,14 +15,14 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "customer" => new CustomerResource($this->customer),
-            'studio' => new StudioResource($this->studio),
-            'film' => new FilmResource($this->film),
+            "customer"      => new CustomerResource($this->customer),
+            'studio'        => new StudioResource($this->studio),
+            'film'          => new FilmResource($this->film),
             'jadwal_tayang' => new JadwalTayangResource($this->id_jadwal_tayang),
-            'tanggal' => $this->tanggal,
-            'jam' => $this->jam,
-            'snap' => $this->snap,
-            'status' => $this->status,
+            'tanggal'       => $this->tanggal,
+            'jam'           => $this->jam,
+            'snap'          => $this->snap,
+            'status'        => $this->status,
         ];
     }
 }

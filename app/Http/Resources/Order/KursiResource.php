@@ -14,6 +14,10 @@ class KursiResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id"            => $this->id,
+            "id_studio"     => $this->id_studio,
+            "nama_kursi"    => $this->nama_kursi
+        ];
     }
 }

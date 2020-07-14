@@ -14,10 +14,13 @@ class CreateKaryawansTable extends Migration
     public function up()
     {
         Schema::create('karyawans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama','20');
-            $table->string('email','20')->unique();
-            $table->text('password');
+            $table->Increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('api_token', 80)->unique()->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
