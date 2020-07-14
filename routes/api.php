@@ -28,6 +28,7 @@ Route::post('seat/available', 'v1\KursiController@available');
 
 Route::post('order', 'v1\OrderController@order');
 Route::get('order/show', 'v1\OrderController@myOrders');
+Route::get('check/ticket/{id}','v1\OrderController@checkTicket');
 
 Route::post('snap', 'v1\OrderController@snapToken');
 Route::post('snap/charge', 'v1\OrderController@snapToken');

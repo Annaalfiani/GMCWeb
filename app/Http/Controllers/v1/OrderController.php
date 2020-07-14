@@ -8,6 +8,7 @@ use App\Http\Resources\Order\OrderResource;
 use App\Order;
 use App\OrderDetails;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Midtrans\Snap;
@@ -116,6 +117,25 @@ class OrderController extends Controller
             'message' => 'successfully get my orders',
             'status' => true,
             'data' => OrderDetailResource::collection($tickets)
+        ]);
+    }
+
+    public function checkTicket($id)
+    {
+        $orderDetail = OrderDetails::where('id', $id)->first();
+        $now = Carbon::now()->format('Y-m-d');
+        if ($orderDetail->order->tanggal < $now){
+            return response()->json([
+                'message' => 'tiket sudah kadarluasa',
+                'status' => false,
+                'data' => (object)[]
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'jalan mas bro',
+            'status' => true,
+            'data' => $orderDetail
         ]);
     }
 }
