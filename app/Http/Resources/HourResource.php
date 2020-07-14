@@ -15,7 +15,7 @@ class HourResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
+            "id" => $this->jadwaltayang->id,
             "harga" => $this->jadwaltayang->harga,
             "date" => $this->date->tanggal,
             "hour" => $this->jam,

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\v1;
 use App\Http\Resources\OrderResource;
 use App\Order;
 use App\OrderDetails;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Midtrans\Snap;
 use App\Http\Controllers\Midtrans\Config;
@@ -25,12 +25,6 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
-//        $this->validate($request,[
-//           'tanggal' => 'required',
-//           'jam' => 'required'
-//        ]);
-
-
         foreach ($request->kursi as $seat){
             $checkOrder = OrderDetails::whereHas('order', function ($query) use($request){
                 $query->where('id_studio', $request->id_studio)
@@ -67,7 +61,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'berhasil order bioskop',
             'status' => true,
-            'data' => (object)[]
+            'data' => $request->json()->all()
         ]);
     }
 

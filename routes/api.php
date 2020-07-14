@@ -27,7 +27,7 @@ Route::get('film/{id}/jadwaltayang', 'v1\JadwalTayangController@jadwal');
 Route::post('seat/available', 'v1\KursiController@available');
 
 Route::post('order', 'v1\OrderController@order');
-Route::get('order/show', 'v1\OrderController@myOrders');
+//Route::get('order/show', 'v1\OrderController@myOrders');
 
 Route::post('snap', 'v1\OrderController@snapToken');
 Route::post('snap/charge', 'v1\OrderController@snapToken');
