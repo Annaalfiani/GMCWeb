@@ -18,7 +18,7 @@ class OrderResource extends JsonResource
             "customer"      => new CustomerResource($this->customers),
             'studio'        => new StudioResource($this->studios),
             'film'          => new FilmResource($this->films),
-            'jadwal_tayang' => new JadwalTayangResource($this->id_jadwal_tayangs),
+            'jadwal_tayang' => new JadwalTayangResource($this->jadwaltayangs),
             'tanggal'       => $this->tanggal,
             'jam'           => $this->jam,
             'snap'          => $this->snap,
