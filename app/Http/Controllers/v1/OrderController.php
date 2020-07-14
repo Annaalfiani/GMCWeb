@@ -23,7 +23,7 @@ class OrderController extends Controller
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
-        $this->middleware('auth:api')->except('snapToken');
+        $this->middleware('auth:api')->except(['snapToken', 'checkTicket']);
     }
 
     public function order(Request $request)
