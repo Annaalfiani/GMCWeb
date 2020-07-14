@@ -23,12 +23,14 @@ class JadwalTayangController extends Controller
 //            });
 //        })->get();
 
+        $now = Carbon::now()->format('Y-m-d');
+
         $hours = JamTayang::whereHas('date', function ($queryDate)use ($id){
             $queryDate->whereHas('schedulle', function ($querySchedulle)use ($id){
                 $querySchedulle->whereHas('dataFilm', function ($queryMovie)use ($id){
                     $queryMovie->where('id', $id);
                 });
-            });
+            })->whereDate('tanggal', '>=', $now);
         })->get();
 
         return response()->json([
