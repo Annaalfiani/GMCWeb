@@ -22,7 +22,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required|min:5|regex:/^[\pL\s\-]+$/u',
-            'email' => 'email|required|unique:users',
+            'email' => 'email|required|unique:customers',
             'password' => 'required',
         ]);
 

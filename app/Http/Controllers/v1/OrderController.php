@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Http\Resources\OrderResource;
+
+use App\Http\Resources\Order\OrderDetailResource;
+use App\Http\Resources\Order\OrderResource;
 use App\Order;
 use App\OrderDetails;
 use App\Http\Controllers\Controller;
@@ -113,7 +115,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'successfully get my orders',
             'status' => true,
-            'data' => OrderResource::collection($tickets)
+            'data' => OrderDetailResource::collection($tickets)
         ]);
     }
 }
