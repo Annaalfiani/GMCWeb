@@ -19,7 +19,6 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Studio</th>
-                            <th>Jumlah Kursi</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -30,15 +29,15 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$data->nama_studio}}</td>
-                            <td>{{$data->jumlah_kursi}}</td>
-                            <td>
-                                <a href="{{route('studio.edit', $data->id)}}">
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-pencil">
-                                        </i>
 
-                                    </button>
-                                </a>
+                            <td>
+                                {{--<a href="{{route('studio.edit', $data->id)}}">--}}
+                                    {{--<button class="btn btn-warning">--}}
+                                        {{--<i class="fa fa-pencil">--}}
+                                        {{--</i>--}}
+
+                                    {{--</button>--}}
+                                {{--</a>--}}
                                 <a  href="{{route('studio.destroy', $data->id)}}">
                                     <button class="btn btn-danger"
                                             onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini?')">

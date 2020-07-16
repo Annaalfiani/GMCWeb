@@ -4,7 +4,7 @@
         <div class="col-md-6 col-xl-3">
             <div class="card text-center m-b-30">
                 <div class="mb-2 card-body text-muted">
-                    <h3 class="text-info">15,852</h3>
+                    <h3 class="text-info"><i class=""></i>{{count(App\Order::all())}}</h3>
                     Data Customer
                 </div>
             </div>

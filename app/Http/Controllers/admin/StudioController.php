@@ -23,8 +23,9 @@ class StudioController extends Controller
 
     public function index()
     {
+        $kursis = Kursi::all();
         $datas =Studio::all();
-        return view('pages.admin.studio.index', compact('datas'));
+        return view('pages.admin.studio.index', compact('datas', 'kursis'));
 
     }
 

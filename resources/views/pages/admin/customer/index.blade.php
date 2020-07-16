@@ -26,9 +26,11 @@
                             <td>{{$data->customers->name}}</td>
                             <td>{{$data->films->judul}}</td>
                             <td>{{$data->studios->nama_studio}}</td>
+                            <td>
                             @foreach($data->orderdetails as $orderdetail)
-                            <td>{{$orderdetail->kursi->nama_kursi}}</td>
+                            {{$orderdetail->kursi->nama_kursi}}<br/><br/>
                             @endforeach
+                            </td>
                             <td>{{$data->tanggal}}</td>
                             <td>{{$data->jam}}</td>
                             <td>{{$data->total_harga}}</td>
