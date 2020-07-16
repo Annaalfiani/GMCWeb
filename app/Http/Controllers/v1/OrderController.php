@@ -130,12 +130,20 @@ class OrderController extends Controller
                 'status' => false,
                 'data' => (object)[]
             ]);
+        }else{
+            if (!$orderDetail->expired){
+                return response()->json([
+                    'message' => 'jalan mas bro',
+                    'status' => true,
+                    'data' => $orderDetail
+                ]);
+            }else{
+                return response()->json([
+                    'message' => 'tiket sudah kadarluasa',
+                    'status' => true,
+                    'data' => $orderDetail
+                ]);
+            }
         }
-
-        return response()->json([
-            'message' => 'jalan mas bro',
-            'status' => true,
-            'data' => $orderDetail
-        ]);
     }
 }
