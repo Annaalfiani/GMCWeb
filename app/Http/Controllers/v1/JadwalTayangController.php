@@ -24,7 +24,7 @@ class JadwalTayangController extends Controller
 //        })->get();
 
         $now = Carbon::now()->format('Y-m-d');
-        $jamSekarang = Carbon::now()->format('Y-m-d');
+        $jamSekarang = Carbon::now()->format('H:i');
 
         $hours = JamTayang::whereHas('date', function ($queryDate)use ($id, $now){
             $queryDate->whereHas('schedulle', function ($querySchedulle)use ($id){
