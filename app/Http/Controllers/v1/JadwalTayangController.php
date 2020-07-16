@@ -24,6 +24,7 @@ class JadwalTayangController extends Controller
 //        })->get();
 
         $now = Carbon::now()->format('Y-m-d');
+        $jamSekarang = Carbon::now()->format('Y-m-d');
 
         $hours = JamTayang::whereHas('date', function ($queryDate)use ($id, $now){
             $queryDate->whereHas('schedulle', function ($querySchedulle)use ($id){
@@ -31,7 +32,7 @@ class JadwalTayangController extends Controller
                     $queryMovie->where('id', $id);
                 });
             })->whereDate('tanggal', '>=', $now);
-        })->get();
+        })->whereTime('jam', '>', $jamSekarang)->get();
 
         return response()->json([
             'mesage' => 'success',

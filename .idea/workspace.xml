@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ec9d96-df36-4a73-97bb-9e407abf66ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/customer/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/admin/customer/index.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,120 +29,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/studio/index.blade.php">
+      <file leaf-file-name="JadwalTayangController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-              <folding>
-                <element signature="e#1210#2056#0#HTML" expanded="false" />
-                <marker date="1594874299208" expanded="true" signature="9:26" ph="..." />
-                <marker date="1594874299208" expanded="true" signature="37:46" ph="..." />
-                <marker date="1594874299208" expanded="true" signature="327:349" ph="..." />
-                <marker date="1594874299208" expanded="true" signature="1017:1032" ph="..." />
-                <marker date="1594874299208" expanded="true" signature="1097:1113" ph="..." />
-                <marker date="1594874299208" expanded="true" signature="1155:1173" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderDetails.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/OrderDetails.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="390">
+              <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataFilmController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="35" column="53" lean-forward="false" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DashboardController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/DashboardController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="75" lean-forward="false" selection-start-line="6" selection-start-column="75" selection-end-line="6" selection-end-column="75" />
-              <folding>
-                <marker date="1594874776363" expanded="true" signature="9:26" ph="..." />
-                <marker date="1594874776363" expanded="true" signature="37:46" ph="..." />
-                <marker date="1594874776363" expanded="true" signature="276:299" ph="..." />
-                <marker date="1594874776363" expanded="true" signature="606:632" ph="..." />
-                <marker date="1594874776363" expanded="true" signature="936:966" ph="..." />
-                <marker date="1594874776363" expanded="true" signature="1273:1297" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/customer/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="37" column="37" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="37" selection-end-column="37" />
-              <folding>
-                <marker date="1594877274528" expanded="true" signature="9:26" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="37:46" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="840:855" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="920:936" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="978:1000" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1042:1061" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1103:1130" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1208:1243" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1275:1306" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1427:1441" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1483:1493" ph="..." />
-                <marker date="1594877274528" expanded="true" signature="1535:1553" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/jadwal_tayang/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-              <folding>
-                <marker date="1593590227721" expanded="true" signature="9:26" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="37:46" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="226:248" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="788:842" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="884:940" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="982:1008" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="1090:1103" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="1143:1193" ph="..." />
-                <marker date="1593590227721" expanded="true" signature="1317:1354" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -223,7 +115,6 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/TotalSeatResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/KursiController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_07_06_100422_create_order_details_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/KursiAvailableResource.php" />
         <option value="$PROJECT_DIR$/app/JamTayang.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/admin/Auth/ForgotPasswordController.php" />
@@ -258,6 +149,7 @@
         <option value="$PROJECT_DIR$/resources/views/pages/admin/studio/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/admin/customer/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php" />
       </list>
     </option>
   </component>
@@ -413,14 +305,6 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="GMCWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GMCWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="GMCWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -613,12 +497,12 @@
       <workItem from="1594694063207" duration="10505000" />
       <workItem from="1594726898309" duration="580000" />
       <workItem from="1594736846922" duration="2721000" />
-      <workItem from="1594872485175" duration="4091000" />
+      <workItem from="1594872485175" duration="5469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="447820000" />
+    <option name="totallyTimeSpent" value="449198000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -861,13 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1117,6 +994,14 @@
             <marker date="1594877274528" expanded="true" signature="1483:1493" ph="..." />
             <marker date="1594877274528" expanded="true" signature="1535:1553" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/JadwalTayangController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
