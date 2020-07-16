@@ -26,25 +26,40 @@ class DataFilmController extends Controller
 
         $result = [];
         foreach ($datas as $data){
-            $date = TanggalTayang::where('id_film', $data->id)->first();
+            $now = Carbon::now()->format('Y-m-d');
+            $date = TanggalTayang::where('id_film', $data->id)->whereDate('tanggal', $now)->first();
+            $comingSoon = TanggalTayang::where('id_film', $data->id)->first();
+            //$tanggal_comingsoon = Carbon::parse($dateComingSoon->tanggal)->subDays(4)->format('Y-m-d');
+
             if ($date){
-                $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
-                //$now = Carbon::now()->format('Y-m-d');
-                if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
-                    $status = 'Coming Soon';
-                    $result[$data->id] =  $status;
-                }elseif (Carbon::now()->format('Y-m-d') == $date->tanggal){
-                    $status = 'Sedang Tayang';
-                    $result[$data->id] =  $status;
+                $status = 'Sedang Tayang';
+                $result[$data->id] =  $status;
+
+                $dateComingSoon = TanggalTayang::where('id_film', $data->id)->first();
+                if ($dateComingSoon){
+                    $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
+                    if ($tanggal_comingsoon){
+                        if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
+                            $status = 'Coming Soon';
+                            $result[$data->id] = $status;
+                        }
+//                        else{
+//                            $status = "Kadaluarsa";
+//                            $result[$data->id] =  $status;
+//                        }
+                    }
                 }else{
-                    $status = 'Kadaluarsa';
+                    $status = "Belum Ada Jadwal Tayang";
                     $result[$data->id] =  $status;
                 }
+
             }else{
                 $status = "Belum Ada Jadwal Tayang";
                 $result[$data->id] =  $status;
             }
+
         }
+
 
         return view('pages.admin.data_film.index', compact('datas', 'result'));
     }
