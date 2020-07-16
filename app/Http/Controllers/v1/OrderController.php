@@ -145,7 +145,7 @@ class OrderController extends Controller
         } else{
             return response()->json([
                 'message' => 'tiket sudah kadarluasa',
-                'status' => true,
+                'status' => false,
                 'data' => (object)[]
             ]);
         }
