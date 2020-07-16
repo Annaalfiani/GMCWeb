@@ -122,16 +122,17 @@ class OrderController extends Controller
 
     public function checkTicket($id)
     {
-        $orderDetail = OrderDetails::where('id', $id)->first();
+        $orderDetail = OrderDetails::where('id', $id)->where('expired', false)->first();
         $now = Carbon::now()->format('Y-m-d');
-        if ($orderDetail->order->tanggal < $now){
-            return response()->json([
-                'message' => 'tiket sudah kadarluasa',
-                'status' => false,
-                'data' => (object)[]
-            ]);
-        }else{
-            if (!$orderDetail->expired){
+
+        if ($orderDetail){
+            if ($orderDetail->order->tanggal < $now){
+                return response()->json([
+                    'message' => 'tiket sudah kadarluasa',
+                    'status' => false,
+                    'data' => (object)[]
+                ]);
+            }else{
                 $orderDetail->expired = true;
                 $orderDetail->update();
 
@@ -140,13 +141,13 @@ class OrderController extends Controller
                     'status' => true,
                     'data' => $orderDetail
                 ]);
-            }else{
-                return response()->json([
-                    'message' => 'tiket sudah kadarluasa',
-                    'status' => true,
-                    'data' => (object)[]
-                ]);
             }
+        } else{
+            return response()->json([
+                'message' => 'tiket sudah kadarluasa',
+                'status' => true,
+                'data' => (object)[]
+            ]);
         }
     }
 }
