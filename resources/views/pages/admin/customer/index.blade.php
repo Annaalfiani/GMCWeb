@@ -16,7 +16,6 @@
                             <th>Tanggal</th>
                             <th>Jam</th>
                             <th>Total Harga</th>
-                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,9 +33,9 @@
                             <td>{{$data->tanggal}}</td>
                             <td>{{$data->jam}}</td>
                             <td>{{$data->total_harga}}</td>
-                            <td>
-                                <button class="btn btn-outline-primary">View</button>
-                            </td>
+                            {{--<td>--}}
+                                {{--<button class="btn btn-outline-primary">View</button>--}}
+                            {{--</td>--}}
                         </tr>
                              @endforeach
                         </tbody>
