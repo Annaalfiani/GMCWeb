@@ -6,6 +6,7 @@ use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -29,7 +30,14 @@ class CustomerController extends Controller
     {
         $user = Auth::guard('api')->user();
         $user->name = $request->name;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
+        $user->telp = $request->telp;
         $user->save();
+
+        return response()->json([
+            'message' => 'successfully update profil',
+            'status' => true,
+            'data' => (object)[]
+        ]);
     }
 }
