@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'manager'], function () {
     Route::resource('managerdashboard', 'manager\DashboardController');
+    Route::resource('penjualan_tiket', 'manager\PenjualanTiketController');
+    Route::get('export-excel', 'manager\PenjualanTiketController@export')->name('export.excel');
 
 });
 //Auth Admin

@@ -66,18 +66,18 @@
                                     </button>
                                 </div>
                             </form>
-                            <div class="d-block">
-                                <div class="float-right">
-                                    <a href="auth-forgot-password.html" class="text-small">
-                                        Forgot Password?
-                                    </a>
-                                </div>
-                            </div>
+                            {{--<div class="d-block">--}}
+                                {{--<div class="float-right">--}}
+                                    {{--<a href="auth-forgot-password.html" class="text-small">--}}
+                                        {{--Forgot Password?--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
+                    {{--<div class="mt-5 text-muted text-center">--}}
+                        {{--Don't have an account? <a href="auth-register.html">Create One</a>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

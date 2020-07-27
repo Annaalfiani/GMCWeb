@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\manager;
 
-
-use App\Customer;
+use App\Exports\OrderExport;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
-class CustomerController extends Controller
+class PenjualanTiketController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
+    public function export()
     {
-        $this->middleware('auth:admin');
+        return Excel::download(new OrderExport, 'laporan_penjualan.xlsx');
     }
 
     public function index()
     {
-        $datas = Customer::all();
-        return view('pages.admin.customer.index', compact('datas'));
+        $datas = Order::all();
+        return view('pages.manager.penjualan_tiket.index', compact('datas'));
     }
 
     /**

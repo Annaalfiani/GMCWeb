@@ -35,7 +35,7 @@
                                 <label class="label">Email</label>
                                 <div class="input-group">
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                     placeholder="Username" name="email" value="{{ old('email') }}">
+                                     placeholder="Masukkan Email" name="email" value="{{ old('email') }}">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                         {{--</form>--}}
                     {{--</div>--}}
                     <p class="footer-text text-center">copyright © 2020 Gajah Mada Cinema</p>
-                </div>
+                        </form></div>
             </div>
         </div>
         <!-- content-wrapper ends -->
@@ -91,7 +91,7 @@
 <!-- inject:js -->
 <script src="{{ asset ('assets/js/template.js') }}"></script>
 <!-- endinject -->
-</body>
+</div></body>
 
 
 <!-- Mirrored from www.bootstrapdash.com/demo/cloudui/template/demo/light/pages/samples/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 May 2020 07:30:43 GMT -->

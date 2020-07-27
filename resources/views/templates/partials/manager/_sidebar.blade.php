@@ -7,7 +7,7 @@
         </div>
         <ul class="sidebar-menu"><p>
             <li class="menu-header">Main</li></p>
-            <li class="dropdown active">
+            <li class="dropdown">
                 <a href="{{route('managerdashboard.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
@@ -15,7 +15,7 @@
                             data-feather="briefcase"></i><span>Lihat Laporan</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="widget-chart.html">Laporan Data Film</a></li>
-                    <li><a class="nav-link" href="widget-data.html">Laporan Penjualan Tiket</a></li>
+                    <li><a class="nav-link" href="{{route('penjualan_tiket.index')}}">Laporan Penjualan Tiket</a></li>
                 </ul>
             </li>
 

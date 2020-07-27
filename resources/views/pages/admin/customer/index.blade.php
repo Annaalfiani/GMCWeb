@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Data table</h4>
+            <h4 class="card-title">Data Users</h4>
             <div class="row">
                 <div class="col-12 table-responsive">
                     <table id="order-listing" class="table">
@@ -10,32 +10,21 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Film</th>
-                            <th>Studio</th>
-                            <th>Nomor Kursi</th>
-                            <th>Tanggal</th>
-                            <th>Jam</th>
-                            <th>Total Harga</th>
+                            <th>Email</th>
+                            <th>Nomor Hp</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($datas as $data)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$data->customers->name}}</td>
-                            <td>{{$data->films->judul}}</td>
-                            <td>{{$data->studios->nama_studio}}</td>
+                            <td>{{$data->name}}</td>
+                            <td>{{$data->email}}</td>
+                            <td>{{$data->telp}}</td>
                             <td>
-                            @foreach($data->orderdetails as $orderdetail)
-                            {{$orderdetail->kursi->nama_kursi}}<br/><br/>
-                            @endforeach
+                                <button class="btn btn-danger">Hapus</button>
                             </td>
-                            <td>{{$data->tanggal}}</td>
-                            <td>{{$data->jam}}</td>
-                            <td>{{$data->total_harga}}</td>
-                            {{--<td>--}}
-                                {{--<button class="btn btn-outline-primary">View</button>--}}
-                            {{--</td>--}}
                         </tr>
                              @endforeach
                         </tbody>
