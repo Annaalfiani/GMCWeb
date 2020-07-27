@@ -179,7 +179,7 @@ class DataFilmController extends Controller
     public function destroy($id)
     {
         $data = DataFilm::find($id);
-        $data->update(['status'=> 1 ]);
+        $data->delete();
         return redirect()->route('data_film.index')->with('dalete', 'Berhasil Menghapus Data');
     }
 

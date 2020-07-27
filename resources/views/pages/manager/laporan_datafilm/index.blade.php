@@ -1,4 +1,4 @@
-@extends('templates.admin')
+@extends('templates.manager')
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -9,7 +9,6 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
                             <th>Film</th>
                             <th>Studio</th>
                             <th>Nomor Kursi</th>
@@ -22,7 +21,6 @@
                         @foreach($datas as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$data->customers->name}}</td>
                                 <td>{{$data->films->judul}}</td>
                                 <td>{{$data->studios->nama_studio}}</td>
                                 <td>

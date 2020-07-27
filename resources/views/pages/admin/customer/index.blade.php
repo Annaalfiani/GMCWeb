@@ -23,7 +23,9 @@
                             <td>{{$data->email}}</td>
                             <td>{{$data->telp}}</td>
                             <td>
-                                <button class="btn btn-danger">Hapus</button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                              @endforeach

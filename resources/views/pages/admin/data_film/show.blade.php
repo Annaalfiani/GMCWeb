@@ -10,7 +10,7 @@
                         <p class="text-muted m-b-30 font-14">{{$data->durasi}}</p>
 
                         <div class="media m-b-30">
-                            <img class="d-flex align-self-start mr-3" src="{{asset('uploads/admin/'.$data->foto)}}"
+                            <img class="d-flex align-self-start mr-3" src="{{$data->foto}}"
                                  alt="Generic placeholder image" width="220" height="300">
                             <div class="media-body">
                                 <h5 class="mt-0 font-18">Sinopsis</h5>

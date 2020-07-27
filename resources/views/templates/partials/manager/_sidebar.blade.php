@@ -14,7 +14,7 @@
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
                             data-feather="briefcase"></i><span>Lihat Laporan</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="widget-chart.html">Laporan Data Film</a></li>
+                    <li><a class="nav-link" href="#">Laporan Data Film</a></li>
                     <li><a class="nav-link" href="{{route('penjualan_tiket.index')}}">Laporan Penjualan Tiket</a></li>
                 </ul>
             </li>
