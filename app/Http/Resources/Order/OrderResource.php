@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Order;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -19,8 +20,8 @@ class OrderResource extends JsonResource
             'studio'        => new StudioResource($this->studios),
             'film'          => new FilmResource($this->films),
             'jadwal_tayang' => new JadwalTayangResource($this->jadwaltayangs),
-            'tanggal'       => $this->tanggal,
-            'jam'           => $this->jam,
+            'tanggal'       => Carbon::parse($this->tanggal)->format('d-m-Y'),
+            'jam'           => Carbon::parse($this->jam)->format('H:i'),
             'snap'          => $this->snap,
             'status'        => $this->status,
         ];

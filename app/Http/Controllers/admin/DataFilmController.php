@@ -165,17 +165,20 @@ class DataFilmController extends Controller
         $data->sinopsis = $request->sinopsis;
         $data->genre = $request->genre;
         $data->durasi = $request->durasi;
-        $data->status = $request->status;
 
-        if ($image==''){
-            $data->foto=$request->old_foto;
-        }else{
-            $filename=time().'.'.$image->getClientOriginalExtension();
-            $path=public_path('uploads/admin');
-            $image->move($path,$filename);
-            $data->foto = $filename;
-        }
-
+//        if ($image==''){
+//            $data->foto=$request->old_foto;
+//        }else{
+//            $filename=time().'.'.$image->getClientOriginalExtension();
+//            $path=public_path('uploads/admin');
+//            $image->move($path,$filename);
+//            $data->foto = $filename;
+//        }
+        $file = $request->file('foto');
+        $file_name = date('ymdHis') . "-" . $file->getClientOriginalName();
+        $file_path = 'data-films/' . $file_name;
+        Storage::disk('s3')->put($file_path, file_get_contents($file));
+        $data->foto = Storage::disk('s3')->url($file_path, $file_name);
 
         $data->update();
         return redirect()->route('data_film.index')->with('update', 'Berhasil Mengubah Data');
