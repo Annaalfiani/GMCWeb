@@ -12,8 +12,8 @@ class AdminSeeder extends Seeder
     public function run()
     {
         \App\User::create([
-           'name' => 'anna alfiani meinawati',
-           'email' => 'anna@gmail.com',
+           'name' => 'Admin GMC Tegal',
+           'email' => 'admingmc@gmail.com',
            'password' => \Illuminate\Support\Facades\Hash::make('12345678')
         ]);
     }

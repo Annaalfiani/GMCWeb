@@ -73,20 +73,31 @@ class DataFilmController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $rules =[
             'foto' => 'required|file|image|mimes:jpg,png,jpeg|max:2048',
             'judul' => 'required|unique:data_films',
             'sinopsis' => 'required',
             'genre' => 'required',
             'durasi' => 'required',
 
-        ]);
+        ];
 
         /*$image=$request->file('foto');
         $filename=rand().'.'.$image->getClientOriginalExtension();
         $path=public_path('uploads/admin');
         $image->move($path,$filename);*/
 
+
+        $message = [
+
+            'required|file|image|mimes:jpg,png,jpeg|max:2048' => ':attribute tidak boleh kosong',
+            'unique' => ':attribute sudah terdaftar',
+            'required' => ':attribute tidak boleh kosong',
+            'mimes' => 'Hanya dapat upload gambar',
+
+        ];
+
+        $this->validate($request, $rules, $message);
 
         $data = new DataFilm();
         $data->judul = $request->judul;

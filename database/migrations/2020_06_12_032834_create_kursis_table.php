@@ -16,7 +16,7 @@ class CreateKursisTable extends Migration
         Schema::create('kursis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_studio')->unsigned();
-            $table->string('nama_kursi');
+            $table->string('nama_kursi', 5);
             $table->timestamps();
 
             $table->foreign('id_studio')->references('id')->on('studios')->onDelete('cascade');

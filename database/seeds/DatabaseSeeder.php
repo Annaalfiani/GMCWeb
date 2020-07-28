@@ -11,10 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ManagerSeeder::class);
          $this->call(AdminSeeder::class);
          $this->call(StudioSeeder::class);
          $this->call(DataFilmSeeder::class);
          $this->call(KursiSeeder::class);
+
          //$this->call(JadwalTayangSeeder::class);
     }
 }
