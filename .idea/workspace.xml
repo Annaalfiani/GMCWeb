@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ec9d96-df36-4a73-97bb-9e407abf66ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/Auth/LoginController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/manager/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/manager/Auth/LoginController.php" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_061419_create_customers_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_061419_create_customers_table.php" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_18_074539_create_managers_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_03_18_074539_create_managers_table.php" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_12_032834_create_kursis_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_06_12_032834_create_kursis_table.php" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/AdminSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/AdminSeeder.php" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/manager/penjualan_tiket/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/manager/penjualan_tiket/index.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,11 +28,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataFilmController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataFilmController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="125">
               <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudioSeeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/StudioSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KursiSeeder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/KursiSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="244" column="15" lean-forward="true" selection-start-line="244" selection-start-column="15" selection-end-line="244" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -132,14 +142,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2020_06_12_033103_create_orders_table.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/pages/admin/data_film/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/FilmController.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/OrderDetailResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/FilmResource.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_07_13_154826_create_karyawans_table.php" />
-        <option value="$PROJECT_DIR$/database/seeds/KursiSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/KursiResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/StudioResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/JadwalTayangResource.php" />
@@ -183,6 +191,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/manager/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/resources/views/pages/manager/penjualan_tiket/index.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/StudioSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/KursiSeeder.php" />
       </list>
     </option>
   </component>
@@ -385,6 +395,12 @@
             <path>
               <item name="GMCWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="GMCWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="GMCWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GMCWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -569,12 +585,12 @@
       <workItem from="1595478831048" duration="841000" />
       <workItem from="1595822473474" duration="14113000" />
       <workItem from="1595839774469" duration="666000" />
-      <workItem from="1595907962353" duration="6635000" />
+      <workItem from="1595907962353" duration="8130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="485596000" />
+    <option name="totallyTimeSpent" value="487091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -622,13 +638,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/studio/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/OrderDetails.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -719,13 +728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/KursiSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="227" column="32" lean-forward="true" selection-start-line="227" selection-start-column="32" selection-end-line="227" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1088,6 +1090,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/StudioSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/KursiSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="244" column="15" lean-forward="true" selection-start-line="244" selection-start-column="15" selection-end-line="244" selection-end-column="15" />
           <folding />
         </state>
       </provider>
