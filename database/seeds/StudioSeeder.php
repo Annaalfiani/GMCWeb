@@ -12,13 +12,16 @@ class StudioSeeder extends Seeder
     public function run()
     {
         \App\Studio::create([
-            'nama_studio' => 'Studio 1',
+            'nama_studio' => 'Cinema 1',
         ]);
         \App\Studio::create([
-            'nama_studio' => 'Studio 2',
+            'nama_studio' => 'Cinema 2',
         ]);
         \App\Studio::create([
-            'nama_studio' => 'Studio 3',
+            'nama_studio' => 'Cinema 3',
+        ]);
+        \App\Studio::create([
+            'nama_studio' => 'Cinema 4',
         ]);
     }
 }
