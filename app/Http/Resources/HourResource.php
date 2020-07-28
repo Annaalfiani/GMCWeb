@@ -18,7 +18,7 @@ class HourResource extends JsonResource
         return [
             "id" => $this->jadwaltayang->id,
             "harga" => $this->jadwaltayang->harga,
-            "date" => Carbon::parse($this->date->tanggal)->format('y-m-d'),
+            "date" => Carbon::parse($this->date->tanggal)->format('d-m-Y'),
             "hour" => Carbon::parse($this->jam)->format('H:i'),
             "studio" => new HourStudioResource($this->studio)
         ];
