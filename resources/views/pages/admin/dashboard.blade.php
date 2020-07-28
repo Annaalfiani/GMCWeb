@@ -5,7 +5,7 @@
             <div class="card text-center m-b-30">
                 <div class="mb-2 card-body text-muted">
                     <h3 class="text-info"><i class=""></i>{{count(App\Order::all())}}</h3>
-                    Data Customers
+                    Data Customer
                 </div>
             </div>
         </div>

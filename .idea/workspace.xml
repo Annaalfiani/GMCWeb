@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ec9d96-df36-4a73-97bb-9e407abf66ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/admin/DataFilmController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/RegisterController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Order/OrderResource.php" afterPath="$PROJECT_DIR$/app/Http/Resources/Order/OrderResource.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/data_film/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/admin/data_film/edit.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,14 +43,14 @@
         <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding>
-                <marker date="1595945721801" expanded="true" signature="9:26" ph="..." />
-                <marker date="1595945721801" expanded="true" signature="37:46" ph="..." />
-                <marker date="1595945721801" expanded="true" signature="276:299" ph="..." />
-                <marker date="1595945721801" expanded="true" signature="607:633" ph="..." />
-                <marker date="1595945721801" expanded="true" signature="937:967" ph="..." />
-                <marker date="1595945721801" expanded="true" signature="1274:1298" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="9:26" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="37:46" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="276:299" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="606:632" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="936:966" ph="..." />
+                <marker date="1595945898406" expanded="true" signature="1273:1297" ph="..." />
               </folding>
             </state>
           </provider>
@@ -578,12 +574,12 @@
       <workItem from="1595478831048" duration="841000" />
       <workItem from="1595822473474" duration="14113000" />
       <workItem from="1595839774469" duration="666000" />
-      <workItem from="1595907962353" duration="11859000" />
+      <workItem from="1595907962353" duration="12020000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490820000" />
+    <option name="totallyTimeSpent" value="490981000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1149,14 +1145,14 @@
     <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/dashboard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding>
-            <marker date="1595945721801" expanded="true" signature="9:26" ph="..." />
-            <marker date="1595945721801" expanded="true" signature="37:46" ph="..." />
-            <marker date="1595945721801" expanded="true" signature="276:299" ph="..." />
-            <marker date="1595945721801" expanded="true" signature="607:633" ph="..." />
-            <marker date="1595945721801" expanded="true" signature="937:967" ph="..." />
-            <marker date="1595945721801" expanded="true" signature="1274:1298" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="9:26" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="37:46" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="276:299" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="606:632" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="936:966" ph="..." />
+            <marker date="1595945898406" expanded="true" signature="1273:1297" ph="..." />
           </folding>
         </state>
       </provider>
