@@ -11,7 +11,6 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Nomor Hp</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -21,7 +20,6 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$data->name}}</td>
                             <td>{{$data->email}}</td>
-                            <td>{{$data->telp}}</td>
                             <td>
                                 <button class="btn btn-danger">
                                     <i class="fa fa-trash"></i>
