@@ -38,3 +38,4 @@ Route::post('login', 'v1\Auth\LoginController@login');
 Route::post('register', 'v1\Auth\RegisterController@register');
 Route::get('profil', 'v1\CustomerController@profil');
 Route::post('profil/update', 'v1\CustomerController@update');
+Route::get('email/verify/{id}', 'v1\Auth\VerificationController@verify')->name('api.verification.verify');
