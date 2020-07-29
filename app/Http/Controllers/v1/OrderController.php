@@ -42,13 +42,14 @@ class OrderController extends Controller
             }
         }
 
+        $tanggal = Carbon::parse($request->tanggal)->format('Y-m-d');
 
         $order = new Order();
         $order->id_customer = Auth::guard('api')->user()->id;
         $order->id_studio = $request->id_studio;
         $order->id_film = $request->id_film;
         $order->id_jadwal_tayang = $request->id_jadwal_tayang;
-        $order->tanggal = $request->tanggal;
+        $order->tanggal = $tanggal;
         $order->jam = $request->jam;
         $order->total_harga = $request->harga * count($request->kursi);
         $order->save();
