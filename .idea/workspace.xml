@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8ec9d96-df36-4a73-97bb-9e407abf66ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/VerificationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/VerificationController.php" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/LoginController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,16 +81,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/CustomerController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/Auth/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -124,14 +113,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Customer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Customer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="520">
+              <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
               <folding>
                 <element signature="e#23#60#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/Auth/LoginController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -196,7 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2020_07_13_154826_create_karyawans_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/KursiResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/StudioResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Order/JadwalTayangResource.php" />
@@ -243,10 +241,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/app/Notifications/ApiVerifyEmail.php" />
         <option value="$PROJECT_DIR$/app/Mail/ActivationEmail.php" />
-        <option value="$PROJECT_DIR$/app/Customer.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/OrderController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/VerificationController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Customer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/v1/Auth/LoginController.php" />
       </list>
     </option>
   </component>
@@ -560,12 +559,12 @@
       <workItem from="1595822473474" duration="14113000" />
       <workItem from="1595839774469" duration="666000" />
       <workItem from="1595907962353" duration="15363000" />
-      <workItem from="1595990877987" duration="3517000" />
+      <workItem from="1595990877987" duration="3819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="497841000" />
+    <option name="totallyTimeSpent" value="498143000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -614,13 +613,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/studio/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -993,11 +985,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Customer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="520">
+          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
           <folding>
             <element signature="e#23#60#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/v1/Auth/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="31" column="29" lean-forward="false" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

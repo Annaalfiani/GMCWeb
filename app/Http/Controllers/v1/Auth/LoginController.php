@@ -29,12 +29,21 @@ class LoginController extends Controller
 
         if (Auth::guard('web')->attempt($credential)) {
             $user = Auth::guard('web')->user();
-            return response()->json([
-                'message' => 'Login Successfully',
-                'status' => true,
-                'data' => $user,
-            ], 200);
+            if ($user->email_verified_at == null){
+                return response()->json([
+                    'message' => 'belum di di verifikasi',
+                    'status' => false,
+                    'data' => (object)[],
+                ]);
+            }else{
+                return response()->json([
+                    'message' => 'Login Successfully',
+                    'status' => true,
+                    'data' => $user,
+                ], 200);
+            }
         }
+
         return response()->json([
             'message' => 'Masukan Email dan Password yang benar',
             'status' => false,
