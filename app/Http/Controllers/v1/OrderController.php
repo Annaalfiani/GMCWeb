@@ -125,9 +125,10 @@ class OrderController extends Controller
     {
         $orderDetail = OrderDetails::where('id', $id)->where('expired', false)->first();
         $now = Carbon::now()->format('Y-m-d');
+        $jam = Carbon::now()->format('H;i');
 
         if ($orderDetail){
-            if ($orderDetail->order->tanggal < $now){
+            if ($orderDetail->order->tanggal < $now || $orderDetail->order->jam < $jam){
                 return response()->json([
                     'message' => 'tiket sudah kadarluasa',
                     'status' => false,
