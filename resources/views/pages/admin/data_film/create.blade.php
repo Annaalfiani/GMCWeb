@@ -53,6 +53,34 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Sutradara</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control {{$errors->has('sutradara')?'is-invalid':''}}"
+                                           name="sutradara" value="{{old('sutradara')}}" type="text">
+
+                                    @if ($errors->has('sutradara'))
+                                        <span class="invalid-feedback" role="alert">
+                                                        <p><b>{{ $errors->first('sutradara') }}</b></p>
+                                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Bahasa</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="bahasa">
+                                        <option>Arab</option>
+                                        <option>Korea</option>
+                                        <option>Indonesia</option>
+                                        <option>Inggris</option>
+                                        <option>Thailand</option>
+                                        <option>Spanyol</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Genre</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="genre">
@@ -60,7 +88,8 @@
                                         <option>Horor</option>
                                         <option>Comedy</option>
                                         <option>Drama</option>
-                                        <option>Animasi</option>
+                                        <option>Animation</option>
+                                        <option>Action</option>
                                     </select>
                                 </div>
                             </div>
@@ -80,6 +109,38 @@
 
                             </div>
 
+
+                            <div class="form-group mt-1 row">
+                                <label class="col-sm-2 col-form-label">Pemain</label>
+                                <div id="myRepeatingFields" class="col-sm-10">
+
+                                    <div class="entry input-group col-xs-6 input-group" style="margin-top: 10px;">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon"></span>
+                                </span>
+                                        <input type="text" class="form-control" name="pemain[]"
+                                               style="cursor: pointer; background: white">
+                                        <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success btn-add">
+                                            <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-md-2">Tanggal Rilis</label>
+                                <div class="col-sm-10">
+                                  <div id="datepicker-popup" class="input-group date datepicker">
+                                    <input type="text" class="form-control" name="tanggal_rilis">
+                                    <span class="input-group-addon input-group-append border-left">
+                          <span class="icon-calendar input-group-text"></span>
+                        </span>
+                                </div>
+                                </div>
+                            </div>
 
                             <div class="form-group m-b-0">
                                 <div>

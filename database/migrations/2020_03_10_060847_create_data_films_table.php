@@ -21,6 +21,9 @@ class CreateDataFilmsTable extends Migration
             $table->string('genre','20');
             $table->time('durasi');
             $table->enum('status',['0', '1', '2'])->default('1');
+            $table->string('sutradara', '60');
+            $table->date('tanggal_rilis');
+            $table->string('bahasa', '20');
             $table->timestamps();
         });
     }

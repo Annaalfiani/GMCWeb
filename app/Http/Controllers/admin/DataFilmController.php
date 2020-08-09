@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\DataFilm;
 use App\JadwalTayang;
+use App\Pemain;
 use App\Studio;
 use App\TanggalTayang;
 use Carbon\Carbon;
@@ -73,14 +74,15 @@ class DataFilmController extends Controller
 
     public function store(Request $request)
     {
-        $rules =[
-            'foto' => 'required|file|image|mimes:jpg,png,jpeg|max:2048',
-            'judul' => 'required|unique:data_films',
-            'sinopsis' => 'required',
-            'genre' => 'required',
-            'durasi' => 'required',
-
-        ];
+//        $rules =[
+//            'foto' => 'required|file|image|mimes:jpg,png,jpeg|max:2048',
+//            'judul' => 'required|unique:data_films',
+//            'sinopsis' => 'required',
+//            'genre' => 'required',
+//            'durasi' => 'required',
+//
+//
+//        ];
 
         /*$image=$request->file('foto');
         $filename=rand().'.'.$image->getClientOriginalExtension();
@@ -88,30 +90,40 @@ class DataFilmController extends Controller
         $image->move($path,$filename);*/
 
 
-        $message = [
-
-            'required|file|image|mimes:jpg,png,jpeg|max:2048' => ':attribute tidak boleh kosong',
-            'unique' => ':attribute sudah terdaftar',
-            'required' => ':attribute tidak boleh kosong',
-            'mimes' => 'Hanya dapat upload gambar',
-
-        ];
-
-        $this->validate($request, $rules, $message);
+//        $message = [
+//
+//            'required|file|image|mimes:jpg,png,jpeg|max:2048' => ':attribute tidak boleh kosong',
+//            'unique' => ':attribute sudah terdaftar',
+//            'required' => ':attribute tidak boleh kosong',
+//            'mimes' => 'Hanya dapat upload gambar',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $message);
 
         $data = new DataFilm();
         $data->judul = $request->judul;
+        $data->sutradara = $request->sutradara;
         $data->sinopsis = $request->sinopsis;
         $data->genre = $request->genre;
+        $data->bahasa = $request->bahasa;
         $data->durasi = $request->durasi;
+        $data->tanggal_rilis = Carbon::parse($request->tanggal_rilis)->format('Y-m-d');
 
         $file = $request->file('foto');
         $file_name = date('ymdHis') . "-" . $file->getClientOriginalName();
         $file_path = 'data-films/' . $file_name;
         Storage::disk('s3')->put($file_path, file_get_contents($file));
         $data->foto = Storage::disk('s3')->url($file_path, $file_name);
-
         $data->save();
+
+        $actors = $request->pemain;
+        foreach ($actors as $actor) {
+            $pemain = new Pemain();
+            $pemain->id_film  = $data->id;
+            $pemain->nama = $actor;
+            $pemain->save();
+        };
 
         return redirect()->route('data_film.index')->with('create', 'Berhasil Menambahkan Data');
 
@@ -127,6 +139,11 @@ class DataFilmController extends Controller
     public function show($id)
     {
         $data = DataFilm::find($id);
+//        $pemains = Pemain::where('id_film', $id)->where('id_film', $data->film->id)->get('nama');
+//        $results = [];
+//        foreach ($pemains as $pemain){
+//            array_push($results, $pemain->nama);
+//        }
         return view('pages.admin.data_film.show', compact('data'));
     }
 

@@ -13,6 +13,12 @@
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
 <script src="{{asset('assets/daterange/daterangepicker.js')}}"></script>
 <script src="{{asset('assets/daterange/moment.min.js')}}"></script>
+<script src="{{asset('assets/js/form-addons.js') }}"></script>
+
+<script src="{{asset('assets/js/formpickers.js') }}"></script>
+
+
+
 <script>
     $(function()
     {

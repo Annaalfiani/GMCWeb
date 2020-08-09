@@ -17,6 +17,10 @@ class DataFilmSeeder extends Seeder
             'sinopsis' => "Sinopsis avenger 1",
             'genre' => 'sci-fi',
             'durasi' => '02:00',
+            'pemain' => 'Van Diessel',
+            'sutradara' => 'Barack Obama',
+            'tanggal_rilis' => '2020-02-20',
+            'bahasa' => 'Indonesia',
             'status' => 1,
         ]);
 
@@ -26,6 +30,10 @@ class DataFilmSeeder extends Seeder
             'sinopsis' => "Sinopsis Harry Potter",
             'genre' => 'sci-fi',
             'durasi' => '02:00',
+            'pemain' => 'Van Diessel',
+            'sutradara' => 'Barack Obama',
+            'tanggal_rilis' => '2020-02-02',
+            'bahasa' => 'Inggris',
             'status' => 1,
         ]);
     }
