@@ -5,6 +5,12 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if ($message = Session::get('warning'))
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Warning</h3> {{ $message }}
+                </div>
+            @endif
             <div class="card m-b-20">
                 <div class="card-body">
 

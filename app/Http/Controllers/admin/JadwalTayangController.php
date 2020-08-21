@@ -7,6 +7,7 @@ use App\JadwalTayang;
 use App\JamTayang;
 use App\Studio;
 use App\TanggalTayang;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,7 @@ class JadwalTayangController extends Controller
     public function create()
     {
         $data = JadwalTayang::all();
-        $datafilms = DataFilm::where('status','1')->orWhere('status','2')->get();
+        $datafilms = DataFilm::where('status', '1')->orWhere('status', '2')->get();
 
         $studios = Studio::all();
         return view('pages.admin.jadwal_tayang.create', compact('data', 'datafilms', 'studios'));
@@ -49,7 +50,7 @@ class JadwalTayangController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,8 +59,6 @@ class JadwalTayangController extends Controller
         $delete_full_stop = preg_replace('/[^\w\s]/', '', $request->harga);
         $startDate = strtotime($request->start);
         $endDate = strtotime($request->end);
-        //$start = date('Y-m-d', $startDate);
-        //$end = date('Y-m-d', $endDate);
 
         $startDay = date('d', $startDate);
         $startMonth = date('m', $startDate);
@@ -69,14 +68,23 @@ class JadwalTayangController extends Controller
         $endMonth = date('m', $endDate);
         $endYear = date('Y', $endDate);
 
+        $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
+        if (count($val) == 0){
+            return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
+        }
+        $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request)
+        if (count($valJam) == 0){
+            return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya')
+        }
+
         $jadwalTayang = new JadwalTayang();
-        $jadwalTayang->id_film= $request->id_film;
+        $jadwalTayang->id_film = $request->id_film;
         $jadwalTayang->id_studio = $request->id_studio;
         $jadwalTayang->harga = $delete_full_stop;
         $jadwalTayang->save();
 
-        if ($startMonth == $endMonth){
-            while ($startDay <= $endDay){
+        if ($startMonth == $endMonth) {
+            while ($startDay <= $endDay) {
                 $date_id = TanggalTayang::latest('id')->pluck('id')->first();
 
                 $itemDate = [
@@ -84,7 +92,7 @@ class JadwalTayangController extends Controller
                     'id_film' => $jadwalTayang->id_film,
                     'id_studio' => $jadwalTayang->id_studio,
                     'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear.'-'.$startMonth.'-'.$startDay
+                    'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
                 ];
                 TanggalTayang::create($itemDate);
 
@@ -100,11 +108,10 @@ class JadwalTayangController extends Controller
                 };
                 $startDay++;
             }
-
             DB::table('jam_tayangs')->insert($itemHour);
-        }else{
+        } else {
             $startDayEndOfMonth = Carbon::now()->month($startMonth)->endOfMonth()->format('d');
-            while ($startDay <= $startDayEndOfMonth){
+            while ($startDay <= $startDayEndOfMonth) {
                 $date_id = TanggalTayang::latest('id')->pluck('id')->first();
 
                 $itemDate = [
@@ -112,7 +119,7 @@ class JadwalTayangController extends Controller
                     'id_film' => $jadwalTayang->id_film,
                     'id_studio' => $jadwalTayang->id_studio,
                     'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear.'-'.$startMonth.'-'.$startDay
+                    'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
                 ];
                 TanggalTayang::create($itemDate);
 
@@ -131,7 +138,7 @@ class JadwalTayangController extends Controller
             DB::table('jam_tayangs')->insert($itemHour);
 
             $newStartDay = 1;
-            while ($newStartDay <= $endDay){
+            while ($newStartDay <= $endDay) {
                 $date_id = TanggalTayang::latest('id')->pluck('id')->first();
 
                 $itemDate = [
@@ -139,7 +146,7 @@ class JadwalTayangController extends Controller
                     'id_film' => $jadwalTayang->id_film,
                     'id_studio' => $jadwalTayang->id_studio,
                     'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear.'-'.$endMonth.'-'.$newStartDay
+                    'tanggal' => $startYear . '-' . $endMonth . '-' . $newStartDay
                 ];
                 TanggalTayang::create($itemDate);
 
@@ -159,12 +166,65 @@ class JadwalTayangController extends Controller
         }
 
         return redirect()->route('jadwal_tayang.index')->with('create', 'Berhasil Menambahkan Data');
-}
+    }
+
+    public function validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request)
+    {
+        $res = [];
+        if ($startMonth == $endMonth){
+            while ($startDay <= $endDay){
+                $t = now()->year.'-'.$startMonth.'-'.$startDay;
+                $tanggal = TanggalTayang::whereDate('tanggal', $t)->first();
+                if ($tanggal){
+                    foreach ($request->jam_tayang as $j){
+                        $admin = User::whereTime('jam_buka', '<=', $j)
+                            ->whereTime('jam_tutup', '>=', $j)->first();
+                        if ($admin){
+                            $jam = JamTayang::where('jam', $j)->first();
+                            if ($jam){
+                                if ($admin){
+                                    $jadwal = JadwalTayang::where('id_studio', $request->id_studio)->first();
+                                    if ($jadwal){
+                                        array_push($res, "ada jadwal");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                $startDay++;
+            }
+        }
+        return $res;
+    }
+
+    private function validateJam($startMonth, $endMonth, $startDay, $endDay, $request){
+        $res = [];
+        if ($startMonth == $endMonth){
+            while ($startDay <= $endDay){
+                foreach ($request->jam_tayang as $j){
+                    $tang = now()->year.'-'.$startMonth.'-'.$startDay;
+                    $jams = JamTayang::whereHas('date', function ($tgl) use ($tang){
+                       $tgl->whereDate('tanggal', $tang);
+                    })->get();
+                    foreach ($jams as $jam){
+                        $substringJam = substr($jam->jam, 0, 2);
+                        $substringJ = substr($j, 0, 2);
+                        if ($substringJam == $substringJ){
+                            array_push($res, "sama");
+                        }
+                    }
+                }
+                $startDay++;
+            }
+        }
+        return $res;
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -175,7 +235,7 @@ class JadwalTayangController extends Controller
 
         $jams = JamTayang::where('id_jadwal_tayang', $id)->where('id_film', $data->datafilm->id)->get('jam');
         $results = [];
-        foreach ($jams as $val){
+        foreach ($jams as $val) {
             array_push($results, $val->jam);
         }
 
@@ -188,7 +248,7 @@ class JadwalTayangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -204,8 +264,8 @@ class JadwalTayangController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -227,10 +287,10 @@ class JadwalTayangController extends Controller
 
 
         $data = JadwalTayang::find($id);
-        $data->id_film= $request->id_film;
+        $data->id_film = $request->id_film;
         $data->id_studio = $request->id_studio;
         $data->harga = $request->harga;
-        $data->jam_tayang =  implode(',',$request->jam_tayang);
+        $data->jam_tayang = implode(',', $request->jam_tayang);
         $data->tanggal_mulai = $request->tgl_awal;
         $data->tanggal_selesai = $request->tgl_akhir;
         $data->update();
@@ -243,7 +303,7 @@ class JadwalTayangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
