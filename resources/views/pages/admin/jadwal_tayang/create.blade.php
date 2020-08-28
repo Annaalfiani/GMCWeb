@@ -13,7 +13,6 @@
             @endif
             <div class="card m-b-20">
                 <div class="card-body">
-
                     <h4 class="mt-0 header-title">Tambah Jadwal Tayang</h4>
 
                     <form method="POST" action="{{route('jadwal_tayang.store')}}">
@@ -134,13 +133,14 @@
             url = url.replace(':id', id)
 
             $.get(url, function (data) {
+                console.log(data);
                 selectStudio.style.display = ''
                 labelStudio.style.display = ''
                 let studio;
                 data.map(s => {
                     studio += `<option value="${s['id']}">${s['nama_studio']}</option>`
             });
-selectStudio.innerHTML = studio
+                selectStudio.innerHTML = studio
             })
         })
     </script>

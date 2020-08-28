@@ -72,9 +72,9 @@ class JadwalTayangController extends Controller
         if (count($val) == 0){
             return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
         }
-        $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request)
+        $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
         if (count($valJam) == 0){
-            return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya')
+            return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
         }
 
         $jadwalTayang = new JadwalTayang();

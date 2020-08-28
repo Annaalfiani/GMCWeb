@@ -18,7 +18,7 @@ class DataFilmController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin')->except('getStudio');
     }
 
     public function index()
@@ -31,14 +31,13 @@ class DataFilmController extends Controller
             $date = TanggalTayang::where('id_film', $data->id)->whereDate('tanggal', $now)->first();
             $comingSoon = TanggalTayang::where('id_film', $data->id)->first();
             //$tanggal_comingsoon = Carbon::parse($dateComingSoon->tanggal)->subDays(4)->format('Y-m-d');
-
             if ($date){
                 $status = 'Sedang Tayang';
                 $result[$data->id] =  $status;
-
                 $dateComingSoon = TanggalTayang::where('id_film', $data->id)->first();
                 if ($dateComingSoon){
-                    $tanggal_comingsoon = Carbon::parse($date->tanggal)->subDays(4)->format('Y-m-d');
+                    $tanggal_comingsoon = Carbon::parse($date->tanggal)
+                        ->subDays(4)->format('Y-m-d');
                     if ($tanggal_comingsoon){
                         if (Carbon::now()->between( $tanggal_comingsoon, $date->tanggal)){
                             $status = 'Coming Soon';
@@ -219,13 +218,43 @@ class DataFilmController extends Controller
         $studios = Studio::all();
         $results = [];
         foreach ($studios as $key => $studio){
-            $jadwals = JadwalTayang::where('id_film', $id)->get();
-            if ($studio->id != isset($jadwals[$key]->id_studio)){
+            $jadwals = JadwalTayang::where('id_film', $id)->get()->toArray();
+            $aa = array_search($studio->id, array_column($jadwals, 'id_studio'));
+            if ($aa === false){
                 array_push($results, $studio);
             }
         }
-
         return $results;
-
     }
+
+    private function in_multiarray($elem, $array,$field)
+    {
+        $top = sizeof($array) - 1;
+        $bottom = 0;
+        while($bottom <= $top)
+        {
+            if($array[$bottom][$field] == $elem)
+                return true;
+            else
+                if(is_array($array[$bottom][$field]))
+                    if(in_multiarray($elem, ($array[$bottom][$field])))
+                        return true;
+
+            $bottom++;
+        }
+        return false;
+    }
+
+    private function clearArray($arr)
+    {
+        foreach($arr as $link)
+        {
+            if($link == null)
+            {
+                unset($link);
+            }
+        }
+        return $arr;
+    }
+
 }
