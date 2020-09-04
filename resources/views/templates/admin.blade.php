@@ -40,5 +40,4 @@
 </body>
 
 
-<!-- Mirrored from www.bootstrapdash.com/demo/cloudui/template/demo/light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 May 2020 07:26:36 GMT -->
 </html>

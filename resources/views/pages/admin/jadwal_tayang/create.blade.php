@@ -1,7 +1,9 @@
 @extends('templates.admin')
 @section('head')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/bootstrap-clockpicker.min.css') }}">
 @endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -57,13 +59,17 @@
 
                         <div class="form-group row">
                             <label class="col-md-2">Tanggal Tayang</label>
-                            <div class="col-sm-10">
-                                <div class="input-daterange input-group" id="date-range">
-                                    <input type="text" class="form-control" id="startDate" name="start" readonly
-                                           style="cursor: pointer; background: white"/>
-                                    <input type="text" class="form-control" id="endDate" name="end" readonly
-                                           style="cursor: pointer; background: white"/>
-                                </div>
+                            {{--<div class="col-sm-10">--}}
+                                {{--<div class="input-daterange input-group" id="date-range">--}}
+                                    {{--<input type="text" class="form-control" id="startDate" name="start" readonly--}}
+                                           {{--style="cursor: pointer; background: white"/>--}}
+                                    {{--<input type="text" class="form-control" id="endDate" name="end" readonly--}}
+                                           {{--style="cursor: pointer; background: white"/>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-md-10">
+                                <input type="text" name="tanggal" id="daterange" readonly class="form-control"
+                                style="background: white; cursor: pointer"/>
                             </div>
                         </div>
 
@@ -112,15 +118,38 @@
 @section('script')
 
     <script>
-        $('#date-range').datepicker({
+
+        $('.input-daterange').datepicker({
             defaultDate: "+1w",
             //format: "d-m-y",
-            changeMonth: true,
+            //changeMonth: true,
             numberOfMonths: 1,
             startDate: new Date(),
+            maxDate: '+10d'
         });
     </script>
 
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        const todayDate = new Date().getDate();
+        const maxDate = Date.parse(new Date(todayDate + 10));
+
+        $(function() {
+                $('#daterange').daterangepicker({
+                    format: 'yyyy/dd/mm',
+                    opens: 'left',
+                    minDate: new Date(),
+                    maxDate: "+10d"
+                });
+            console.log(todayDate);
+            console.log(maxDate);
+        });
+    </script>
 
     <script>
         const selectKategori = document.querySelector('.select-kategori');

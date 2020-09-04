@@ -57,23 +57,27 @@ class JadwalTayangController extends Controller
     {
 
         $delete_full_stop = preg_replace('/[^\w\s]/', '', $request->harga);
-        $startDate = strtotime($request->start);
-        $endDate = strtotime($request->end);
+        //$startDate = strtotime($request->start);
+        //$endDate = strtotime($request->end);
 
-        $startDay = date('d', $startDate);
-        $startMonth = date('m', $startDate);
-        $startYear = date('Y', $startDate);
+        $startDate = Carbon::parse(substr($request->tanggal, 0, 10))->format('Y-m-d');
+        $endDate = Carbon::parse(substr($request->tanggal, 13))->format('Y-m-d');
 
-        $endDay = date('d', $endDate);
-        $endMonth = date('m', $endDate);
-        $endYear = date('Y', $endDate);
+        $startDay = (int)Carbon::parse($startDate)->format('d');
+        $startMonth = (int)Carbon::parse($startDate)->format('m');
+        $startYear = (int)Carbon::parse($startDate)->format('Y');
+
+        $endDay = (int)Carbon::parse($endDate)->format('d');
+        $endMonth = (int)Carbon::parse($endDate)->format('m');
+        $endYear = (int)Carbon::parse($endDate)->format('Y');
 
         $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
-        if (count($val) == 0){
+        if (count($val) > 0){
             return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
         }
+
         $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
-        if (count($valJam) == 0){
+        if (count($valJam) > 0){
             return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
         }
 
@@ -168,7 +172,7 @@ class JadwalTayangController extends Controller
         return redirect()->route('jadwal_tayang.index')->with('create', 'Berhasil Menambahkan Data');
     }
 
-    public function validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request)
+    private function validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request)
     {
         $res = [];
         if ($startMonth == $endMonth){
