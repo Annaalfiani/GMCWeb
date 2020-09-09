@@ -38,13 +38,28 @@ class JadwalTayangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function create()
     {
+        $hours = [];
+        for ($i = 10; $i <= 22; $i++) {
+            if ($i > 9) {
+                array_push($hours, $i.':00');
+                array_push($hours, $i.':30');
+                //$text_hour = ;
+            } else {
+                array_push($hours, $i.':00');
+                array_push($hours, $i.':30');
+            }
+            //array_push($hours, $text_hour);
+        }
+
         $data = JadwalTayang::all();
         $datafilms = DataFilm::where('status', '1')->orWhere('status', '2')->get();
 
         $studios = Studio::all();
-        return view('pages.admin.jadwal_tayang.create', compact('data', 'datafilms', 'studios'));
+        return view('pages.admin.jadwal_tayang.create', compact(['data', 'datafilms', 'studios', 'hours']));
     }
 
     /**
@@ -79,6 +94,10 @@ class JadwalTayangController extends Controller
         $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
         if (count($valJam) > 0){
             return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
+        }
+        $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
+        if (count($valJamFilm) > 0){
+            return redirect()->back()->with('warning','jam harus ada jarak');
         }
 
         $jadwalTayang = new JadwalTayang();
@@ -117,7 +136,6 @@ class JadwalTayangController extends Controller
             $startDayEndOfMonth = Carbon::now()->month($startMonth)->endOfMonth()->format('d');
             while ($startDay <= $startDayEndOfMonth) {
                 $date_id = TanggalTayang::latest('id')->pluck('id')->first();
-
                 $itemDate = [
                     'id' => $date_id == null ? 1 : $date_id + 1,
                     'id_film' => $jadwalTayang->id_film,
@@ -220,6 +238,25 @@ class JadwalTayangController extends Controller
                     }
                 }
                 $startDay++;
+            }
+        }
+        return $res;
+    }
+
+    private function validasiJamFilmSama($hours){
+        $res = [];
+        $val = [];
+        foreach ($hours as $key => $hour){
+            $h = preg_replace('/[^A-Za-z0-9\-]/', '', $hour);
+            $h = substr($h, 0, 3);
+            if (count($res) < 1){
+                array_push($res, $h);
+            }else{
+                if ($res[$key-1]+13 >= $h){
+                    array_push($val, "ada");
+                }else{
+                    array_push($res, $h);
+                }
             }
         }
         return $res;

@@ -40,14 +40,34 @@
 
                         <div class="form-group mt-1 row">
                             <label class="col-sm-2 col-form-label">Jam Tayang</label>
+
+                            {{--<div id="myRepeatingFields" class="col-sm-10">--}}
+
+                                {{--<div class="entry input-group col-xs-6 input-group clockpicker" style="margin-top: 10px;">--}}
+                                {{--<span class="input-group-addon">--}}
+                                    {{--<span class="glyphicon glyphicon-time"></span>--}}
+                                {{--</span>--}}
+                                    {{--<input type="text" class="form-control" name="jam_tayang[]"--}}
+                                           {{--style="cursor: pointer; background: white" readonly>--}}
+                                    {{--<span class="input-group-btn">--}}
+                                        {{--<button type="button" class="btn btn-success btn-add">--}}
+                                            {{--<span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>--}}
+                                        {{--</button>--}}
+                                    {{--</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
                             <div id="myRepeatingFields" class="col-sm-10">
 
-                                <div class="entry input-group col-xs-6 input-group clockpicker" style="margin-top: 10px;">
+                                <div class="entry input-group col-xs-6 input-group" style="margin-top: 10px;">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
-                                    <input type="text" class="form-control" name="jam_tayang[]"
-                                           style="cursor: pointer; background: white" readonly>
+                                    <select name="jam_tayang[]" class="form-control">
+                                        @foreach($hours as $hour)
+                                            <option value="{{ $hour }}">{{ $hour }}</option>
+                                        @endforeach
+                                    </select>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-success btn-add">
                                             <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
@@ -116,7 +136,6 @@
 @endsection
 
 @section('script')
-
     <script>
 
         $('.input-daterange').datepicker({
@@ -128,8 +147,6 @@
             maxDate: '+10d'
         });
     </script>
-
-
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -146,8 +163,6 @@
                     minDate: new Date(),
                     maxDate: "+10d"
                 });
-            console.log(todayDate);
-            console.log(maxDate);
         });
     </script>
 
