@@ -23,8 +23,8 @@ Route::get('film/comingsoon', 'v1\FilmController@filmcomingsoon');
 Route::get('film/{id}', 'v1\FilmController@show');
 Route::group(['prefix' => 'v2'], function(){
     Route::get('film/{id}/schedulle', 'v2\SchedulleController@schedulle'); 
+    Route::post('schedulle/studio', 'v2\SchedulleController@studio');
     Route::get('schedulle/{dateId}/{studioId}/hours', 'v2\SchedulleController@timeByDate');
-    Route::get('schedulle/{id}/studio', 'v2\SchedulleController@studio');
 });
 
 

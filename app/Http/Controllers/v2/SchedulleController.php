@@ -25,10 +25,10 @@ class SchedulleController extends Controller
         ]);
     }
 
-    public function studio($dateId)
+    public function studio(Request $request)
     {
-        $studios = Studio::with(['tanggaltayangs' => function($tanggal) use($dateId){
-            $tanggal->where('id', $dateId);
+        $studios = Studio::with(['tanggaltayangs' => function($tanggal) use($request){
+            $tanggal->whereDate('tanggal', $request->date);
         }])->get();
 
         $res = [];
