@@ -24,6 +24,10 @@ Route::get('/manager', function () {
     return view('templates.manager');
 });
 
+Route::get('/seat', function () {
+    return view('templates.seat');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('admindashboard', 'admin\DashboardController');
     Route::resource('data_film', 'admin\DataFilmController')->except(['destroy']);

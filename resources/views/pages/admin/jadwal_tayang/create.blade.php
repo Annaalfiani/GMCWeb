@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="projectinput2" class="col-sm-2">Harga</label>
+                            <label for="projectinput2" class="col-sm-2">Harga Hari Biasa</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <div class="input-group-append">
@@ -110,7 +110,25 @@
                                     @endif
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="form-group row">
+                            <label for="projectinput2" class="col-sm-2">Harga WeekEnd</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" id="rupiah"
+                                           class="form-control {{$errors->has('harga_weekend')?'is-invalid':''}}"
+                                           placeholder="Harga" name="harga_weekend" value="{{old('harga_weekend')}}">
+                                    @if ($errors->has('harga_weekend'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <p><b>{{ $errors->first('harga_weekend') }}</b></p>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group m-b-0">
@@ -143,8 +161,8 @@
             //format: "d-m-y",
             //changeMonth: true,
             numberOfMonths: 1,
-            startDate: new Date(),
-            maxDate: '+10d'
+            startDate: new Date()
+            //maxDate: '+10d'
         });
     </script>
 
@@ -161,7 +179,7 @@
                     format: 'yyyy/dd/mm',
                     opens: 'left',
                     minDate: new Date(),
-                    maxDate: "+10d"
+                    //maxDate: "+10d"
                 });
         });
     </script>
