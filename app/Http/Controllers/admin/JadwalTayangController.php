@@ -72,6 +72,8 @@ class JadwalTayangController extends Controller
     {
 
         $delete_full_stop = preg_replace('/[^\w\s]/', '', $request->harga);
+        $delete_full_stop_weekend = preg_replace('/[^\w\s]/', '', $request->harga_weekend);
+
         //$startDate = strtotime($request->start);
         //$endDate = strtotime($request->end);
 
@@ -96,7 +98,7 @@ class JadwalTayangController extends Controller
             return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
         }
         $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
-        if (count($valJamFilm) > 0){
+        if ($valJamFilm[0] == "ada"){
             return redirect()->back()->with('warning','jam harus ada jarak');
         }
 
@@ -104,6 +106,7 @@ class JadwalTayangController extends Controller
         $jadwalTayang->id_film = $request->id_film;
         $jadwalTayang->id_studio = $request->id_studio;
         $jadwalTayang->harga = $delete_full_stop;
+        $jadwalTayang->harga_weekend = $delete_full_stop_weekend;
         $jadwalTayang->save();
 
         if ($startMonth == $endMonth) {
@@ -229,17 +232,20 @@ class JadwalTayangController extends Controller
                     $jams = JamTayang::whereHas('date', function ($tgl) use ($tang){
                        $tgl->whereDate('tanggal', $tang);
                     })->get();
-                    foreach ($jams as $jam){
-                        $substringJam = substr($jam->jam, 0, 2);
-                        $substringJ = substr($j, 0, 2);
-                        if ($substringJam == $substringJ){
-                            array_push($res, "sama");
+                    if ($jams) {
+                        foreach ($jams as $jam){
+                            $substringJam = substr($jam->jam, 0, 2);
+                            $substringJ = substr($j, 0, 2);
+                            if ($substringJam == $substringJ){
+                                array_push($res, "sama");
+                            }
                         }
                     }
                 }
                 $startDay++;
             }
         }
+        
         return $res;
     }
 
