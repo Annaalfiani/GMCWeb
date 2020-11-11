@@ -17,4 +17,9 @@ class Studio extends Model
     {
         return $this->hasMany(JadwalTayang::class, 'id_studio', 'id');
     }
+
+    public function tanggaltayangs()
+    {
+        return $this->hasMany(TanggalTayang::class, 'id_studio', 'id');
+    }
 }

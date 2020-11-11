@@ -21,6 +21,13 @@ Route::get('film', 'v1\FilmController@film');
 Route::get('film/nowplaying', 'v1\FilmController@filmnowplaying');
 Route::get('film/comingsoon', 'v1\FilmController@filmcomingsoon');
 Route::get('film/{id}', 'v1\FilmController@show');
+Route::group(['prefix' => 'v2'], function(){
+    Route::get('film/{id}/schedulle', 'v2\SchedulleController@schedulle'); 
+    Route::get('schedulle/{dateId}/{studioId}/hours', 'v2\SchedulleController@timeByDate');
+    Route::get('schedulle/{id}/studio', 'v2\SchedulleController@studio');
+});
+
+
 Route::get('film/{id}/jadwaltayang', 'v1\JadwalTayangController@jadwal');
 
 
