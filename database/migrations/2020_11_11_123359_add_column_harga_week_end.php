@@ -14,7 +14,7 @@ class AddColumnHargaWeekEnd extends Migration
     public function up()
     {
         Schema::table('jadwal_tayangs', function (Blueprint $table) {
-            $table->integer('harga_weekend')->after('harga');
+            $table->integer('harga_weekend')->after('harga')->default(0);
         });
     }
 
