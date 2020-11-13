@@ -19,7 +19,7 @@ class SchedulleController extends Controller
     {
         $schedulles = TanggalTayang::where('id_film', $filmId)
         ->whereDate('tanggal', '>=', now())
-        ->groupBy('tanggal')
+        //->groupBy('tanggal')
         ->get();
         
         
