@@ -22,7 +22,7 @@ class SchedulleResource extends JsonResource
             $harga = $this->schedulle->harga;
         }
         return [
-            "id"        => $this->id,
+            //"id"        => $this->id,
             "tanggal"   => Carbon::parse($this->tanggal)->format('Y-m-d'),
             "harga"     => $harga
         ];

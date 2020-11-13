@@ -11,24 +11,46 @@ use App\JadwalTayang;
 use App\JamTayang;
 use App\Studio;
 use App\TanggalTayang;
+use Illuminate\Support\Facades\DB;
 
 class SchedulleController extends Controller
 {
     public function schedulle($filmId)
     {
-        $schedulles = TanggalTayang::where('id_film', $filmId)->get();
+        $schedulles = TanggalTayang::where('id_film', $filmId)
+        ->whereDate('tanggal', '>=', now())
+        ->groupBy('tanggal')
+        ->get();
+        
+        
+        $res = [];
+        foreach ($schedulles as $schedulle) {
+            if(!$this->searchForDate($schedulle->tanggal, $res)){
+                array_push($res, $schedulle);
+            }
+        }
 
         return response()->json([
             'message' => 'berhasil',
             'status' => true,
             'data' => SchedulleResource::collection($schedulles)
+            //'data' => $res
         ]);
     }
+
+    function searchForDate($date, $array) {
+        foreach ($array as $key => $val) {
+            if ($val['tanggal'] === $date) {
+                return $val;
+            }
+        }
+        return null;
+     }
 
     public function studio(Request $request)
     {
         $studios = Studio::with(['tanggaltayangs' => function($tanggal) use($request){
-            $tanggal->whereDate('tanggal', $request->date);
+            $tanggal->whereDate('tanggal', $request->date)->where('id_film', $request->filmId);
         }])->get();
 
         $res = [];
