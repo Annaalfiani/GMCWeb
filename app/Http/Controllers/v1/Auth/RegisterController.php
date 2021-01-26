@@ -39,7 +39,7 @@ class RegisterController extends Controller
             //$data->telp = $request->telp;
             $data->api_token = Str::random(80);
             $data->save();
-            $data->sendApiEmailVerificationNotification();
+            //$data->sendApiEmailVerificationNotification();
             $message = "Cek Email Anda, Verifikasi Dahulu";
             //$message = "Cek Email Anda, Verifikasi Dahulu";
 
