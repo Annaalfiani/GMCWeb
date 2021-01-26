@@ -28,9 +28,12 @@ Route::group(['prefix' => 'v2'], function(){
     Route::get('film/comingsoon', 'v2\FilmController@comingsoon');
 
     //schedulle
-    Route::get('film/{id}/schedulle', 'v2\SchedulleController@schedulle'); 
+    Route::get('film/{id}/schedulle', 'v2\SchedulleController@schedulle');
     Route::post('schedulle/studio', 'v2\SchedulleController@studio');
     Route::get('schedulle/{dateId}/{studioId}/hours', 'v2\SchedulleController@timeByDate');
+
+    //seat
+    Route::post('seat/available', 'v2\SeatController@available');
 });
 
 
