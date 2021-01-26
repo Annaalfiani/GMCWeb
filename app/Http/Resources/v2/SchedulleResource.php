@@ -25,6 +25,7 @@ class SchedulleResource extends JsonResource
         return [
             //"id"        => $this->id,
             "tanggal"   => Carbon::parse($this->tanggal)->format('Y-m-d'),
+            "day"       => Carbon::parse($this->tanggal)->translatedFormat('D'),
             "harga"     => $harga
         ];
     }
