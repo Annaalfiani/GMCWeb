@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Midtrans\Snap;
 use App\Http\Controllers\Midtrans\Config;
+use App\TanggalTayang;
 
 class OrderController extends Controller
 {
@@ -28,12 +29,13 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
-        foreach ($request->kursi as $seat){
-            $checkOrder = OrderDetails::whereHas('order', function ($query) use($request){
+        $date = TanggalTayang::where('id', $request->tanggal)->first();
+        foreach ($request->kursi as $seat) {
+            $checkOrder = OrderDetails::whereHas('order', function ($query) use($request, $date){
                 $query->where('id_studio', $request->id_studio)
                     ->where('id_film', $request->id_film)
-                    ->where('id_jadwal_tayang', $request->id_jadwal_tayang)
-                    ->where('tanggal', $request->tanggal)
+                    ->where('id_jadwal_tayang', $date->id_jadwal_tayang)
+                    ->where('tanggal', $date->tanggal)
                     ->where('jam', $request->jam);
             })->where('id_kursi', $seat['id'])->first();
 
@@ -42,13 +44,13 @@ class OrderController extends Controller
             }
         }
 
-        $tanggal = Carbon::parse($request->tanggal)->format('Y-m-d');
+        $tanggal = Carbon::parse($date->tanggal)->format('Y-m-d');
 
         $order = new Order();
         $order->id_customer = Auth::guard('api')->user()->id;
         $order->id_studio = $request->id_studio;
         $order->id_film = $request->id_film;
-        $order->id_jadwal_tayang = $request->id_jadwal_tayang;
+        $order->id_jadwal_tayang = $date->id_jadwal_tayang;
         $order->tanggal = $tanggal;
         $order->jam = $request->jam;
         $order->total_harga = $request->harga * count($request->kursi);
@@ -68,6 +70,52 @@ class OrderController extends Controller
             'data' => $request->json()->all()
         ]);
     }
+
+    // public function order(Request $request)
+    // {
+    //     //$tanggal = TanggalTayang::where('id', $request->tanggal)->first();
+    //     foreach ($request->kursi as $seat) {
+    //         $checkOrder = OrderDetails::whereHas('order', function ($query) use($request){
+    //             $query->where('id_studio', $request->id_studio)
+    //                 ->where('id_film', $request->id_film)
+    //                 ->where('id_jadwal_tayang', $request->id_jadwal_tayang)
+    //                 ->where('tanggal', $request->tanggal)
+    //                 ->where('jam', $request->jam);
+    //         })->where('id_kursi', $seat['id'])->first();
+
+    //         if ($checkOrder){
+    //             return response()->json(['message' => 'kursi pada tanggal dan jam tersebut sudah di pesan orang', 'status' => false]);
+    //         }
+    //     }
+
+    //     $tanggal = Carbon::parse($request->tanggal)->format('Y-m-d');
+
+    //     $order = new Order();
+    //     $order->id_customer = Auth::guard('api')->user()->id;
+    //     $order->id_studio = $request->id_studio;
+    //     $order->id_film = $request->id_film;
+    //     $order->id_jadwal_tayang = $request->id_jadwal_tayang;
+    //     $order->tanggal = $tanggal;
+    //     $order->jam = $request->jam;
+    //     $order->total_harga = $request->harga * count($request->kursi);
+    //     $order->save();
+
+    //     $seats = $request->kursi;
+    //     foreach ($seats as $seat){
+    //         $orderDetails = new OrderDetails();
+    //         $orderDetails->id_order = $order->id;
+    //         $orderDetails->id_kursi = $seat['id'];
+    //         $orderDetails->save();
+    //     }
+
+    //     return response()->json([
+    //         'message' => 'berhasil order bioskop',
+    //         'status' => true,
+    //         'data' => $request->json()->all()
+    //     ]);
+    // }
+
+
 
     public function snapToken(Request $request)
     {
