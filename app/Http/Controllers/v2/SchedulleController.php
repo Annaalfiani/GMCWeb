@@ -22,7 +22,6 @@ class SchedulleController extends Controller
         //->groupBy('tanggal')
         ->get();
         
-        
         $res = [];
         foreach ($schedulles as $schedulle) {
             if(!$this->searchForDate($schedulle->tanggal, $res)){
@@ -39,7 +38,7 @@ class SchedulleController extends Controller
     }
 
     function searchForDate($date, $array) {
-        foreach ($array as $key => $val) {
+        foreach ($array as $val) {
             if ($val['tanggal'] === $date) {
                 return $val;
             }
