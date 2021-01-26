@@ -21,8 +21,8 @@ Route::get('film', 'v1\FilmController@film');
 Route::get('film/nowplaying', 'v1\FilmController@filmnowplaying');
 Route::get('film/comingsoon', 'v1\FilmController@filmcomingsoon');
 Route::get('film/{id}', 'v1\FilmController@show');
+
 Route::group(['prefix' => 'v2'], function(){
-    
     //film
     Route::get('film/nowplaying', 'v2\FilmController@nowplaying');
     Route::get('film/comingsoon', 'v2\FilmController@comingsoon');

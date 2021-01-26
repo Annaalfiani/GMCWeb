@@ -19,6 +19,7 @@ class SchedulleResource extends JsonResource
         if($day == 'Saturday' || $day == 'Sunday'){
             $harga = $this->schedulle->harga_weekend;
         }else{
+            //dd($this->schedulle);
             $harga = $this->schedulle->harga;
         }
         return [

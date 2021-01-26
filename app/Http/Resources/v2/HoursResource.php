@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v2;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HoursResource extends JsonResource
@@ -16,7 +17,7 @@ class HoursResource extends JsonResource
     {
         return [
             "id"    => $this->id,
-            "jam"   => $this->jam,
+            "jam"   => Carbon::parse($this->jam)->format('H:i'),
         ];
     }
 }

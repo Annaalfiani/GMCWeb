@@ -196,7 +196,7 @@ class JadwalTayangController extends Controller
     private function validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request)
     {
         $res = [];
-        if ($startMonth == $endMonth){
+        if ($startMonth == $endMonth) {
             while ($startDay <= $endDay){
                 $t = now()->year.'-'.$startMonth.'-'.$startDay;
                 $tanggal = TanggalTayang::whereDate('tanggal', $t)->first();

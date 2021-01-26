@@ -21,7 +21,7 @@ class SchedulleController extends Controller
         ->whereDate('tanggal', '>=', now())
         //->groupBy('tanggal')
         ->get();
-        
+
         $res = [];
         foreach ($schedulles as $schedulle) {
             if(!$this->searchForDate($schedulle->tanggal, $res)){
@@ -32,7 +32,7 @@ class SchedulleController extends Controller
         return response()->json([
             'message' => 'berhasil',
             'status' => true,
-            'data' => SchedulleResource::collection($schedulles)
+            'data' => SchedulleResource::collection(collect($res))
             //'data' => $res
         ]);
     }
@@ -54,7 +54,7 @@ class SchedulleController extends Controller
 
         $res = [];
         foreach ($studios as $studio) {
-            if(count($studio->tanggaltayangs) != 0){
+            if(count($studio->tanggaltayangs) > 0){
                 array_push($res, $studio);
             }
         }
@@ -69,10 +69,25 @@ class SchedulleController extends Controller
     public function timeByDate($dateId, $studioId)
     {
         $hours = JamTayang::where('id_tanggal_tayang', $dateId)->where('id_studio', $studioId)->get();
+        $res = [];
+        foreach ($hours as $hour) {
+            if(!$this->searchForTime($hour->hour, $res)){
+                array_push($res, $hour);
+            }
+        }
         return response()->json([
             'message' => 'berhasil',
             'status' => true,
-            'data' => HoursResource::collection($hours)
+            'data' => HoursResource::collection(collect($res))
         ]);
     }
+
+    function searchForTime($time, $array) {
+        foreach ($array as $val) {
+            if ($val['jam'] === $time) {
+                return $val;
+            }
+        }
+        return null;
+     }
 }
