@@ -4,14 +4,8 @@ namespace App\Http\Controllers\v2;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v2\HoursResource;
-use App\Http\Resources\v2\SchedulleResource;
-use App\Http\Resources\v2\StudioResource;
-use App\JadwalTayang;
-use App\JamTayang;
-use App\Studio;
-use App\TanggalTayang;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\v2\{HoursResource, SchedulleResource, StudioResource};
+use App\{JamTayang, Studio, TanggalTayang};
 
 class SchedulleController extends Controller
 {
@@ -69,25 +63,26 @@ class SchedulleController extends Controller
     public function timeByDate($dateId, $studioId)
     {
         $hours = JamTayang::where('id_tanggal_tayang', $dateId)->where('id_studio', $studioId)->get();
-        $res = [];
-        foreach ($hours as $hour) {
-            if(!$this->searchForTime($hour->hour, $res)){
-                array_push($res, $hour);
-            }
-        }
+        $removeDuplicate = $this->unique_multidimensional_array($hours, 'jam');
         return response()->json([
             'message' => 'berhasil',
             'status' => true,
-            'data' => HoursResource::collection(collect($res))
+            'data' => HoursResource::collection(collect($removeDuplicate))
         ]);
     }
 
-    function searchForTime($time, $array) {
-        foreach ($array as $val) {
-            if ($val['jam'] === $time) {
-                return $val;
+    function unique_multidimensional_array($array, $key) {
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+    
+        foreach($array as $val) {
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
             }
+            $i++;
         }
-        return null;
-     }
+        return $temp_array;
+    }
 }

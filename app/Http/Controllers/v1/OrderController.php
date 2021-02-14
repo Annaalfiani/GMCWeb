@@ -61,6 +61,7 @@ class OrderController extends Controller
             $orderDetails = new OrderDetails();
             $orderDetails->id_order = $order->id;
             $orderDetails->id_kursi = $seat['id'];
+            $orderDetails->price = $request->harga;
             $orderDetails->save();
         }
 

@@ -17,7 +17,8 @@ class OrderDetailResource extends JsonResource
         return [
             "id" => $this->id,
             "order" => new OrderResource($this->order),
-            "kursi" => new KursiResource($this->kursi)
+            "kursi" => new KursiResource($this->kursi),
+            "price" => $this->price,
         ];
     }
 }
