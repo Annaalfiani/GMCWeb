@@ -33,6 +33,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('data_film', 'admin\DataFilmController')->except(['destroy']);
     Route::get('data_film/{id}/destroy', 'admin\DataFilmController@destroy')->name('data_film.destroy');
     Route::get('data_film/{id}/studio', 'admin\DataFilmController@getStudio')->name('film.studio');
+
+    Route::group(['prefix' => 'order'], function() {
+        Route::get('/', 'admin\OrderController@index')->name('admin.order.index');
+        Route::get('/create', 'admin\OrderController@create')->name('admin.order.create');
+        Route::get('/get-schedulle/{id}', 'admin\OrderController@getSchedulle');
+        Route::post('/get-studios', 'admin\OrderController@getStudios');
+        Route::get('/get-hours/{dateId}/{studioId}', 'admin\OrderController@getHours');
+        Route::get('/get-price/{dateId}', 'admin\OrderController@getPrice');
+        Route::post('/get-seats', 'admin\OrderController@getSeats');
+        Route::post('/store', 'admin\OrderController@order');
+        Route::get('/{id}', 'admin\OrderController@delete')->name('admin.order.delete');
+    });
 });
 
 Route::group(['prefix' => 'admin'], function () {

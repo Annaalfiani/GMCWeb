@@ -35,6 +35,9 @@
 <!-- container-scroller -->
 
 <!-- plugins:js -->
+<script type="text/javascript">
+    let BASE_URL = '{{ url('/') }}'
+</script>
 @include('templates.partials.admin._script')
 <!-- End custom js for this page-->
 </body>

@@ -8,6 +8,9 @@
                 <a href="{{route('customer.index')}}" class="nav-link"><i class="link-icon icon-user"></i><span class="menu-title">Customer</span></a>
             </li>
             <li class="nav-item">
+                <a href="{{route('admin.order.index')}}" class="nav-link"><i class="link-icon icon-user"></i><span class="menu-title">Order</span></a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('data_film.index')}}" class="nav-link"><i class="link-icon icon-film"></i><span class="menu-title">Data Film</span></a>
             </li>
             <li class="nav-item">
