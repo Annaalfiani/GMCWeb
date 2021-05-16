@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\DataFilm;
-use App\JadwalTayang;
-use App\JamTayang;
-use App\Studio;
-use App\TanggalTayang;
-use App\User;
+use App\{DataFilm, JadwalTayang, JamTayang, Studio, TanggalTayang, User};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -88,21 +83,23 @@ class JadwalTayangController extends Controller
         $endMonth = (int)Carbon::parse($endDate)->format('m');
         $endYear = (int)Carbon::parse($endDate)->format('Y');
 
-        // $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
-        // if (count($val) > 0){
-        //     return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
-        // }
+        $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
+        if (count($val) > 0){
+            return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
+        }
 
-        // $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
-        // if (count($valJam) > 0){
-        //     return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
-        // }
-        // $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
-        // if ($valJamFilm[0] == "ada"){
-        //     return redirect()->back()->with('warning','jam harus ada jarak');
-        // }
+        $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
+        if (count($valJam) > 0){
+            return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
+        }
+        $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
+        if ($valJamFilm[0] == "ada"){
+            return redirect()->back()->with('warning','jam harus ada jarak');
+        }
 
-        $jadwalTayang = new JadwalTayang();
+		DB::beginTransaction();
+		try {
+			$jadwalTayang = new JadwalTayang();
         $jadwalTayang->id_film = $request->id_film;
         $jadwalTayang->id_studio = $request->id_studio;
         $jadwalTayang->harga = $delete_full_stop;
@@ -189,7 +186,11 @@ class JadwalTayangController extends Controller
             }
             DB::table('jam_tayangs')->insert($itemHour);
         }
-
+		DB::commit();
+		} catch (\Throwable $th) {
+			DB::rollBack();
+			dd($th->getMessage());
+		}
         return redirect()->route('jadwal_tayang.index')->with('create', 'Berhasil Menambahkan Data');
     }
 
