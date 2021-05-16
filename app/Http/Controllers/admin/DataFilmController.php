@@ -111,7 +111,7 @@ class DataFilmController extends Controller
         $data->tanggal_rilis = Carbon::parse($request->tanggal_rilis)->format('Y-m-d');
 
         $file = $request->file('foto');
-        $file_name = date('ymdHis') . "." . $file->getClientOriginalName();
+        $file_name = date('ymdHis') . "." . $file->getClientOriginalExtension();
         $file_path = 'uploads/movies/';
 		$file->move($file_path, $file_name);
 		$data->foto = $file_path.$file_name;

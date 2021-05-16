@@ -15,7 +15,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-2">
                         <!-- Simple card -->
                         <div class="card m-b-30">
-                            <img class="card-img-top" src="{{asset($data->foto)}}" height="250"
+                            <img class="card-img-top" src="{{url($data->foto)}}" height="250"
 							style="object-fit: cover; object-position: center">
                             <div class="card-body">
                                 <h4 class="card-title font-20 mt-0">
