@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="{{ asset ('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 <script src="{{ asset ('assets/vendors/js/vendor.bundle.addons.js') }}"></script>
 <!-- endinject -->
@@ -12,11 +12,15 @@
 <script src="{{ asset ('assets/js/todolist.js') }}"></script>
 <!-- Custom js for this page-->
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 {{--<script src="{{asset('assets/daterange/daterangepicker.js')}}"></script>--}}
 {{--<script src="{{asset('assets/daterange/moment.min.js')}}"></script>--}}
 
 <script src="{{asset('assets/js/form-addons.js') }}"></script>
 <script src="{{asset('assets/js/formpickers.js') }}"></script>
+
+
 
 <script>
     $(function()

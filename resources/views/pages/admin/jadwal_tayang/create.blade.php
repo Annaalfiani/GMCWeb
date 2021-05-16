@@ -172,16 +172,16 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <script>
-        const todayDate = new Date().getDate();
-        const maxDate = Date.parse(new Date(todayDate + 10));
+		const maxDate = moment().add(29, 'days').format('L')
+		const date = moment().format('L');
 
         $(function() {
-                $('#daterange').daterangepicker({
-                    format: 'yyyy/dd/mm',
-                    opens: 'left',
-                    minDate: new Date(),
-                    //maxDate: "+10d"
-                });
+			$('#daterange').daterangepicker({
+				format: 'yyyy/dd/mm',
+				opens: 'left',
+				"minDate": date,
+				"maxDate": maxDate
+			});
         });
     </script>
 
