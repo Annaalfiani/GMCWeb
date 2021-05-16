@@ -22,7 +22,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Judul Film</label>
                             <div class="col-sm-10">
-                                <select class="form-control select-kategori" name="id_film">
+                                <select class="form-control select-kategori" name="id_film" id="film-id">
 									<option value="" selected disabled>Pilih Film</option>
                                     @foreach($datafilms as $datafilm)
                                         <option value="{{$datafilm->id}}">{{$datafilm->judul}}</option>
@@ -38,6 +38,15 @@
                                         style="display: none"></select>
                             </div>
                         </div>
+
+						<div class="form-group row">
+                            <label class="col-md-2">Tanggal Tayang</label>
+                            <div class="col-md-10">
+                                <input type="text" name="tanggal" id="daterange" readonly class="form-control"
+                                style="background: white; cursor: pointer"/>
+                            </div>
+                        </div>
+
 
                         <div class="form-group mt-1 row">
                             <label class="col-sm-2 col-form-label">Jam Tayang</label>
@@ -78,22 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-md-2">Tanggal Tayang</label>
-                            {{--<div class="col-sm-10">--}}
-                                {{--<div class="input-daterange input-group" id="date-range">--}}
-                                    {{--<input type="text" class="form-control" id="startDate" name="start" readonly--}}
-                                           {{--style="cursor: pointer; background: white"/>--}}
-                                    {{--<input type="text" class="form-control" id="endDate" name="end" readonly--}}
-                                           {{--style="cursor: pointer; background: white"/>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            <div class="col-md-10">
-                                <input type="text" name="tanggal" id="daterange" readonly class="form-control"
-                                style="background: white; cursor: pointer"/>
-                            </div>
-                        </div>
-
+                      
                         <div class="form-group row">
                             <label for="projectinput2" class="col-sm-2">Harga Hari Biasa</label>
                             <div class="col-sm-10">
@@ -183,6 +177,28 @@
 				"maxDate": maxDate
 			});
         });
+
+		// $(document).on('change', '#select-studio', function (e) {  
+		// 	e.preventDefault()
+		// 	const studio_id = $(this).val()
+		// 	const film_id = $('#film-id').val()
+		// 	const url = "{{ route('hours.get') }}"
+		// 	$.ajax({
+		// 		url:url,
+		// 		type:"POST",
+		// 		data:{
+		// 			"_token": "{{ csrf_token() }}",
+		// 			studio_id: studio_id,
+		// 			film_id: film_id,
+		// 		},
+		// 		success : function(res) {
+		// 			console.log(res);
+		// 		},
+		// 		error:function(res){
+		// 			console.log(res);
+		// 		}
+		// 	});
+		// })
     </script>
 
     <script>
@@ -196,7 +212,6 @@
             url = url.replace(':id', id)
 
             $.get(url, function (data) {
-                console.log(data);
                 selectStudio.style.display = ''
                 labelStudio.style.display = ''
                 let studio;

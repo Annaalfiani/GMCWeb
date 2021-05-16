@@ -83,110 +83,110 @@ class JadwalTayangController extends Controller
         $endMonth = (int)Carbon::parse($endDate)->format('m');
         $endYear = (int)Carbon::parse($endDate)->format('Y');
 
-        $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
-        if (count($val) > 0){
-            return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
-        }
+        // $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
+        // if (count($val) > 0){
+        //     return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
+        // }
 
-        $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
-        if (count($valJam) > 0){
-            return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
-        }
-        $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
-        if ($valJamFilm[0] == "ada"){
-            return redirect()->back()->with('warning','jam harus ada jarak');
-        }
+        // $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
+        // if (count($valJam) > 0){
+        //     return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
+        // }
+        // $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
+        // if ($valJamFilm[0] == "ada"){
+        //     return redirect()->back()->with('warning','jam harus ada jarak');
+        // }
 
 		DB::beginTransaction();
 		try {
 			$jadwalTayang = new JadwalTayang();
-        $jadwalTayang->id_film = $request->id_film;
-        $jadwalTayang->id_studio = $request->id_studio;
-        $jadwalTayang->harga = $delete_full_stop;
-        $jadwalTayang->harga_weekend = $delete_full_stop_weekend;
-        $jadwalTayang->save();
+			$jadwalTayang->id_film = $request->id_film;
+			$jadwalTayang->id_studio = $request->id_studio;
+			$jadwalTayang->harga = $delete_full_stop;
+			$jadwalTayang->harga_weekend = $delete_full_stop_weekend;
+			$jadwalTayang->save();
 
-        if ($startMonth == $endMonth) {
-            while ($startDay <= $endDay) {
-                $date_id = TanggalTayang::latest('id')->pluck('id')->first();
+			if ($startMonth == $endMonth) {
+				while ($startDay <= $endDay) {
+					$date_id = TanggalTayang::latest('id')->pluck('id')->first();
 
-                $itemDate = [
-                    'id' => $date_id == null ? 1 : $date_id + 1,
-                    'id_film' => $jadwalTayang->id_film,
-                    'id_studio' => $jadwalTayang->id_studio,
-                    'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
-                ];
-                TanggalTayang::create($itemDate);
+					$itemDate = [
+						'id' => $date_id == null ? 1 : $date_id + 1,
+						'id_film' => $jadwalTayang->id_film,
+						'id_studio' => $jadwalTayang->id_studio,
+						'id_jadwal_tayang' => $jadwalTayang->id,
+						'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
+					];
+					TanggalTayang::create($itemDate);
 
-                $hours = $request->jam_tayang;
-                foreach ($hours as $hour) {
-                    $itemHour[] = [
-                        'id_film' => $jadwalTayang->id_film,
-                        'id_studio' => $jadwalTayang->id_studio,
-                        'id_jadwal_tayang' => $jadwalTayang->id,
-                        'id_tanggal_tayang' => $itemDate['id'],
-                        'jam' => $hour
-                    ];
-                };
-                $startDay++;
-            }
-            DB::table('jam_tayangs')->insert($itemHour);
-        } else {
-            $startDayEndOfMonth = Carbon::now()->month($startMonth)->endOfMonth()->format('d');
-            while ($startDay <= $startDayEndOfMonth) {
-                $date_id = TanggalTayang::latest('id')->pluck('id')->first();
-                $itemDate = [
-                    'id' => $date_id == null ? 1 : $date_id + 1,
-                    'id_film' => $jadwalTayang->id_film,
-                    'id_studio' => $jadwalTayang->id_studio,
-                    'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
-                ];
-                TanggalTayang::create($itemDate);
+					$hours = $request->jam_tayang;
+					foreach ($hours as $hour) {
+						$itemHour[] = [
+							'id_film' => $jadwalTayang->id_film,
+							'id_studio' => $jadwalTayang->id_studio,
+							'id_jadwal_tayang' => $jadwalTayang->id,
+							'id_tanggal_tayang' => $itemDate['id'],
+							'jam' => $hour
+						];
+					};
+					$startDay++;
+				}
+				DB::table('jam_tayangs')->insert($itemHour);
+			} else {
+				$startDayEndOfMonth = Carbon::now()->month($startMonth)->endOfMonth()->format('d');
+				while ($startDay <= $startDayEndOfMonth) {
+					$date_id = TanggalTayang::latest('id')->pluck('id')->first();
+					$itemDate = [
+						'id' => $date_id == null ? 1 : $date_id + 1,
+						'id_film' => $jadwalTayang->id_film,
+						'id_studio' => $jadwalTayang->id_studio,
+						'id_jadwal_tayang' => $jadwalTayang->id,
+						'tanggal' => $startYear . '-' . $startMonth . '-' . $startDay
+					];
+					TanggalTayang::create($itemDate);
 
-                $hours = $request->jam_tayang;
-                foreach ($hours as $hour) {
-                    $itemHour[] = [
-                        'id_film' => $jadwalTayang->id_film,
-                        'id_studio' => $jadwalTayang->id_studio,
-                        'id_jadwal_tayang' => $jadwalTayang->id,
-                        'id_tanggal_tayang' => $itemDate['id'],
-                        'jam' => $hour
-                    ];
-                };
-                $startDay++;
-            }
-            DB::table('jam_tayangs')->insert($itemHour);
+					$hours = $request->jam_tayang;
+					foreach ($hours as $hour) {
+						$itemHour[] = [
+							'id_film' => $jadwalTayang->id_film,
+							'id_studio' => $jadwalTayang->id_studio,
+							'id_jadwal_tayang' => $jadwalTayang->id,
+							'id_tanggal_tayang' => $itemDate['id'],
+							'jam' => $hour
+						];
+					};
+					$startDay++;
+				}
+				DB::table('jam_tayangs')->insert($itemHour);
 
-            $newStartDay = 1;
-            while ($newStartDay <= $endDay) {
-                $date_id = TanggalTayang::latest('id')->pluck('id')->first();
+				$newStartDay = 1;
+				while ($newStartDay <= $endDay) {
+					$date_id = TanggalTayang::latest('id')->pluck('id')->first();
 
-                $itemDate = [
-                    'id' => $date_id == null ? 1 : $date_id + 1,
-                    'id_film' => $jadwalTayang->id_film,
-                    'id_studio' => $jadwalTayang->id_studio,
-                    'id_jadwal_tayang' => $jadwalTayang->id,
-                    'tanggal' => $startYear . '-' . $endMonth . '-' . $newStartDay
-                ];
-                TanggalTayang::create($itemDate);
+					$itemDate = [
+						'id' => $date_id == null ? 1 : $date_id + 1,
+						'id_film' => $jadwalTayang->id_film,
+						'id_studio' => $jadwalTayang->id_studio,
+						'id_jadwal_tayang' => $jadwalTayang->id,
+						'tanggal' => $startYear . '-' . $endMonth . '-' . $newStartDay
+					];
+					TanggalTayang::create($itemDate);
 
-                $hours = $request->jam_tayang;
-                foreach ($hours as $hour) {
-                    $itemHour[] = [
-                        'id_film' => $jadwalTayang->id_film,
-                        'id_studio' => $jadwalTayang->id_studio,
-                        'id_jadwal_tayang' => $jadwalTayang->id,
-                        'id_tanggal_tayang' => $itemDate['id'],
-                        'jam' => $hour
-                    ];
-                };
-                $newStartDay++;
-            }
-            DB::table('jam_tayangs')->insert($itemHour);
-        }
-		DB::commit();
+					$hours = $request->jam_tayang;
+					foreach ($hours as $hour) {
+						$itemHour[] = [
+							'id_film' => $jadwalTayang->id_film,
+							'id_studio' => $jadwalTayang->id_studio,
+							'id_jadwal_tayang' => $jadwalTayang->id,
+							'id_tanggal_tayang' => $itemDate['id'],
+							'jam' => $hour
+						];
+					};
+					$newStartDay++;
+				}
+				DB::table('jam_tayangs')->insert($itemHour);
+			}
+			DB::commit();
 		} catch (\Throwable $th) {
 			DB::rollBack();
 			dd($th->getMessage());

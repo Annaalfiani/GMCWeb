@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
 
 
 Route::post('/finish', function(){
@@ -27,6 +18,8 @@ Route::get('/manager', function () {
 Route::get('/seat', function () {
     return view('templates.seat');
 });
+
+Route::post('hours', 'admin\HourController@all')->name('hours.get');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('admindashboard', 'admin\DashboardController');
