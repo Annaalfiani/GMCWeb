@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+		'JD\Cloudder\CloudderServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -227,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+		'Cloudder' => 'JD\Cloudder\Facades\Cloudder'
     ],
 
 ];

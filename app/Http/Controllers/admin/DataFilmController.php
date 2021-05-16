@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\DataFilm;
-use App\JadwalTayang;
 use App\Pemain;
 use App\Studio;
-use App\TanggalTayang;
+use App\DataFilm;
 use Carbon\Carbon;
+use App\JadwalTayang;
+use App\TanggalTayang;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -110,10 +111,10 @@ class DataFilmController extends Controller
         $data->tanggal_rilis = Carbon::parse($request->tanggal_rilis)->format('Y-m-d');
 
         $file = $request->file('foto');
-        $file_name = date('ymdHis') . "-" . $file->getClientOriginalName();
-        $file_path = 'data-films/' . $file_name;
-        Storage::disk('s3')->put($file_path, file_get_contents($file));
-        $data->foto = Storage::disk('s3')->url($file_path, $file_name);
+        $file_name = date('ymdHis') . "." . $file->getClientOriginalName();
+        $file_path = 'uploads/movies/';
+		$file->move($file_path, $file_name);
+		$data->foto = $file_path.$file_name;
         $data->save();
 
         $actors = $request->pemain;
@@ -190,11 +191,12 @@ class DataFilmController extends Controller
 //            $image->move($path,$filename);
 //            $data->foto = $filename;
 //        }
-        $file = $request->file('foto');
-        $file_name = date('ymdHis') . "-" . $file->getClientOriginalName();
-        $file_path = 'data-films/' . $file_name;
-        Storage::disk('s3')->put($file_path, file_get_contents($file));
-        $data->foto = Storage::disk('s3')->url($file_path, $file_name);
+
+		$file = $request->file('foto');
+		$file_name = date('ymdHis') . "." . $file->getClientOriginalExtension();
+		$file_path = 'uploads/movies/';
+		$file->move($file_path, $file_name);
+		$data->foto = $file_path.$file_name;
 
         $data->update();
         return redirect()->route('data_film.index')->with('update', 'Berhasil Mengubah Data');

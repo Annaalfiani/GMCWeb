@@ -23,6 +23,7 @@
                             <label class="col-sm-2 col-form-label">Judul Film</label>
                             <div class="col-sm-10">
                                 <select class="form-control select-kategori" name="id_film">
+									<option value="" selected disabled>Pilih Film</option>
                                     @foreach($datafilms as $datafilm)
                                         <option value="{{$datafilm->id}}">{{$datafilm->judul}}</option>
                                     @endforeach
