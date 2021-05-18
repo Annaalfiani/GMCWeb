@@ -8,8 +8,6 @@ class JamTayang extends Model
 {
     protected $guarded = [];
 
-	public $dates = ['jam'];
-
     public $timestamps = false;
 
     public function date()

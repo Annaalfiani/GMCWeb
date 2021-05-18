@@ -97,6 +97,8 @@ class JadwalTayangController extends Controller
         //     return redirect()->back()->with('warning','jam harus ada jarak');
         // }
 
+		//dd($request->all());
+
 		DB::beginTransaction();
 		try {
 			$jadwalTayang = new JadwalTayang();
@@ -119,7 +121,7 @@ class JadwalTayangController extends Controller
 					];
 					TanggalTayang::create($itemDate);
 
-					$hours = $request->jam_tayang;
+					$hours = $request->jam_tayangs;
 					foreach ($hours as $hour) {
 						$itemHour[] = [
 							'id_film' => $jadwalTayang->id_film,
@@ -280,11 +282,12 @@ class JadwalTayangController extends Controller
         $data = JadwalTayang::find($id);
         $tanggal_mulai = TanggalTayang::where('id_jadwal_tayang', $data->id)->pluck('tanggal')->first();
         $tanggal_selesai = TanggalTayang::where('id_jadwal_tayang', $data->id)->latest('tanggal')->pluck('tanggal')->first();
+		
 
         $jams = JamTayang::where('id_jadwal_tayang', $id)->where('id_film', $data->datafilm->id)->get('jam');
         $results = [];
-        foreach ($jams as $val) {
-            array_push($results, $val->jam);
+        foreach ($jams as $jam) {
+            array_push($results, $jam->jam);
         }
 
         $jams = array_unique($results);

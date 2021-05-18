@@ -8,6 +8,8 @@ class DataFilm extends Model
 {
     protected $guarded = [];
 
+	//public $dates = ['durasi'];
+
     public function jadwaltayang()
     {
         return $this->hasOne(JadwalTayang::class,'id_film','id');

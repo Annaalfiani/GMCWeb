@@ -15,14 +15,15 @@
                             <th>Tanggal Selesai</th>
                             <th>Studio</th>
                             <th>Jam Tayang</th>
-                            <th>Harga</th>
+                            <th>Harga Hari Biasa</th>
+                            <th>Harga Hari Weekend</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         <tr>
-                            <td>{{\Carbon\Carbon::parse($tanggal_mulai)->format('d M Y')}}</td>
-                            <td>{{\Carbon\Carbon::parse($tanggal_selesai)->format('d M Y')}}</td>
+                            <td>{{\Carbon\Carbon::parse($tanggal_mulai)->translatedFormat('d F Y')}}</td>
+                            <td>{{\Carbon\Carbon::parse($tanggal_selesai)->translatedFormat('d F Y')}}</td>
                             <td>{{$data->studio->nama_studio}}</td>
                             <td>
                                 @foreach($jams as $jam)
@@ -30,6 +31,7 @@
                                 @endforeach
                             </td>
                             <td>Rp. {{number_format($data->harga,0,',','.')}}</td>
+                            <td>Rp. {{number_format($data->harga_weekend,0,',','.')}}</td>
                         </tr>
                         </tbody>
                         <p>

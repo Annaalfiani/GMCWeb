@@ -1,8 +1,4 @@
 @extends('templates.admin')
-@section('head')
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/bootstrap-clockpicker.min.css') }}">
-@endsection
 
 @section('content')
     <div class="row">
@@ -17,7 +13,8 @@
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Tambah Jadwal Tayang</h4>
 
-                    <form method="POST" action="{{route('jadwal_tayang.store')}}">
+                    <form method="POST" action="{{route('jadwal_tayang.store')}}"
+					autocomplete="off">
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Judul Film</label>
@@ -48,38 +45,16 @@
                         </div>
 
 
-                        <div class="form-group mt-1 row">
+                        <div class="form-group mt-1 row form-hours" style="display: none">
                             <label class="col-sm-2 col-form-label">Jam Tayang</label>
-
-                            {{--<div id="myRepeatingFields" class="col-sm-10">--}}
-
-                                {{--<div class="entry input-group col-xs-6 input-group clockpicker" style="margin-top: 10px;">--}}
-                                {{--<span class="input-group-addon">--}}
-                                    {{--<span class="glyphicon glyphicon-time"></span>--}}
-                                {{--</span>--}}
-                                    {{--<input type="text" class="form-control" name="jam_tayang[]"--}}
-                                           {{--style="cursor: pointer; background: white" readonly>--}}
-                                    {{--<span class="input-group-btn">--}}
-                                        {{--<button type="button" class="btn btn-success btn-add">--}}
-                                            {{--<span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>--}}
-                                        {{--</button>--}}
-                                    {{--</span>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
-                            <div id="myRepeatingFields" class="col-sm-10">
-
-                                <div class="entry input-group col-xs-6 input-group" style="margin-top: 10px;">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-time"></span>
-                                </span>
-                                    <select name="jam_tayang[]" class="form-control">
-                                        @foreach($hours as $hour)
-                                            <option value="{{ $hour }}">{{ $hour }}</option>
-                                        @endforeach
-                                    </select>
+                            <div class="col-sm-10 hours">
+                                <div class="input-group col-xs-6 input-group item-0" style="margin-top: 10px;">
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-time"></span>
+									</span>
+									<input type="text" class="form-control timepicker-0" id="hour-id-0" name="jam_tayangs[]">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-success btn-add">
+                                        <button type="button" class="btn btn-success btn-add-item">
                                             <span class="fa fa-plus" aria-hidden="true" style="font-size: 12px;"></span>
                                         </button>
                                     </span>
@@ -150,22 +125,6 @@
 
 @section('script')
     <script>
-
-        $('.input-daterange').datepicker({
-            defaultDate: "+1w",
-            //format: "d-m-y",
-            //changeMonth: true,
-            numberOfMonths: 1,
-            startDate: new Date()
-            //maxDate: '+10d'
-        });
-    </script>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <script>
 		const maxDate = moment().add(29, 'days').format('L')
 		const date = moment().format('L');
 
@@ -178,27 +137,71 @@
 			});
         });
 
-		// $(document).on('change', '#select-studio', function (e) {  
-		// 	e.preventDefault()
-		// 	const studio_id = $(this).val()
-		// 	const film_id = $('#film-id').val()
-		// 	const url = "{{ route('hours.get') }}"
-		// 	$.ajax({
-		// 		url:url,
-		// 		type:"POST",
-		// 		data:{
-		// 			"_token": "{{ csrf_token() }}",
-		// 			studio_id: studio_id,
-		// 			film_id: film_id,
-		// 		},
-		// 		success : function(res) {
-		// 			console.log(res);
-		// 		},
-		// 		error:function(res){
-		// 			console.log(res);
-		// 		}
-		// 	});
-		// })
+		let index = 0;
+		function initializeTimePicker(interval = 60){
+			$('.timepicker-'+index).timepicker({
+				timeFormat: 'HH:mm',
+				interval: interval,
+				minTime: '10:00',
+				maxTime: '23:00',
+				defaultTime: '10',
+				startTime: '10:00',
+				dynamic: false,
+				dropdown: true,
+				scrollbar: true,
+			});
+		}
+
+		let interval = 60
+
+		$(document).on('change', '#film-id', function (e) {  
+			e.preventDefault()
+			const film_id = $(this).val()
+			const url = "{{ route('film.get.one', '') }}"+"/"+film_id
+			$.ajax({
+				url: url,
+				type: 'GET',
+				dataType: 'json',
+				beforeSend: function () {
+					$('.timepicker-'+index).timepicker('destroy')
+					$('.form-hours').hide()
+				},
+				success: function(value) {
+					interval = parseInt(value) + 30
+					initializeTimePicker(interval)
+					$('.form-hours').show()
+				}
+			});
+		})
+
+		$(document).on('click', '.btn-add-item', function (e) {  
+			e.preventDefault()
+			index++
+			$('.hours').append(addItem())
+			initializeTimePicker(interval)
+		})
+
+		$(document).on('click', '.btn-remove-item', function (e) {  
+			e.preventDefault()
+			const key = $(this).data('key')
+			$('.item-'+key).remove()
+		})
+
+		function addItem() {  
+			let item = ''
+				item += '<div class="input-group col-xs-6 input-group item-'+index+'" style="margin-top: 10px;">'
+				item += '	<span class="input-group-addon">'
+				item += '		<span class="glyphicon glyphicon-time"></span>'
+				item += '	</span>'
+				item += '	<input type="text" class="form-control timepicker-'+index+'" id="hour-id-'+index+'" name="jam_tayangs[]">'
+				item += '	<span class="input-group-btn">'
+				item += '		<button data-key="'+index+'" type="button" class="btn btn-danger btn-remove-item">'
+				item += '			<span class="fa fa-minus" aria-hidden="true" style="font-size: 12px;"></span>'
+				item += '		</button>'
+				item += '	</span>'
+				item += '</div>'
+			return item
+		}
     </script>
 
     <script>
@@ -242,15 +245,6 @@
             rupiah = split[1] != undefined ? rupiah + '.' + split[1] : rupiah;
             return rupiah;
         }
-    </script>
-
-    <script type="text/javascript" src="{{ asset('assets/dist/bootstrap-clockpicker.min.js') }}"></script>
-
-    <script type="text/javascript">
-        $('.clockpicker').clockpicker({
-            donetext: 'Done',
-            'default' : 'now'
-        });
     </script>
 
 @endsection

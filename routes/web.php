@@ -19,13 +19,15 @@ Route::get('/seat', function () {
     return view('templates.seat');
 });
 
-Route::post('hours', 'admin\HourController@all')->name('hours.get');
-
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('admindashboard', 'admin\DashboardController');
     Route::resource('data_film', 'admin\DataFilmController')->except(['destroy']);
     Route::get('data_film/{id}/destroy', 'admin\DataFilmController@destroy')->name('data_film.destroy');
     Route::get('data_film/{id}/studio', 'admin\DataFilmController@getStudio')->name('film.studio');
+
+	Route::get('film/get/{id}', 'admin\DataFilmController@getOne')->name('film.get.one');
+
+
 
     Route::group(['prefix' => 'order'], function() {
         Route::get('/', 'admin\OrderController@index')->name('admin.order.index');

@@ -101,6 +101,7 @@ class DataFilmController extends Controller
 //
 //        $this->validate($request, $rules, $message);
 
+	//dd($request->all());
         $data = new DataFilm();
         $data->judul = $request->judul;
         $data->sutradara = $request->sutradara;
@@ -181,7 +182,7 @@ class DataFilmController extends Controller
         $data->judul = $request->judul;
         $data->sinopsis = $request->sinopsis;
         $data->genre = $request->genre;
-        $data->durasi = $request->durasi;
+        $data->durasi = Carbon::parse($request->durasi)->format('i:s');
 
 //        if ($image==''){
 //            $data->foto=$request->old_foto;
@@ -259,4 +260,8 @@ class DataFilmController extends Controller
         return $arr;
     }
 
+	public function getOne($id)
+	{
+		return DataFilm::where('id', $id)->pluck('durasi')->first();
+	}
 }
