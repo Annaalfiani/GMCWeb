@@ -138,21 +138,27 @@
         });
 
 		let index = 0;
-		function initializeTimePicker(interval = 60){
+		let interval = 60
+		let startTime = '10:00'
+		function initializeTimePicker(interval){
 			$('.timepicker-'+index).timepicker({
 				timeFormat: 'HH:mm',
 				interval: interval,
-				minTime: '10:00',
+				minTime: startTime,
 				maxTime: '23:00',
-				defaultTime: '10',
-				startTime: '10:00',
+				//defaultTime: '10',
+				startTime: startTime,
 				dynamic: false,
 				dropdown: true,
 				scrollbar: true,
+				change: timePickerOnChange
 			});
 		}
 
-		let interval = 60
+		function timePickerOnChange() {  
+			startTime = $('#hour-id-'+index).val()
+		}
+		
 
 		$(document).on('change', '#film-id', function (e) {  
 			e.preventDefault()
@@ -163,7 +169,13 @@
 				type: 'GET',
 				dataType: 'json',
 				beforeSend: function () {
+					index = 0
+					startTime = '10.00'
 					$('.timepicker-'+index).timepicker('destroy')
+					$('#hour-id-0').val('')
+					if ($('.hours').children().length > 1) {
+						$('.hours').children().not(':first').empty();	
+					}
 					$('.form-hours').hide()
 				},
 				success: function(value) {
@@ -177,6 +189,7 @@
 		$(document).on('click', '.btn-add-item', function (e) {  
 			e.preventDefault()
 			index++
+			startTime = moment(startTime, "HH:mm").add(interval, 'minutes').format('HH:mm')
 			$('.hours').append(addItem())
 			initializeTimePicker(interval)
 		})
