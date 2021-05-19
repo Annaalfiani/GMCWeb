@@ -11,9 +11,9 @@ Route::get('/', function () {
     return redirect()->route('admindashboard.index');
 });
 
-Route::get('/manager', function () {
-    return view('templates.manager');
-});
+// Route::get('/manager', function () {
+//     return view('templates.manager');
+// });
 
 Route::get('/seat', function () {
     return view('templates.seat');
@@ -59,6 +59,8 @@ Route::group(['prefix' => 'manager'], function () {
     Route::resource('managerdashboard', 'manager\DashboardController');
     Route::resource('penjualan_tiket', 'manager\PenjualanTiketController');
     Route::get('export-excel', 'manager\PenjualanTiketController@export')->name('export.excel');
+
+	Route::prefix('films')
 
 });
 //Auth Admin
