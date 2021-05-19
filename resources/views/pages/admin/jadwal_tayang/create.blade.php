@@ -32,7 +32,9 @@
                                 Studio</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="id_studio" id="select-studio"
-                                        style="display: none"></select>
+                                        style="display: none">
+										
+								</select>
                             </div>
                         </div>
 
@@ -128,18 +130,27 @@
 		const maxDate = moment().add(29, 'days').format('L')
 		const date = moment().format('L');
 
-        $(function() {
-			$('#daterange').daterangepicker({
-				format: 'yyyy/dd/mm',
-				opens: 'left',
-				"minDate": date,
-				"maxDate": maxDate
-			});
-        });
+		
+        
 
 		let index = 0;
 		let interval = 60
 		let startTime = '10:00'
+		let startDisableDate = ''
+		let endDisableDate = ''
+
+		function initializeDateRangePicker() {  
+			$('#daterange').daterangepicker({
+				format: 'yyyy/dd/mm',
+				opens: 'left',
+				"minDate": date,
+				"maxDate": maxDate,
+				isInvalidDate: function(date) {
+            		return (date >= startDisableDate && date <= endDisableDate);
+        		}
+			});
+		}
+
 		function initializeTimePicker(interval){
 			$('.timepicker-'+index).timepicker({
 				timeFormat: 'HH:mm',
@@ -182,6 +193,24 @@
 					interval = parseInt(value) + 30
 					initializeTimePicker(interval)
 					$('.form-hours').show()
+				}
+			});
+		})
+
+		$(document).on('change', '#select-studio', function (e) {  
+			e.preventDefault()
+			const studio_id = $(this).val()
+			const url = "{{ route('get.date.studio', '') }}"+"/"+studio_id
+			$.ajax({
+				url: url,
+				type: 'GET',
+				dataType: 'json',
+				beforeSend: function () {
+				},
+				success: function(data) {
+					endDisableDate = moment(data[0])
+					startDisableDate = moment(data[data.length-1])
+					initializeDateRangePicker()
 				}
 			});
 		})
@@ -231,9 +260,10 @@
                 selectStudio.style.display = ''
                 labelStudio.style.display = ''
                 let studio;
+				studio += '<option value="" selected disabled>-- Pilih Studio --</option>'
                 data.map(s => {
                     studio += `<option value="${s['id']}">${s['nama_studio']}</option>`
-            });
+            	});
                 selectStudio.innerHTML = studio
             })
         })

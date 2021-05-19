@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('jadwal_tayang', 'admin\JadwalTayangController')->except(['destroy']);
     Route::get('jadwal_tayang/{id}/destroy', 'admin\JadwalTayangController@destroy')->name('jadwal_tayang.destroy');
+	Route::get('tanngal-tayang/{studio_id}', 'admin\TanggalTayangController@getByStudio')->name('get.date.studio');
 
     Route::resource('customer', 'admin\CustomerController');
 });

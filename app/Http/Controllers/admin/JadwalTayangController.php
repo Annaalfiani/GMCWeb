@@ -359,6 +359,8 @@ class JadwalTayangController extends Controller
      */
     public function destroy($id)
     {
+		TanggalTayang::where('id_jadwal_tayang', $id)->delete();
+		JamTayang::where('id_jadwal_tayang', $id)->delete();
         $data = JadwalTayang::find($id);
         $data->delete();
         return redirect()->route('jadwal_tayang.index')->with('dalete', 'Berhasil Menghapus Data');
