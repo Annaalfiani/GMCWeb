@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v2;
 use App\DataFilm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v2\FilmResource;
 use App\TanggalTayang;
 use Carbon\Carbon;
 
@@ -25,7 +26,7 @@ class FilmController extends Controller
             return response()->json([
                 'message' => 'successfully get film now playing',
                 'status' => true,
-                'data' => $results
+                'data' => FilmResource::collection(collect($results))
             ]);
 
         }catch (\Exception $exception){
@@ -57,7 +58,7 @@ class FilmController extends Controller
             return response()->json([
                 'message' => 'successfully get film coming soon',
                 'status' => true,
-                'data' => $results
+                'data' => FilmResource::collection(collect($results))
             ]);
         }catch (\Exception $exception){
             return response()->json([
