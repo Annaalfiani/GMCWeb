@@ -60,7 +60,7 @@ Route::group(['prefix' => 'manager'], function () {
     Route::resource('penjualan_tiket', 'manager\PenjualanTiketController');
     Route::get('export-excel', 'manager\PenjualanTiketController@export')->name('export.excel');
 
-	Route::prefix('films')
+	///Route::prefix('films')
 
 });
 //Auth Admin
