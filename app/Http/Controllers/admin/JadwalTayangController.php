@@ -280,8 +280,8 @@ class JadwalTayangController extends Controller
     public function show($id)
     {
         $data = JadwalTayang::find($id);
-        $tanggal_mulai = TanggalTayang::where('id_jadwal_tayang', $data->id)->pluck('tanggal')->first();
-        $tanggal_selesai = TanggalTayang::where('id_jadwal_tayang', $data->id)->latest('tanggal')->pluck('tanggal')->first();
+        $tanggal_mulai = TanggalTayang::where('id_jadwal_tayang', $data->id)->orderBy('id', 'asc')->pluck('tanggal')->first();
+        $tanggal_selesai = TanggalTayang::where('id_jadwal_tayang', $data->id)->pluck('tanggal')->first();
 		
 
         $jams = JamTayang::where('id_jadwal_tayang', $id)->where('id_film', $data->datafilm->id)->get('jam');

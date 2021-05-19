@@ -18,7 +18,8 @@
                             <th>No</th>
                             <th>Judul Film</th>
                             <th>Nama Studio</th>
-                            <th>Harga</th>
+                            <th>Harga Biasa</th>
+                            <th>Harga Weekend</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -35,7 +36,8 @@
                                 @endforeach--}}
 
 
-                                <td>{{$data->harga}}</td>
+                                <td>Rp. {{number_format($data->harga,0,',','.')}}</td>
+                                <td>Rp. {{number_format($data->harga_weekend,0,',','.')}}</td>
                                 <td>
                                     <a href="{{route('jadwal_tayang.destroy', $data->id)}}" class="card-link">
                                         <button class="btn btn-danger"
