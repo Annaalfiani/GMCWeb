@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @if ($message = Session::get('warning'))
-                <div class="alert alert-warning">
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                    <h3 class="text-warning"><i class="fa fa-exclamation-triangle"></i> Warning</h3> {{ $message }}
+                    <p>{{ $message }}</p>
                 </div>
             @endif
             <div class="card m-b-20">
@@ -16,6 +16,7 @@
                     <form method="POST" action="{{route('jadwal_tayang.store')}}"
 					autocomplete="off">
                         @csrf
+						{{-- <input type="text" id="length-item-hours" name="length_item_hours"> --}}
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Judul Film</label>
                             <div class="col-sm-10">
@@ -46,7 +47,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group mt-1 row form-hours" style="display: none">
                             <label class="col-sm-2 col-form-label">Jam Tayang</label>
                             <div class="col-sm-10 hours">
@@ -63,7 +63,6 @@
                                 </div>
                             </div>
                         </div>
-
                       
                         <div class="form-group row">
                             <label for="projectinput2" class="col-sm-2">Harga Hari Biasa</label>
@@ -73,13 +72,8 @@
                                         <span class="input-group-text">Rp.</span>
                                     </div>
                                     <input type="text" id="rupiah"
-                                           class="form-control {{$errors->has('harga')?'is-invalid':''}}"
-                                           placeholder="Harga" name="harga" value="{{old('harga')}}">
-                                    @if ($errors->has('harga'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <p><b>{{ $errors->first('harga') }}</b></p>
-                                    </span>
-                                    @endif
+                                           class="form-control bg-white" readonly
+                                           placeholder="Harga" name="harga" value="25000">
                                 </div>
                             </div>
                         </div>
@@ -92,13 +86,8 @@
                                         <span class="input-group-text">Rp.</span>
                                     </div>
                                     <input type="text" id="rupiah"
-                                           class="form-control {{$errors->has('harga_weekend')?'is-invalid':''}}"
-                                           placeholder="Harga" name="harga_weekend" value="{{old('harga_weekend')}}">
-                                    @if ($errors->has('harga_weekend'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <p><b>{{ $errors->first('harga_weekend') }}</b></p>
-                                        </span>
-                                    @endif
+                                           class="form-control bg-white" readonly
+                                           placeholder="Harga" name="harga_weekend" value="30000">
                                 </div>
                             </div>
                         </div>
@@ -125,13 +114,10 @@
 
 @endsection
 
-@section('script')
+@push('scripts')
     <script>
 		const maxDate = moment().add(29, 'days').format('L')
 		const date = moment().format('L');
-
-		
-        
 
 		let index = 0;
 		let interval = 60
@@ -141,6 +127,7 @@
 
 		function initializeDateRangePicker() {  
 			$('#daterange').daterangepicker({
+				autoUpdateInput: false,
 				format: 'yyyy/dd/mm',
 				opens: 'left',
 				"minDate": date,
@@ -149,7 +136,16 @@
             		return (date >= startDisableDate && date <= endDisableDate);
         		}
 			});
+			
 		}
+
+		$('#daterange').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+		});
+
+		$('#daterange').on('cancel.daterangepicker', function(ev, picker) {
+			$(this).val('');
+		});
 
 		function initializeTimePicker(interval){
 			$('.timepicker-'+index).timepicker({
@@ -164,11 +160,17 @@
 				scrollbar: true,
 				change: timePickerOnChange
 			});
+			//setLengthItemLength()
 		}
 
 		function timePickerOnChange() {  
 			startTime = $('#hour-id-'+index).val()
 		}
+
+		function setLengthItemLength(){
+			$('#length-item-hours').val($('.ui-timepicker-viewport').children().length)
+		}
+		
 		
 
 		$(document).on('change', '#film-id', function (e) {  
@@ -290,4 +292,4 @@
         }
     </script>
 
-@endsection
+@endpush

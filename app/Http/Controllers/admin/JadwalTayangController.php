@@ -65,6 +65,9 @@ class JadwalTayangController extends Controller
      */
     public function store(Request $request)
     {
+		if (count($request->jam_tayangs) < 7) {
+			return redirect()->back()->with('error', 'jam harus di isi semua');
+		}
 
         $delete_full_stop = preg_replace('/[^\w\s]/', '', $request->harga);
         $delete_full_stop_weekend = preg_replace('/[^\w\s]/', '', $request->harga_weekend);
@@ -82,22 +85,6 @@ class JadwalTayangController extends Controller
         $endDay = (int)Carbon::parse($endDate)->format('d');
         $endMonth = (int)Carbon::parse($endDate)->format('m');
         $endYear = (int)Carbon::parse($endDate)->format('Y');
-
-        // $val = $this->validateJadwalTayang($startMonth, $endMonth, $startDay, $endDay, $request);
-        // if (count($val) > 0){
-        //     return redirect()->back()->with('warning','tanggal dan jam dan studio sudah di tambahkan secara bersamaan, atau jam harus di antara jam 10 pagi sampai jam 10 malam,  silahkan cari yg lain');
-        // }
-
-        // $valJam = $this->validateJam($startMonth, $endMonth, $startDay, $endDay, $request);
-        // if (count($valJam) > 0){
-        //     return redirect()->back()->with('warning','jam sudah di pakai film lainya, silahkan pilih jam lainnya');
-        // }
-        // $valJamFilm = $this->validasiJamFilmSama($request->jam_tayang);
-        // if ($valJamFilm[0] == "ada"){
-        //     return redirect()->back()->with('warning','jam harus ada jarak');
-        // }
-
-		//dd($request->all());
 
 		DB::beginTransaction();
 		try {
