@@ -16,7 +16,7 @@
                     <form method="POST" action="{{route('jadwal_tayang.store')}}"
 					autocomplete="off">
                         @csrf
-						{{-- <input type="text" id="length-item-hours" name="length_item_hours"> --}}
+						<input type="hidden" id="length-item-hours" name="length_item_hours" value="3">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Judul Film</label>
                             <div class="col-sm-10">
@@ -160,7 +160,6 @@
 				scrollbar: true,
 				change: timePickerOnChange
 			});
-			//setLengthItemLength()
 		}
 
 		function timePickerOnChange() {  
@@ -223,6 +222,7 @@
 			startTime = moment(startTime, "HH:mm").add(interval, 'minutes').format('HH:mm')
 			$('.hours').append(addItem())
 			initializeTimePicker(interval)
+			setLengthItemLength()
 		})
 
 		$(document).on('click', '.btn-remove-item', function (e) {  

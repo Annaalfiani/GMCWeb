@@ -65,7 +65,7 @@ class JadwalTayangController extends Controller
      */
     public function store(Request $request)
     {
-		if (count($request->jam_tayangs) < 7) {
+		if (count($request->jam_tayangs) < $request->length_item_hours) {
 			return redirect()->back()->with('error', 'jam harus di isi semua');
 		}
 
